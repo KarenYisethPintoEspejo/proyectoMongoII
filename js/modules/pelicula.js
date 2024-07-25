@@ -1,5 +1,12 @@
-import { connect } from "../../helpers/db/connect.js";
+/**
+ * Obtiene todas las películas con sus proyecciones y la información relacionada de la sala.
+ *
+ * @returns {Promise<Array>} Una promesa que se resuelve a un array de objetos de películas con sus proyecciones e información de la sala.
+ *
+ * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
+ */    
 
+import { connect } from "../../helpers/db/connect.js";
 
 export class pelicula extends connect {
     static instancePelicula;
@@ -16,15 +23,66 @@ export class pelicula extends connect {
         pelicula.instancePelicula = this;
     }
 
-    destructor(){
+    destructor() {
         pelicula.instancePelicula = undefined;
         connect.instanceConnect = undefined;
     }
-    async getALLMovies() {
 
+    /**
+     * Obtiene todas las películas con sus proyecciones y la información relacionada de la sala.
+     * 
+     * @returns {Promise<Array>} Una promesa que se resuelve a un array de objetos de películas con sus proyecciones e información de la sala.
+     * 
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
+     */
+
+    async getALLMovies() {
         await this.conexion.connect();
-        const res = await this.collection.find({}).toArray();
+        const currentDate = new Date();
+
+        const movies = await this.collection.aggregate([
+            {
+                $lookup: {
+                    from: 'proyeccion',
+                    localField: 'id',
+                    foreignField: 'id_pelicula',
+                    as: 'proyecciones',
+                },
+            },
+            {
+                $addFields: {
+                    proyecciones: {
+                        $filter: {
+                            input: '$proyecciones',
+                            as: 'proyeccion',
+                            cond: { $gte: ['$$proyeccion.fecha', currentDate] },
+                        },
+                    },
+                },
+            },
+            {
+                $match: {
+                    fecha_estreno: { $lte: currentDate },
+                    fecha_retiro: { $gte: currentDate },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    nombre: 1,
+                    generos: 1,
+                    duracion: 1,
+                    fecha_estreno: 1,
+                    fecha_retiro: 1,
+                    fechas_proyecciones: '$proyecciones.fecha',
+                    horas_proyecciones: '$proyecciones.hora',
+                },
+            },
+        ]).toArray();
+
         await this.conexion.close();
-        return res;
+        return movies;
     }
 }
+
+
