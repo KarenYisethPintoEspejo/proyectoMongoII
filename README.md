@@ -1,6 +1,6 @@
 ### Proyecto: CineCampus
 
-#### Problemtica
+#### Problematica
 
 CineCampus es una empresa de entretenimiento que se especializa en ofrecer una experiencia de cine completa y personalizada. La empresa desea desarrollar una aplicación web que permita a los usuarios seleccionar películas, comprar boletos y asignar asientos de manera eficiente y cómoda. La aplicación también ofrecerá opciones de descuento para usuarios con tarjeta VIP y permitirá realizar compras en línea.
 
@@ -12,16 +12,41 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
 
 1. **Selección de Películas:**
    - **API para Listar Películas:** Permitir la consulta de todas las películas disponibles en el catálogo, con detalles como título, género, duración y horarios de proyección.
+   
+     
+   
+   **getALLMovies():** Consulta la información de todas las películas disponibles en nuestro catalogo.
+   
+   ***Parámetro:*** La información de las películas con sus proyecciones se muestra al poner esto en el main.js 
+   
+   ```
+   let objPelicula= new pelicula();
+   
+   console.log(await objPelicula.getALLMovies());
+   
+   objPelicula.destructor()
+   ```
+   
+   
+   
+   Cuando se ejecuta eso en consola muestra toda la información de las películas disponibles.
+   
+   
+   
    - **API para Obtener Detalles de Película:** Permitir la consulta de información detallada sobre una película específica, incluyendo sinopsis.
+   
 2. **Compra de Boletos:**
    - **API para Comprar Boletos:** Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
    - **API para Verificar Disponibilidad de Asientos:** Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
+   
 3. **Asignación de Asientos:**
    - **API para Reservar Asientos:** Permitir la selección y reserva de asientos para una proyección específica.
    - **API para Cancelar Reserva de Asientos:** Permitir la cancelación de una reserva de asiento ya realizada.
+   
 4. **Descuentos y Tarjetas VIP:**
    - **API para Aplicar Descuentos:** Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
    - **API para Verificar Tarjeta VIP:** Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
+   
 5. - Roles Definidos:
      - **Administrador:** Tiene permisos completos para gestionar el sistema, incluyendo la venta de boletos en el lugar físico. Los administradores no están involucrados en las compras en línea realizadas por los usuarios.
      - **Usuario Estándar:** Puede comprar boletos en línea sin la intervención del administrador.
@@ -30,6 +55,7 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
+   
 6. **Compras en Línea:**
    - **API para Procesar Pagos:** Permitir el procesamiento de pagos en línea para la compra de boletos.
    - **API para Confirmación de Compra:** Enviar confirmación de la compra y los detalles del boleto al usuario.
