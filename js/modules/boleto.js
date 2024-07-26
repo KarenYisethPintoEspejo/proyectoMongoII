@@ -21,7 +21,7 @@ export class boleto extends connect {
     }
 
     /**
-     * Compra un boleto para una proyección específica validando todas las condiciones necesarias.
+     * Compra un boleto para una proyección específica validando todas las condiciones necesarias y realiza el pago.
      *
      * @param {Object} ticketData - Los datos del boleto a comprar.
      * @param {number} ticketData.id - El ID del boleto.
@@ -65,12 +65,55 @@ export class boleto extends connect {
             }
 
             await this.collection.insertOne(ticketData);
+
+            // Verificar si el usuario es VIP
+            const tarjetaCollection = this.db.collection('tarjeta');
+            const tarjetaUsuario = await tarjetaCollection.findOne({ id_usuario: ticketData.id_usuario, estado: 'Activo' });
+
+            let montoFinal = ticketData.precio;
+            if (tarjetaUsuario) {
+                const descuento = tarjetaUsuario['%descuento'] || 0;
+                montoFinal = ticketData.precio * (1 - descuento / 100);
+            }
+
+            // Verificar si ya se ha pagado por este boleto
+            const pagoCollection = this.db.collection('pago');
+            const pagoExistente = await pagoCollection.findOne({ boleto: ticketData.id });
+            if (pagoExistente) {
+                throw new Error(`El boleto con ID ${ticketData.id} ya ha sido pagado.`);
+            }
+
+            // Insertar el pago en la colección de pagos
+            const nuevoPago = {
+                id: await this.getNextId('pago'), // Método que genera el siguiente ID para la colección de pagos
+                boleto: ticketData.id,
+                monto: montoFinal,
+                metodo_pago: 'Tarjeta de Crédito', // Puedes ajustar esto según tu lógica de negocio
+                fecha: new Date(),
+                hora: new Date().toLocaleTimeString(),
+                estado: 'Completado',
+                tipo_transaccion: 'Compra'
+            };
+
+            await pagoCollection.insertOne(nuevoPago);
             await this.conexion.close();
 
-            return { mensaje: 'Boleto comprado exitosamente', boleto: ticketData };
+            return { mensaje: 'Boleto comprado exitosamente', boleto: ticketData, pago: nuevoPago };
         } catch (error) {
             await this.conexion.close();
             return { error: `Error al comprar el boleto: ${error.message}` };
         }
+    }
+
+    /**
+     * Obtiene el siguiente ID para una colección.
+     *
+     * @param {string} collectionName - El nombre de la colección.
+     * @returns {Promise<number>} El siguiente ID.
+     */
+    async getNextId(collectionName) {
+        const collection = this.db.collection(collectionName);
+        const lastEntry = await collection.find().sort({ id: -1 }).limit(1).toArray();
+        return lastEntry.length > 0 ? lastEntry[0].id + 1 : 1;
     }
 }
