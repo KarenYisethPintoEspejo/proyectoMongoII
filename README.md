@@ -13,13 +13,11 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
 1. **Selección de Películas:**
    - **API para Listar Películas:** Permitir la consulta de todas las películas disponibles en el catálogo, con detalles como título, género, duración y horarios de proyección.
    
-     
-   
    **getALLMovies():** Consulta la información de todas las películas disponibles en nuestro catalogo.
    
    ***Parámetro:*** La información de las películas con sus proyecciones se muestra al poner esto en el main.js 
    
-   ```
+   ```javascript
    let objPelicula= new pelicula();
    
    console.log(await objPelicula.getALLMovies());
@@ -34,6 +32,22 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    
    - **API para Obtener Detalles de Película:** Permitir la consulta de información detallada sobre una película específica, incluyendo sinopsis.
+   
+   **consultarPeliculas(id):** Consulta la información de una película en especifico.
+   
+   ***Parámetro:*** La información de consultar una pelicula en especifico con sus diferentes detalles se muestra al poner esto en el main.js 
+   
+   ```javascript
+   let objPelicula= new pelicula();
+   
+   console.log(await objPelicula.consultarPeliculas(1));
+   
+   objPelicula.destructor()
+   ```
+   
+   
+   
+   Cuando se ejecuta eso en consola muestra toda la información de una película en especifico.
    
 2. **Compra de Boletos:**
    - **API para Comprar Boletos:** Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
