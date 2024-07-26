@@ -33,6 +33,8 @@ export class boleto extends connect {
      *
      * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de inserción.
      */
+
+
     async comprarBoleto(ticketData) {
         try {
             await this.conexion.connect();
@@ -66,7 +68,7 @@ export class boleto extends connect {
 
             await this.collection.insertOne(ticketData);
 
-            // Verificar si el usuario es VIP
+
             const tarjetaCollection = this.db.collection('tarjeta');
             const tarjetaUsuario = await tarjetaCollection.findOne({ id_usuario: ticketData.id_usuario, estado: 'Activo' });
 
@@ -76,19 +78,27 @@ export class boleto extends connect {
                 montoFinal = ticketData.precio * (1 - descuento / 100);
             }
 
-            // Verificar si ya se ha pagado por este boleto
+
+            /**
+             * Crea un nuevo pago en la colección de pagos.
+             *
+             * @param {Object} ticketData - Los datos del boleto a comprar.
+             * @param {number} montoFinal - El monto final a pagar después de aplicar descuentos.
+             * @returns {Promise<Object>} Los detalles del nuevo pago.
+             */
+
+
             const pagoCollection = this.db.collection('pago');
             const pagoExistente = await pagoCollection.findOne({ boleto: ticketData.id });
             if (pagoExistente) {
                 throw new Error(`El boleto con ID ${ticketData.id} ya ha sido pagado.`);
             }
 
-            // Insertar el pago en la colección de pagos
             const nuevoPago = {
-                id: await this.getNextId('pago'), // Método que genera el siguiente ID para la colección de pagos
+                id: await this.getNextId('pago'), 
                 boleto: ticketData.id,
                 monto: montoFinal,
-                metodo_pago: 'Tarjeta de Crédito', // Puedes ajustar esto según tu lógica de negocio
+                metodo_pago: 'Tarjeta de Crédito', 
                 fecha: new Date(),
                 hora: new Date().toLocaleTimeString(),
                 estado: 'Completado',
@@ -105,12 +115,14 @@ export class boleto extends connect {
         }
     }
 
+
     /**
      * Obtiene el siguiente ID para una colección.
      *
      * @param {string} collectionName - El nombre de la colección.
      * @returns {Promise<number>} El siguiente ID.
      */
+
     async getNextId(collectionName) {
         const collection = this.db.collection(collectionName);
         const lastEntry = await collection.find().sort({ id: -1 }).limit(1).toArray();
