@@ -75,8 +75,6 @@ export class boleto extends connect {
                 throw new Error(`El asiento con ID ${ticketData.id_asiento} ya está ocupado para la proyección con ID ${ticketData.id_proyeccion}.`);
             }
 
-            await this.collection.insertOne(ticketData);
-
             const tarjetaCollection = this.db.collection('tarjeta');
             const tarjetaUsuario = await tarjetaCollection.findOne({ id_usuario: ticketData.id_usuario, estado: 'Activo' });
 
@@ -86,13 +84,8 @@ export class boleto extends connect {
                 montoFinal = ticketData.precio * (1 - descuento / 100);
             }
 
-            /**
-             * Crea un nuevo pago en la colección de pagos.
-             *
-             * @param {Object} ticketData - Los datos del boleto a comprar.
-             * @param {number} montoFinal - El monto final a pagar después de aplicar descuentos.
-             * @returns {Promise<Object>} Los detalles del nuevo pago.
-             */
+            await this.collection.insertOne(ticketData);
+
             const pagoCollection = this.db.collection('pago');
             const pagoExistente = await pagoCollection.findOne({ boleto: ticketData.id });
             if (pagoExistente) {
