@@ -70,7 +70,7 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
        id_usuario: 1,
        id_asiento: 3,
        id_proyeccion: 4,
-       precio: 15
+       precio: 12
    };
    
    console.log(await objBoleto.comprarBoleto(ticketData));
@@ -83,6 +83,22 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
 
    - **API para Verificar Disponibilidad de Asientos:** Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
+
+   **verificarDisponibilidadAsiento(id_proyeccion, id_asiento)** Consulta la disponibilidad de un asiento para una proyeccion.
+
+   ***Parámetro:*** Se ingresa el id_proyeccion y el id_asiento que queremos consultar de la siguiente forma:
+
+   ```javascript
+   let objBoleto= new boleto();
+   
+   console.log(await objBoleto.verificarDisponibilidadAsiento(1, 3));
+   
+   objBoleto.destructor()
+   ```
+
+   Cuando se ejecuta eso en consola muestra la disponibilidad de ese asiento.
+
+   
 
 3. **Asignación de Asientos:**
    - **API para Reservar Asientos:** Permitir la selección y reserva de asientos para una proyección específica.
