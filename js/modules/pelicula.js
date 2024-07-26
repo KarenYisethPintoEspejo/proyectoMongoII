@@ -83,6 +83,23 @@ export class pelicula extends connect {
         await this.conexion.close();
         return movies;
     }
+
+
+    async consultarPeliculas(id) {
+        try {
+            await this.conexion.connect();
+            const consulta = { id: id };
+            const pelicula = await this.collection.findOne(consulta);
+            await this.conexion.close();
+            if (!pelicula) {
+                return { error: `No se encontró una pelicula con el ID ${id}` };
+            }
+            return pelicula;
+        } catch (error) {
+            await this.conexion.close();
+            return { error: `Error al consultar la pelicula ${error.message}` };
+        }
+    }
 }
 
 
