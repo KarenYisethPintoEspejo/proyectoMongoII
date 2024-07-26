@@ -124,4 +124,54 @@ export class boleto extends connect {
         const lastEntry = await collection.find().sort({ id: -1 }).limit(1).toArray();
         return lastEntry.length > 0 ? lastEntry[0].id + 1 : 1;
     }
+
+
+
+
+    /**
+     * Verifica la disponibilidad de un asiento para una proyección específica.
+     *
+     * @param {number} id_proyeccion - El ID de la proyección.
+     * @param {number} id_asiento - El ID del asiento.
+     * @returns {Promise<Object>} Una promesa que se resuelve con un objeto indicando si el asiento está disponible o no.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de búsqueda.
+     */
+
+
+    async verificarDisponibilidadAsiento(id_proyeccion, id_asiento) {
+        try {
+            await this.conexion.connect();
+
+            const proyeccionCollection = this.db.collection('proyeccion');
+            const proyeccionExistente = await proyeccionCollection.findOne({ id: id_proyeccion });
+            if (!proyeccionExistente) {
+                throw new Error(`La proyección con ID ${id_proyeccion} no existe.`);
+            }
+
+            const asientoCollection = this.db.collection('asiento');
+            const asientoExistente = await asientoCollection.findOne({ id: id_asiento });
+            if (!asientoExistente) {
+                throw new Error(`El asiento con ID ${id_asiento} no existe.`);
+            }
+
+
+            if (asientoExistente.id_sala !== proyeccionExistente.id_sala) {
+                throw new Error(`El asiento con ID ${id_asiento} no pertenece a la sala de la proyección con ID ${id_proyeccion}.`);
+            }
+
+            const boletoAsientoExistente = await this.collection.findOne({ id_proyeccion, id_asiento });
+            await this.conexion.close();
+
+            if (boletoAsientoExistente) {
+                return { disponible: false, mensaje: `El asiento con ID ${id_asiento} ya está ocupado para la proyección con ID ${id_proyeccion}.` };
+            } else {
+                return { disponible: true, mensaje: `El asiento con ID ${id_asiento} está disponible para la proyección con ID ${id_proyeccion}.` };
+            }
+        } catch (error) {
+            await this.conexion.close();
+            return { error: `Error al verificar la disponibilidad del asiento: ${error.message}` };
+        }
+    }
 }
+
