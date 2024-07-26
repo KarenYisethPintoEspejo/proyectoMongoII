@@ -1,3 +1,11 @@
+/**
+ * Obtiene todas las películas con sus proyecciones y la información relacionada de la sala.
+ *
+ * @returns {Promise<Array>} Una promesa que se resuelve a un array de objetos de películas con sus proyecciones e información de la sala.
+ *
+ * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
+ */    
+
 import { connect } from "../../helpers/db/connect.js";
 
 export class pelicula extends connect {
@@ -19,6 +27,14 @@ export class pelicula extends connect {
         pelicula.instancePelicula = undefined;
         connect.instanceConnect = undefined;
     }
+
+    /**
+     * Obtiene todas las películas con sus proyecciones y la información relacionada de la sala.
+     * 
+     * @returns {Promise<Array>} Una promesa que se resuelve a un array de objetos de películas con sus proyecciones e información de la sala.
+     * 
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
+     */
 
     async getALLMovies() {
         await this.conexion.connect();
@@ -68,3 +84,5 @@ export class pelicula extends connect {
         return movies;
     }
 }
+
+
