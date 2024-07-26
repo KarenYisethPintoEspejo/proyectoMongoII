@@ -11,12 +11,15 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
 #### Requisitos Funcionales
 
 1. **Selección de Películas:**
+
+   
+
    - **API para Listar Películas:** Permitir la consulta de todas las películas disponibles en el catálogo, con detalles como título, género, duración y horarios de proyección.
-   
+
    **getALLMovies():** Consulta la información de todas las películas disponibles en nuestro catalogo.
-   
+
    ***Parámetro:*** La información de las películas con sus proyecciones se muestra al poner esto en el main.js 
-   
+
    ```javascript
    let objPelicula= new pelicula();
    
@@ -24,19 +27,19 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    objPelicula.destructor()
    ```
-   
-   
-   
+
    Cuando se ejecuta eso en consola muestra toda la información de las películas disponibles.
+
    
+
    
-   
+
    - **API para Obtener Detalles de Película:** Permitir la consulta de información detallada sobre una película específica, incluyendo sinopsis.
-   
+
    **consultarPeliculas(id):** Consulta la información de una película en especifico.
-   
+
    ***Parámetro:*** La información de consultar una pelicula en especifico con sus diferentes detalles se muestra al poner esto en el main.js 
-   
+
    ```javascript
    let objPelicula= new pelicula();
    
@@ -44,23 +47,51 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    objPelicula.destructor()
    ```
-   
-   
-   
+
    Cuando se ejecuta eso en consola muestra toda la información de una película en especifico.
+
    
+
 2. **Compra de Boletos:**
-   - **API para Comprar Boletos:** Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
-   - **API para Verificar Disponibilidad de Asientos:** Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
+
    
+
+   - **API para Comprar Boletos:** Permitir la compra de boletos para una película específica, incluyendo la selección de la fecha y la hora de la proyección.
+
+   **comprarBoleto(ticketData)** Valida aspectos para la compra de un boleto
+
+   ***Parámetro:*** Para poder hacer la compra de cierto boleto se pone el siguiente parámetro.
+
+   ```javascript
+   let objBoleto= new boleto();
+   
+   const ticketData = {
+       id: 11,
+       id_usuario: 1,
+       id_asiento: 3,
+       id_proyeccion: 4,
+       precio: 15
+   };
+   
+   console.log(await objBoleto.comprarBoleto(ticketData));
+   
+   objBoleto.destructor()
+   ```
+
+   Cuando se ejecuta eso en consola muestra la confirmación de la compra del boleto. 
+
+   
+
+   - **API para Verificar Disponibilidad de Asientos:** Permitir la consulta de la disponibilidad de asientos en una sala para una proyección específica.
+
 3. **Asignación de Asientos:**
    - **API para Reservar Asientos:** Permitir la selección y reserva de asientos para una proyección específica.
    - **API para Cancelar Reserva de Asientos:** Permitir la cancelación de una reserva de asiento ya realizada.
-   
+
 4. **Descuentos y Tarjetas VIP:**
    - **API para Aplicar Descuentos:** Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
    - **API para Verificar Tarjeta VIP:** Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
-   
+
 5. - Roles Definidos:
      - **Administrador:** Tiene permisos completos para gestionar el sistema, incluyendo la venta de boletos en el lugar físico. Los administradores no están involucrados en las compras en línea realizadas por los usuarios.
      - **Usuario Estándar:** Puede comprar boletos en línea sin la intervención del administrador.
@@ -69,7 +100,7 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
-   
+
 6. **Compras en Línea:**
    - **API para Procesar Pagos:** Permitir el procesamiento de pagos en línea para la compra de boletos.
    - **API para Confirmación de Compra:** Enviar confirmación de la compra y los detalles del boleto al usuario.
