@@ -132,6 +132,22 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
 
    - **API para Cancelar Reserva de Asientos:** Permitir la cancelación de una reserva de asiento ya realizada.
 
+   **cancelarReserva(id_boleto)** Cancelación de la reserva de un asiento para una proyección en especifico y se cambia el pago a cancelado.
+
+   ***Parámetro:*** Se ingresa el id del boleto a cancelar:
+
+   ```javascript
+   let objBoleto= new boleto();
+   
+   const idBoletoCancelar = 11;
+   
+   console.log(await objBoleto.cancelarReserva(idBoletoCancelar));
+   
+   objBoleto.destructor()
+   ```
+
+   Cuando se ejecuta eso en consola muestra la confirmación de la cancelación de la reserva de un asiento para una proyección en especifico.
+
    
 
 4. **Descuentos y Tarjetas VIP:**
