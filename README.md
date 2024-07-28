@@ -151,8 +151,29 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
 
 4. **Descuentos y Tarjetas VIP:**
+
+   ### Razón para No Implementarlo como una Función Aparte
+
+   La funcionalidad de aplicar descuentos y verificar tarjetas VIP se implementa dentro del proceso de compra de boletos y reserva de asientos por las siguientes razones:
+
+   **Coherencia en la Transacción:** Garantiza que todas las validaciones y modificaciones necesarias se realicen de manera secuencial y atomizada, manteniendo la coherencia y exactitud de la transacción.
+
+   **Reducción de la Complejidad:** Incluir la lógica de descuentos y verificación de tarjetas VIP directamente en el flujo de compra/reserva simplifica el código y facilita el mantenimiento, evitando la gestión de múltiples puntos de integración.
+
+   **Minimización de Errores:** Reduce el riesgo de errores de sincronización al realizar la verificación y aplicación de descuentos en el mismo flujo.
+
+   **Mejora en la Experiencia del Usuario:** Proporciona una respuesta inmediata y coherente sobre la validez de la tarjeta VIP y el descuento aplicado, mejorando la experiencia del usuario.
+
+   **Seguridad y Validación:** Permite realizar todas las verificaciones necesarias en un solo flujo, asegurando que solo se apliquen descuentos a usuarios elegibles con tarjetas VIP válidas.
+
+   **Optimización del Rendimiento:** Reduce la cantidad de llamadas a la base de datos y optimiza el uso de recursos al mantener todas las operaciones en una única transacción.
+
+   
+
    - **API para Aplicar Descuentos:** Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
    - **API para Verificar Tarjeta VIP:** Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
+
+   
 
 5. - Roles Definidos:
      - **Administrador:** Tiene permisos completos para gestionar el sistema, incluyendo la venta de boletos en el lugar físico. Los administradores no están involucrados en las compras en línea realizadas por los usuarios.
