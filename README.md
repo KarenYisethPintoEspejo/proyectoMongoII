@@ -170,8 +170,36 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
 
    
 
+   
+
    - **API para Aplicar Descuentos:** Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
+
+   ```javascript
+   let montoFinal = ticketData.precio;
+   if (tarjetaUsuario) {
+       const descuento = tarjetaUsuario['%descuento'] || 0;
+       montoFinal = ticketData.precio * (1 - descuento / 100);
+   }
+   
+   ```
+
+   Se realiza esta validación dentro de la función de comprar boletas o reservar asientos.
+
+   
+
+   
+
    - **API para Verificar Tarjeta VIP:** Permitir la verificación de la validez de una tarjeta VIP durante el proceso de compra.
+
+   ```javascript
+     const tarjetaCollection = this.db.collection('tarjeta');
+               const tarjetaUsuario = await tarjetaCollection.findOne({ id_usuario: ticketData.id_usuario, estado: 'Activo' });
+   
+   ```
+
+   Se realiza esta validación dentro de la función de comprar boletas o reservar asientos.
+
+   
 
    
 
