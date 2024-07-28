@@ -275,5 +275,37 @@ export class boleto extends connect {
             return { error: `Error al reservar el boleto: ${error.message}` };
         }
     }
+
+
+
+    async cancelarReserva(id_boleto) {
+        try {
+            await this.conexion.connect();
+
+            const boletoExistente = await this.collection.findOne({ id: id_boleto });
+            if (!boletoExistente) {
+                throw new Error(`El boleto con ID ${id_boleto} no existe.`);
+            }
+
+            const pagoCollection = this.db.collection('pago');
+            const pagoExistente = await pagoCollection.findOne({ boleto: id_boleto, tipo_transaccion: 'Reserva' });
+            if (!pagoExistente) {
+                throw new Error(`No se encontró una reserva asociada al boleto con ID ${id_boleto}.`);
+            }
+
+            await pagoCollection.updateOne(
+                { boleto: id_boleto, tipo_transaccion: 'Reserva' },
+                { $set: { estado: 'Cancelado' } }
+            );
+
+            await this.collection.deleteOne({ id: id_boleto });
+            await this.conexion.close();
+            return { mensaje: `La reserva del asiento en el boleto con ID ${id_boleto} ha sido cancelada exitosamente.` };
+        } catch (error) {
+            await this.conexion.close();
+            return { error: `Error al cancelar la reserva del boleto: ${error.message}` };
+        }
+    }
+
 }
 
