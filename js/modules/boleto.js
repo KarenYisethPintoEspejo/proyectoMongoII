@@ -174,6 +174,25 @@ export class boleto extends connect {
         }
     }
 
+
+
+
+    /**
+     * Reserva un boleto para una proyección específica validando todas las condiciones necesarias.
+     *
+     * @param {Object} ticketData - Los datos del boleto a reservar.
+     * @param {number} ticketData.id - El ID del boleto.
+     * @param {number} ticketData.id_usuario - El ID del usuario.
+     * @param {number} ticketData.id_asiento - El ID del asiento.
+     * @param {number} ticketData.id_proyeccion - El ID de la proyección.
+     * @param {number} ticketData.precio - El precio del boleto.
+     * @returns {Promise<Object>} Una promesa que se resuelve con el objeto del boleto si la reserva es exitosa, o un objeto de error si falla alguna validación.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de inserción.
+     */
+
+    
+
     async reservarAsiento(ticketData) {
         try {
             await this.conexion.connect();
