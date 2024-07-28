@@ -278,6 +278,18 @@ export class boleto extends connect {
 
 
 
+    
+    /**
+     * Cancela la reserva de un asiento específico, actualizando el estado del pago y eliminando el boleto de la colección.
+     *
+     * @param {number} id_boleto - El ID del boleto a cancelar.
+     * @returns {Promise<Object>} Una promesa que se resuelve con un objeto indicando el resultado de la cancelación.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de las operaciones de actualización/eliminación.
+     */
+
+
+
     async cancelarReserva(id_boleto) {
         try {
             await this.conexion.connect();
