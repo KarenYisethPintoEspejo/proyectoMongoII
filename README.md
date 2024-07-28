@@ -101,8 +101,38 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
 
 3. **Asignación de Asientos:**
+
+   
+
    - **API para Reservar Asientos:** Permitir la selección y reserva de asientos para una proyección específica.
+
+   **reservarAsiento(ticketData)** Reserva el asiento para un proyección especifica dejando pendiente el pago.
+
+   ***Parámetro:*** Se ingresa la información del boleto y asiento a reservar:
+
+   ```javascript
+   let objBoleto= new boleto();
+   
+   const ticketData = {
+       "id": 11,
+       "id_usuario": 2,
+       "id_asiento": 7,
+       "id_proyeccion": 4,
+       "precio": 15
+     }
+   
+   console.log(await objBoleto.reservarAsiento(ticketData));
+   
+   objBoleto.destructor()
+   ```
+
+   Cuando se ejecuta eso en consola muestra la confirmación de la reserva y el plazo del pago a realizar.
+
+   
+
    - **API para Cancelar Reserva de Asientos:** Permitir la cancelación de una reserva de asiento ya realizada.
+
+   
 
 4. **Descuentos y Tarjetas VIP:**
    - **API para Aplicar Descuentos:** Permitir la aplicación de descuentos en la compra de boletos para usuarios con tarjeta VIP.
