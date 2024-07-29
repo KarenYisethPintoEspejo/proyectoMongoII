@@ -255,6 +255,31 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
      
    - **API para Crear Usuario:** Permitir la creación de nuevos usuarios en el sistema, asignando roles y privilegios específicos (usuario estándar, usuario VIP o administrador).
    
+   
+   
+   **crearUsuario(usuarioData)** Creación del usuario en la colección y en la base de datos con su respectivo rol.
+   
+   ***Parámetro:*** Se ingresan los datos a insertar para crear el usuario.
+   
+   ```javascript
+   let objUsuario = new usuario();
+   
+   const usuarioData = {
+       id: 6,
+       nombre: 'Karen Pinto',
+       email: 'karen.pinto@example.com',
+       rol: 'usuarioEstandar' 
+   };
+   
+   console.log(await objUsuario.crearUsuario(usuarioData));
+   
+   objUsuario.destructor();
+   ```
+   
+   Cuando se ejecuta eso , en consola se muestra la confirmación de la creación del usuario con su respectivo rol y permisos.
+   
+   
+   
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
    
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
