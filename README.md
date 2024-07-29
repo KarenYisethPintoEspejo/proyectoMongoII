@@ -254,13 +254,13 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
      
      
    - **API para Crear Usuario:** Permitir la creación de nuevos usuarios en el sistema, asignando roles y privilegios específicos (usuario estándar, usuario VIP o administrador).
+
    
-   
-   
+
    **crearUsuario(usuarioData)** Creación del usuario en la colección y en la base de datos con su respectivo rol.
-   
+
    ***Parámetro:*** Se ingresan los datos a insertar para crear el usuario.
-   
+
    ```javascript
    let objUsuario = new usuario();
    
@@ -275,19 +275,19 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    objUsuario.destructor();
    ```
-   
+
    Cuando se ejecuta eso , en consola se muestra la confirmación de la creación del usuario con su respectivo rol y permisos.
+
    
-   
-   
+
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
+
    
-   
-   
+
    **cobtenerDetallesUsuario(id)** Consultar la informacion de un usuario e incluye si tiene tarjeta VIP y el estado de la misma.
-   
+
    ***Parámetro:*** Se ingresa el id del usuario a consultar.
-   
+
    ```javascript
    let objUsuario = new usuario();
    
@@ -295,19 +295,19 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    objUsuario.destructor();
    ```
-   
+
    Cuando se ejecuta eso , en consola se muestra la información del usuario con id 1 junto su respectiva validación de tarjeta VIP.
+
    
-   
-   
+
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
+
    
-   
-   
+
    **actualizarRolUsuario(id, nuevoRol)**  Actualizar el rol de un usuario en la coleccion y en la base de datos.
-   
+
    ***Parámetro:*** Se ingresa el id del usuario y el nuevo rol a actualizar.
-   
+
    ```javascript
    let objUsuario = new usuario();
    
@@ -316,19 +316,19 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    objUsuario.destructor();
    
    ```
-   
+
    Cuando se ejecuta eso , en consola se muestra la confirmación de la actualización del rol del usuario con id 4.
+
    
-   
-   
+
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
+
    
-   
-   
+
    **alistarUsuarios(rol)**  Listar los usuarios por un rol en especifico.
-   
+
    ***Parámetro:*** Se ingresa el rol a filtrar.
-   
+
    ```javascript
    let objUsuario = new usuario();
    
@@ -337,14 +337,30 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    objUsuario.destructor();
    
    ```
-   
+
    Cuando se ejecuta eso , en consola se muestra el listado de los usuarios que tienen como rol "usuarioVIP".
+
    
-   
-   
+
 6. **Compras en Línea:**
+
+   
+
+   **Justificación de la No Implementación de APIs para Procesamiento de Pagos y Confirmación de Compra**
+
+   
+
    - **API para Procesar Pagos:** Permitir el procesamiento de pagos en línea para la compra de boletos.
+
+   **Justificación:** La implementación de esta API requiere la integración con servicios de pago especializados como Stripe o PayPal. Debido a la complejidad y a la necesidad de cumplir con normativas financieras y de seguridad, esta funcionalidad se maneja de manera distinta y no se incluye en el alcance de nuestro desarrollo actual.
+
+   
+
    - **API para Confirmación de Compra:** Enviar confirmación de la compra y los detalles del boleto al usuario.
+
+   **Justificación:** Esta API depende directamente del procesamiento de pagos, ya que es necesario validar y confirmar las transacciones antes de enviar cualquier detalle al usuario. Dado que el procesamiento de pagos no está incluido en nuestro enfoque actual, la implementación de esta API se considera fuera de contexto.
+
+   
 
 #### Requisitos Técnicos
 
