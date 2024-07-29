@@ -49,7 +49,7 @@ export class connect {
     }
     async #open() {
         console.log("Conexion exitosa");
-        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}/${this.getDbName}`;
+        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}/${this.getDbName}`;   ///${this.getDbName}
         this.conexion = new MongoClient(this.#url);
         await this.conexion.connect();
         console.log("Conexion realizada correctamente");
