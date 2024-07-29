@@ -1,22 +1,22 @@
 import { connect } from "../../helpers/db/connect.js";
 
-export class Usuario extends connect {
+export class usuario extends connect {
     static instanceUsuario;
     db;
     collection;
 
     constructor() {
-        if (Usuario.instanceUsuario) {
-            return Usuario.instanceUsuario;
+        if (usuario.instanceUsuario) {
+            return usuario.instanceUsuario;
         }
         super();
         this.db = this.conexion.db(this.getDbName());
         this.collection = this.db.collection('usuario');
-        Usuario.instanceUsuario = this;
+        usuario.instanceUsuario = this;
     }
 
     destructor() {
-        Usuario.instanceUsuario = undefined;
+        usuario.instanceUsuario = undefined;
         connect.instanceConnect = undefined;
     }
 
