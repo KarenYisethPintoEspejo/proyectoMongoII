@@ -64,4 +64,40 @@ export class usuario extends connect {
             return { error: `Error al crear el usuario: ${error.message}` };
         }
     }
+
+    /**
+     * Obtiene los detalles de un usuario, incluyendo su rol y estado de tarjeta VIP.
+     *
+     * @param {string} id - El ID del usuario que se desea consultar.
+     * @returns {Promise<Object>} Una promesa que se resuelve con el objeto del usuario, incluyendo los detalles de su tarjeta VIP,
+     * o un objeto de error si no se encuentra el usuario o si ocurre un error durante la operación.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la consulta.
+     */
+    async obtenerDetallesUsuario(id) {
+        try {
+            await this.conexion.connect();
+
+            const usuario = await this.collection.findOne({ id });
+            if (!usuario) {
+                await this.conexion.close();
+                return { error: `No se encontró un usuario con el ID ${id}.` };
+            }
+
+            const tarjetaCollection = this.db.collection('tarjeta');
+            const tarjeta = await tarjetaCollection.findOne({ id_usuario: id });
+
+            await this.conexion.close();
+
+            const detallesUsuario = {
+                ...usuario,
+                tarjetaVIP: tarjeta ? tarjeta.estado : 'No tiene tarjeta VIP'
+            };
+
+            return detallesUsuario;
+        } catch (error) {
+            if (this.conexion) await this.conexion.close();
+            return { error: `Error al obtener los detalles del usuario: ${error.message}` };
+        }
+    }
 }
