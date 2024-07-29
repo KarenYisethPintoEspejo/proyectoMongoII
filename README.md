@@ -282,6 +282,24 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
    
+   
+   
+   **cobtenerDetallesUsuario(id)** Consultar la informacion de un usuario e incluye si tiene tarjeta VIP y el estado de la misma.
+   
+   ***Parámetro:*** Se ingresa el id del usuario a consultar.
+   
+   ```javascript
+   let objUsuario = new usuario();
+   
+   console.log(await objUsuario.obtenerDetallesUsuario(1));
+   
+   objUsuario.destructor();
+   ```
+   
+   Cuando se ejecuta eso , en consola se muestra la información del usuario con id 1 junto su respectiva validación de tarjeta VIP.
+   
+   
+   
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
    
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
