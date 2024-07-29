@@ -302,6 +302,25 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
    
+   
+   
+   **actualizarRolUsuario(id, nuevoRol)**  Actualizar el rol de un usuario en la coleccion y en la base de datos.
+   
+   ***Parámetro:*** Se ingresa el id del usuario y el nuevo rol a actualizar.
+   
+   ```javascript
+   let objUsuario = new usuario();
+   
+   console.log(await objUsuario.actualizarRolUsuario(4, "usuarioEstandar"));
+   
+   objUsuario.destructor();
+   
+   ```
+   
+   Cuando se ejecuta eso , en consola se muestra la confirmación de la actualización del rol del usuario con id 4.
+   
+   
+   
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
    
 6. **Compras en Línea:**
