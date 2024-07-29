@@ -80,14 +80,11 @@ export class usuario extends connect {
 
             const usuario = await this.collection.findOne({ id });
             if (!usuario) {
-                await this.conexion.close();
                 return { error: `No se encontró un usuario con el ID ${id}.` };
             }
 
             const tarjetaCollection = this.db.collection('tarjeta');
             const tarjeta = await tarjetaCollection.findOne({ id_usuario: id });
-
-            await this.conexion.close();
 
             const detallesUsuario = {
                 ...usuario,
@@ -98,6 +95,55 @@ export class usuario extends connect {
         } catch (error) {
             if (this.conexion) await this.conexion.close();
             return { error: `Error al obtener los detalles del usuario: ${error.message}` };
+        }
+    }
+
+
+    /**
+     * Actualiza el rol de un usuario en la base de datos.
+     *
+     * @param {string} id - El ID del usuario cuyo rol se desea actualizar.
+     * @param {string} nuevoRol - El nuevo rol que se asignará al usuario.
+     * @returns {Promise<Object>} Una promesa que se resuelve con un mensaje de éxito y el objeto del usuario actualizado,
+     * o un objeto de error si no se encuentra el usuario o si ocurre un error durante la operación.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la actualización del usuario.
+     */
+
+
+    
+    async actualizarRolUsuario(id, nuevoRol) {
+        try {
+            await this.conexion.connect();
+
+            const usuario = await this.collection.findOne({ id });
+            if (!usuario) {
+
+                return { error: `No se encontró un usuario con el ID ${id}.` };
+            }
+
+            const nombreUsuario = usuario.nombre.replace(/\s+/g, '');
+
+            const db = this.conexion.db('cineCampus');
+
+            await db.command({
+                dropUser: nombreUsuario
+            });
+
+            await this.collection.updateOne({ id }, { $set: { rol: nuevoRol } });
+
+            const contraseña = `${nombreUsuario}${123}`;
+            await db.command({
+                createUser: nombreUsuario,
+                pwd: contraseña,
+                roles: [{ role: nuevoRol, db: 'cineCampus' }]
+            });
+
+            const usuarioActualizado = await this.collection.findOne({ id });
+            return { mensaje: 'Rol de usuario actualizado exitosamente', usuario: usuarioActualizado };
+        } catch (error) {
+            if (this.conexion) await this.conexion.close();
+            return { error: `Error al actualizar el rol del usuario: ${error.message}` };
         }
     }
 }
