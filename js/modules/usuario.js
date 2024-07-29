@@ -146,6 +146,18 @@ export class usuario extends connect {
             return { error: `Error al actualizar el rol del usuario: ${error.message}` };
         }
     }
+
+
+    /**
+     * Lista todos los usuarios en la base de datos, con la posibilidad de filtrar por rol.
+     *
+     * @param {string} [rol] - El rol por el cual filtrar los usuarios (opcional).
+     * @returns {Promise<Object[]>} Una promesa que se resuelve con una lista de usuarios.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la consulta.
+     */
+
+
     async listarUsuarios(rol) {
         try {
             await this.conexion.connect();
