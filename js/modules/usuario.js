@@ -10,7 +10,7 @@ export class usuario extends connect {
             return usuario.instanceUsuario;
         }
         super();
-        this.db = this.conexion.db(this.getDbName());
+        this.db = this.conexion.db(this.getDbName);
         this.collection = this.db.collection('usuario');
         usuario.instanceUsuario = this;
     }
