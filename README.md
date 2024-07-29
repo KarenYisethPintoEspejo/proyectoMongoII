@@ -323,6 +323,25 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
    
+   
+   
+   **alistarUsuarios(rol)**  Listar los usuarios por un rol en especifico.
+   
+   ***Parámetro:*** Se ingresa el rol a filtrar.
+   
+   ```javascript
+   let objUsuario = new usuario();
+   
+   console.log(await objUsuario.listarUsuarios("usuarioVIP"));
+   
+   objUsuario.destructor();
+   
+   ```
+   
+   Cuando se ejecuta eso , en consola se muestra el listado de los usuarios que tienen como rol "usuarioVIP".
+   
+   
+   
 6. **Compras en Línea:**
    - **API para Procesar Pagos:** Permitir el procesamiento de pagos en línea para la compra de boletos.
    - **API para Confirmación de Compra:** Enviar confirmación de la compra y los detalles del boleto al usuario.

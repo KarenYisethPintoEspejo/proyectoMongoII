@@ -4,6 +4,6 @@ import { usuario } from "./js/modules/usuario.js";
 
 let objUsuario = new usuario();
 
-console.log(await objUsuario.actualizarRolUsuario(4, "usuarioEstandar"));
+console.log(await objUsuario.listarUsuarios("usuarioVIP"));
 
 objUsuario.destructor();
