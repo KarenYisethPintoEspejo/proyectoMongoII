@@ -4,13 +4,6 @@ import { usuario } from "./js/modules/usuario.js";
 
 let objUsuario = new usuario();
 
-const usuarioData = {
-    id: 6,
-    nombre: 'Karen Pinto',
-    email: 'karen.pinto@example.com',
-    rol: 'usuarioEstandar' 
-};
-
-console.log(await objUsuario.crearUsuario(usuarioData));
+console.log(await objUsuario.obtenerDetallesUsuario(4));
 
 objUsuario.destructor();
