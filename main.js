@@ -1,11 +1,16 @@
 import { pelicula } from "./js/modules/pelicula.js";
 import { boleto } from "./js/modules/boleto.js";
+import { usuario } from "./js/modules/usuario.js";
 
+let objUsuario = new usuario();
 
-let objBoleto= new boleto();
+const usuarioData = {
+    id: 6,
+    nombre: 'Karen Pinto',
+    email: 'karen.pinto@example.com',
+    rol: 'usuarioEstandar' 
+};
 
-const idBoletoCancelar = 11;
+console.log(await objUsuario.crearUsuario(usuarioData));
 
-console.log(await objBoleto.cancelarReserva(idBoletoCancelar));
-
-objBoleto.destructor()
+objUsuario.destructor();

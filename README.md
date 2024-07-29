@@ -204,14 +204,88 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
    
 
 5. - Roles Definidos:
+     
+     
+     
      - **Administrador:** Tiene permisos completos para gestionar el sistema, incluyendo la venta de boletos en el lugar físico. Los administradores no están involucrados en las compras en línea realizadas por los usuarios.
+     
+     ```javascript
+     user: "Administrador",
+     pwd: "admin123",
+     roles: [
+         { role: "dbOwner", db: "cineCampus" }
+     ]
+     // mongodb://Administrador:admin123@viaduct.proxy.rlwy.net:20744/
+     ```
+     
+     Se creo el usuario de Administrador con rol de superAdmin, que tiene todos los permisos en todas las colecciones.
+     
+     
+     
      - **Usuario Estándar:** Puede comprar boletos en línea sin la intervención del administrador.
+     
+     ```javascript
+     user: "usuarioEstandar",
+     pwd: "usarioEstandar123",
+     roles: [
+         { role: "usuarioEstandar", db: "cineCampus" }
+     ]
+     //mongodb://usuarioEstandar:usarioEstandar123@viaduct.proxy.rlwy.net:20744/
+     ```
+     
+     Se creo el usuario de usuarioEstandar con rol de usuarioEstandar el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar excepto en la colección de tarjeta.
+     
+     
+     
      - **Usuario VIP:** Puede comprar boletos en línea con descuentos aplicables para titulares de tarjetas VIP.
+     
+     ```javascript
+     user: "usuarioVIP",
+     pwd: "usuarioVIP123",
+     roles: [
+         { role: "usuarioVIP", db: "cineCampus" }
+     ]
+     //mongodb://usuarioVIP:usuarioVIP123@viaduct.proxy.rlwy.net:20744/
+     
+     ```
+     
+     Se creo el usuario de usuarioVIP con rol de usuarioVIP el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar.
+     
+     
+     
    - **API para Crear Usuario:** Permitir la creación de nuevos usuarios en el sistema, asignando roles y privilegios específicos (usuario estándar, usuario VIP o administrador).
+   
+   
+   
+   **crearUsuario(usuarioData)** Creación del usuario en la colección y en la base de datos con su respectivo rol.
+   
+   ***Parámetro:*** Se ingresan los datos a insertar para crear el usuario.
+   
+   ```javascript
+   let objUsuario = new usuario();
+   
+   const usuarioData = {
+       id: 6,
+       nombre: 'Karen Pinto',
+       email: 'karen.pinto@example.com',
+       rol: 'usuarioEstandar' 
+   };
+   
+   console.log(await objUsuario.crearUsuario(usuarioData));
+   
+   objUsuario.destructor();
+   ```
+   
+   Cuando se ejecuta eso , en consola se muestra la confirmación de la creación del usuario con su respectivo rol y permisos.
+   
+   
+   
    - **API para Obtener Detalles de Usuario:** Permitir la consulta de información detallada sobre un usuario, incluyendo su rol y estado de tarjeta VIP.
+   
    - **API para Actualizar Rol de Usuario:** Permitir la actualización del rol de un usuario (por ejemplo, cambiar de usuario estándar a VIP, o viceversa).
+   
    - **API para Listar Usuarios:** Permitir la consulta de todos los usuarios del sistema, con la posibilidad de filtrar por rol (VIP, estándar o administrador).
-
+   
 6. **Compras en Línea:**
    - **API para Procesar Pagos:** Permitir el procesamiento de pagos en línea para la compra de boletos.
    - **API para Confirmación de Compra:** Enviar confirmación de la compra y los detalles del boleto al usuario.
