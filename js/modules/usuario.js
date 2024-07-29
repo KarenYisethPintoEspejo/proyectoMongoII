@@ -98,6 +98,20 @@ export class usuario extends connect {
         }
     }
 
+
+    /**
+     * Actualiza el rol de un usuario en la base de datos.
+     *
+     * @param {string} id - El ID del usuario cuyo rol se desea actualizar.
+     * @param {string} nuevoRol - El nuevo rol que se asignará al usuario.
+     * @returns {Promise<Object>} Una promesa que se resuelve con un mensaje de éxito y el objeto del usuario actualizado,
+     * o un objeto de error si no se encuentra el usuario o si ocurre un error durante la operación.
+     *
+     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la actualización del usuario.
+     */
+
+
+    
     async actualizarRolUsuario(id, nuevoRol) {
         try {
             await this.conexion.connect();
