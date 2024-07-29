@@ -213,9 +213,9 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
      user: "Administrador",
      pwd: "admin123",
      roles: [
-         { role: "superAdmin", db: "cineCampus" }
+         { role: "dbOwner", db: "cineCampus" }
      ]
-     // mongodb://Administrador:admin123@roundhouse.proxy.rlwy.net:41753/cineCampus
+     // mongodb://Administrador:admin123@viaduct.proxy.rlwy.net:20744/
      ```
      
      Se creo el usuario de Administrador con rol de superAdmin, que tiene todos los permisos en todas las colecciones.
@@ -228,12 +228,12 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
      user: "usuarioEstandar",
      pwd: "usarioEstandar123",
      roles: [
-         { role: "usuario", db: "cineCampus" }
+         { role: "usuarioEstandar", db: "cineCampus" }
      ]
-     // mongodb://usuarioEstandar:usarioEstandar123@roundhouse.proxy.rlwy.net:41753/cineCampus
+     //mongodb://usuarioEstandar:usarioEstandar123@viaduct.proxy.rlwy.net:20744/
      ```
      
-     Se creo el usuario de usuarioEstandar con rol de usuario el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar.
+     Se creo el usuario de usuarioEstandar con rol de usuarioEstandar el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar excepto en la colección de tarjeta.
      
      
      
@@ -243,13 +243,13 @@ Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando M
      user: "usuarioVIP",
      pwd: "usuarioVIP123",
      roles: [
-         { role: "usuario", db: "cineCampus" }
+         { role: "usuarioVIP", db: "cineCampus" }
      ]
-     // mongodb://usuarioVIP:usuarioVIP123@roundhouse.proxy.rlwy.net:41753/cineCampus
+     //mongodb://usuarioVIP:usuarioVIP123@viaduct.proxy.rlwy.net:20744/
      
      ```
      
-     Se creo el usuario de usuarioVIP con rol de usuario el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar.
+     Se creo el usuario de usuarioVIP con rol de usuarioVIP el cual tiene algunos permisos en las colecciones como buscar, insertar y borrar.
      
      
      
