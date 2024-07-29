@@ -146,4 +146,19 @@ export class usuario extends connect {
             return { error: `Error al actualizar el rol del usuario: ${error.message}` };
         }
     }
+    async listarUsuarios(rol) {
+        try {
+            await this.conexion.connect();
+
+            const query = rol ? { rol } : {};
+            const usuarios = await this.collection.find(query).toArray();
+
+            await this.conexion.close();
+
+            return usuarios;
+        } catch (error) {
+            if (this.conexion) await this.conexion.close();
+            return { error: `Error al listar los usuarios: ${error.message}` };
+        }
+    }
 }
