@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "66a7808bc46b9e19746ff836"
+  },
+  "id": 1,
+  "numero": "1234567890123456",
+  "id_usuario": 1,
+  "estado": "Activo",
+  "%descuento": 10
+},
+{
+  "_id": {
+    "$oid": "66a7808bc46b9e19746ff837"
+  },
+  "id": 2,
+  "numero": "9876543210987654",
+  "id_usuario": 2,
+  "estado": "Inactivo",
+  "%descuento": 15
+}]
