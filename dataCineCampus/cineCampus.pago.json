@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "66a780c5c46b9e19746ff858"
+  },
+  "id": 1,
+  "boleto": 1,
+  "monto": 19,
+  "metodo_pago": "Tarjeta de Crédito",
+  "fecha": {
+    "$date": "2024-07-24T00:00:00.000Z"
+  },
+  "hora": "15:30",
+  "estado": "Completado",
+  "tipo_transaccion": "Compra"
+},
+{
+  "_id": {
+    "$oid": "66a780c5c46b9e19746ff859"
+  },
+  "id": 2,
+  "boleto": 2,
+  "monto": 24,
+  "metodo_pago": "Tarjeta de Débito",
+  "fecha": {
+    "$date": "2024-07-24T00:00:00.000Z"
+  },
+  "hora": "16:00",
+  "estado": "Completado",
+  "tipo_transaccion": "Compra"
+},
+{
+  "_id": {
+    "$oid": "66a780c5c46b9e19746ff85a"
+  },
+  "id": 3,
+  "boleto": 3,
+  "monto": 27,
+  "metodo_pago": "Efectivo",
+  "fecha": {
+    "$date": "2024-07-24T00:00:00.000Z"
+  },
+  "hora": "16:30",
+  "estado": "Completado",
+  "tipo_transaccion": "Compra"
+},
+{
+  "_id": {
+    "$oid": "66a780c5c46b9e19746ff85b"
+  },
+  "id": 4,
+  "boleto": 4,
+  "monto": 27,
+  "metodo_pago": "Efectivo",
+  "fecha": {
+    "$date": "2024-07-24T00:00:00.000Z"
+  },
+  "hora": "17:00",
+  "estado": "Completado",
+  "tipo_transaccion": "Compra"
+},
+{
+  "_id": {
+    "$oid": "66a780c5c46b9e19746ff85c"
+  },
+  "id": 5,
+  "boleto": 5,
+  "monto": 22,
+  "metodo_pago": "Tarjeta de Crédito",
+  "fecha": {
+    "$date": "2024-07-24T00:00:00.000Z"
+  },
+  "hora": "17:30",
+  "estado": "Completado",
+  "tipo_transaccion": "Compra"
+}]

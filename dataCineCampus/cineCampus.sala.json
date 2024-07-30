@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "66a7805bc46b9e19746ff81d"
+  },
+  "id": 1,
+  "numero": 1,
+  "capacidad": 100,
+  "tipo": "Estándar"
+},
+{
+  "_id": {
+    "$oid": "66a7805bc46b9e19746ff81e"
+  },
+  "id": 2,
+  "numero": 2,
+  "capacidad": 150,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66a7805bc46b9e19746ff81f"
+  },
+  "id": 3,
+  "numero": 3,
+  "capacidad": 120,
+  "tipo": "3D"
+},
+{
+  "_id": {
+    "$oid": "66a7805bc46b9e19746ff820"
+  },
+  "id": 4,
+  "numero": 4,
+  "capacidad": 80,
+  "tipo": "IMAX"
+},
+{
+  "_id": {
+    "$oid": "66a7805bc46b9e19746ff821"
+  },
+  "id": 5,
+  "numero": 5,
+  "capacidad": 200,
+  "tipo": "Estándar"
+}]

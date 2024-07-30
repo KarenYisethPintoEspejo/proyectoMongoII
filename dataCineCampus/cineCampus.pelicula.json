@@ -1,0 +1,133 @@
+[{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff818"
+  },
+  "id": 1,
+  "nombre": "Misión Imposible: Sentencia Mortal - Parte 1",
+  "sinopsis": "Ethan Hunt y su equipo enfrentan su misión más peligrosa hasta la fecha.",
+  "generos": [
+    "Acción",
+    "Aventura",
+    "Suspenso"
+  ],
+  "actores": [
+    "Tom Cruise",
+    "Rebecca Ferguson",
+    "Simon Pegg"
+  ],
+  "duracion": 147,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-20T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-08-30T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff819"
+  },
+  "id": 2,
+  "nombre": "Oppenheimer",
+  "sinopsis": "La vida del físico J. Robert Oppenheimer y su papel en el Proyecto Manhattan.",
+  "generos": [
+    "Drama",
+    "Histórico"
+  ],
+  "actores": [
+    "Cillian Murphy",
+    "Emily Blunt",
+    "Matt Damon"
+  ],
+  "duracion": 180,
+  "clasificacion": "Mayores de 17 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-22T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-09-15T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81a"
+  },
+  "id": 3,
+  "nombre": "Barbie",
+  "sinopsis": "Barbie y Ken se embarcan en una aventura fuera de Barbieland.",
+  "generos": [
+    "Comedia",
+    "Fantasía"
+  ],
+  "actores": [
+    "Margot Robbie",
+    "Ryan Gosling",
+    "Will Ferrell"
+  ],
+  "duracion": 114,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-15T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-08-25T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81b"
+  },
+  "id": 4,
+  "nombre": "Guardianes de la Galaxia Vol. 3",
+  "sinopsis": "Los Guardianes luchan para proteger el universo y su amistad.",
+  "generos": [
+    "Acción",
+    "Aventura",
+    "Ciencia Ficción"
+  ],
+  "actores": [
+    "Chris Pratt",
+    "Zoe Saldana",
+    "Dave Bautista"
+  ],
+  "duracion": 150,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "No disponible",
+  "fecha_estreno": {
+    "$date": "2024-06-01T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-07-15T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81c"
+  },
+  "id": 5,
+  "nombre": "Spider-Man: Cruzando el Multiverso",
+  "sinopsis": "Miles Morales se adentra en el Multiverso para enfrentarse a una nueva amenaza.",
+  "generos": [
+    "Animación",
+    "Acción",
+    "Aventura"
+  ],
+  "actores": [
+    "Shameik Moore",
+    "Hailee Steinfeld",
+    "Oscar Isaac"
+  ],
+  "duracion": 140,
+  "clasificacion": "Apta para todo público",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-10T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-08-05T00:00:00.000Z"
+  }
+}]
