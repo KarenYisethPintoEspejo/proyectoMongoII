@@ -1,6 +1,6 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb')
 
-export class connect {
+module.exports = class connect {
     static instanceConnect;
     db;
     user;
@@ -48,10 +48,8 @@ export class connect {
         await this.#open();
     }
     async #open() {
-        console.log("Conexion exitosa");
         this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}/${this.getDbName}`;   ///${this.getDbName}
         this.conexion = new MongoClient(this.#url);
         await this.conexion.connect();
-        console.log("Conexion realizada correctamente");
     }
 }

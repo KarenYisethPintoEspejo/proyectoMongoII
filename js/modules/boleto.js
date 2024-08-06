@@ -1,6 +1,8 @@
-import { connect } from "../../helpers/db/connect.js";
+const connect  = require('../../helpers/db/connect')
 
-export class boleto extends connect {
+
+
+module.exports = class boleto extends connect {
     static instanceBoleto;
     db;
     collection;

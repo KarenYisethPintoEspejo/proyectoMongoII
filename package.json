@@ -2,16 +2,16 @@
   "name": "proyectomongoii",
   "version": "1.0.0",
   "description": "CineCampus es una empresa de entretenimiento que se especializa en ofrecer una experiencia de cine completa y personalizada. La empresa desea desarrollar una aplicación web que permita a los usuarios seleccionar películas, comprar boletos y asignar asientos de manera eficiente y cómoda. La aplicación también ofrecerá opciones de descuento para usuarios con tarjeta VIP y permitirá realizar compras en línea.",
-  "main": "main.js",
-  "type": "module",
+  "main": "app.js",
+  "type": "commonjs",
   "scripts": {
-    "dev": "node --watch --env-file=.env main.js"
+    "dev": "node --watch --env-file=.env app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.2",
     "mongodb": "^6.8.0"
-  },
-  "devDependencies": {}
+  }
 }
