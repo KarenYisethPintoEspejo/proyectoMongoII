@@ -6,9 +6,11 @@
  * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
  */    
 
-import { connect } from "../../helpers/db/connect.js";
 
-export class pelicula extends connect {
+const connect  = require('../../helpers/db/connect')
+
+
+module.exports = class pelicula extends connect {
     static instancePelicula;
     db;
     collection;
