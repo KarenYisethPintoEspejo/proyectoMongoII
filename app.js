@@ -11,15 +11,21 @@ app.get("/peliculas", async(req, res)=>{
 
 
 app.get("/pelicula/:id", async (req, res) => {
-        let obj= new pelicula();
-        const id = req.params.id;
-        const peliculaObj = { id: parseInt(id, 1) }; // Asegúrate de convertir el ID a un entero si es necesario
+    let obj = new pelicula();
+    const id = req.params.id;  
+    const peliculaObj = { id: parseInt(id, 10) };
+
+    try {
         const peliculas = await obj.consultarPeliculas(peliculaObj);
+
         if (peliculas.error) {
             res.status(404).send(peliculas);
         } else {
-            res.status(200).send(peliculas);
+            res.status(200).send(pelicula);
         }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al consultar las películas' });
+    }
 });
 
 app.listen({host: process.env.EXPRESS_HOST, port: process.env.EXPRESS_PORT},()=>{

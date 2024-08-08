@@ -11,7 +11,7 @@ module.exports = class connect {
     #pass;
     #dbName;
 
-    // mongodb://mongo:tKdRxmJRupdIXYhhNgTiotEtkcgMLKaF@roundhouse.proxy.rlwy.net:41753
+    // mongodb://mongo:ytPsOBVizANbnyEVSyiYbzsVkvPdWKLP@viaduct.proxy.rlwy.net:18498
 
     constructor() {
         if (connect.instanceConnect) {
@@ -48,7 +48,7 @@ module.exports = class connect {
         await this.#open();
     }
     async #open() {
-        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}/${this.getDbName}`;   ///${this.getDbName}
+        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}`;   ///${this.getDbName}
         this.conexion = new MongoClient(this.#url);
         await this.conexion.connect();
     }
