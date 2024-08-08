@@ -1,7 +1,14 @@
+// const pelicula = require('./js/modules/pelicula');
+// const boleto = require('./js/modules/boleto');
+// const usuario = require('./js/modules/usuario');
 
+// async function main() {
+//     let objPelicula = new pelicula();
 
+//     let peliculaObj = { id: 1 };
+//     console.log(await objPelicula.consultarPeliculas(peliculaObj));
 
-import { pelicula } from "./js/modules/pelicula.js";
-import { boleto } from "./js/modules/boleto.js";
-import { usuario } from "./js/modules/usuario.js";
+//     objPelicula.destructor();
+// }
 
+// main().catch(console.error);
