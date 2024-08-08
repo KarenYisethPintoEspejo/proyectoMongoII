@@ -1,5 +1,5 @@
 const express = require('express');
-const pelicula = require('./js/modules/pelicula')
+const pelicula = require('./server/modules/pelicula')
 const app = express()
 
 

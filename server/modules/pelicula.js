@@ -7,7 +7,7 @@
  */    
 
 
-const connect  = require('../../helpers/db/connect')
+const connect  = require('../helpers/db/connect')
 
 
 module.exports = class pelicula extends connect {
