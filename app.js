@@ -1,24 +1,24 @@
 const express = require('express');
-const peliculas = require('./js/modules/pelicula')
+const pelicula = require('./js/modules/pelicula')
 const app = express()
 
 
 
-// app.get("/peliculas", async(req, res)=>{
-//     let obj= new pelicula();
-//     res.status(200).send(await obj.getALLMovies());
-// })
+app.get("/peliculas", async(req, res)=>{
+    let obj= new pelicula();
+    res.status(200).send(await obj.getALLMovies());
+})
 
 
 app.get("/pelicula/:id", async (req, res) => {
-        let obj= new peliculas();
+        let obj= new pelicula();
         const id = req.params.id;
         const peliculaObj = { id: parseInt(id, 1) }; // Asegúrate de convertir el ID a un entero si es necesario
-        const pelicula = await obj.consultarPeliculas(peliculaObj);
-        if (pelicula.error) {
-            res.status(404).send(pelicula);
+        const peliculas = await obj.consultarPeliculas(peliculaObj);
+        if (peliculas.error) {
+            res.status(404).send(peliculas);
         } else {
-            res.status(200).send(pelicula);
+            res.status(200).send(peliculas);
         }
 });
 
