@@ -4,6 +4,7 @@ const app = express()
 app.use(express.json())
 const appPelicula = require('./server/routes/pelicula.routes');
 const appBoleto = require('./server/routes/boleto.routes');
+const appUsuario = require('./server/routes/usuario.routes')
 
 
 
@@ -25,6 +26,13 @@ app.get('/boleto', async(req, res)=>{
     res.sendFile(`${config.static}/views/boleto.html`, {root: __dirname})
 });
 app.use('/boleto', appBoleto)
+
+
+//USUARIO
+app.get('/usuario', async(req, res)=>{
+    res.sendFile(`${config.static}/views/usuario.html`, {root: __dirname})
+});
+app.use('/usuario', appUsuario)
 
 
 
