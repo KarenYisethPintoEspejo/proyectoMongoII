@@ -48,29 +48,19 @@ module.exports = class usuario extends connect {
             const contraseña = `${nombreUsuario}${123}`;
     
             const usuarioSinContraseña = { ...usuarioData };
-    
-            // Insertar el nuevo usuario
             await this.collection.insertOne(usuarioSinContraseña);
-    
-            // Crear el usuario en la base de datos con el rol especificado
             await this.db.command({
                 createUser: nombreUsuario,
                 pwd: contraseña,
                 roles: [{ role: usuarioData.rol, db: 'cineCampus' }]
             });
-    
-            // Si el rol es VIP, crear una tarjeta VIP
             if (usuarioData.rol === 'usuarioVIP') {
                 const tarjetaCollection = this.db.collection('tarjeta');
-    
-                // Verificar que el usuario no tenga una tarjeta existente
                 const tarjetaExistente = await tarjetaCollection.findOne({ id_usuario: usuarioData.id });
                 if (tarjetaExistente) {
                     await this.conexion.close();
                     return { error: `El usuario con ID ${usuarioData.id} ya tiene una tarjeta VIP.` };
                 }
-    
-                // Generar un número de tarjeta aleatorio
                 const generarNumeroTarjeta = () => Math.floor(Math.random() * 1e16).toString().padStart(16, '0');
     
                 let numeroTarjeta;
@@ -80,14 +70,12 @@ module.exports = class usuario extends connect {
                     numeroTarjeta = generarNumeroTarjeta();
                     tarjetaExistenteConNumero = await tarjetaCollection.findOne({ numero: numeroTarjeta });
                 } while (tarjetaExistenteConNumero);
-    
-                // Crear la tarjeta VIP
                 const nuevaTarjeta = {
-                    id: usuarioData.id, // Usar el ID del usuario como ID de la tarjeta
+                    id: usuarioData.id, 
                     numero: numeroTarjeta,
                     id_usuario: usuarioData.id,
                     estado: 'Activo',
-                    '%descuento': 10 // Establecer un 10% de descuento
+                    '%descuento': 10 
                 };
     
                 await tarjetaCollection.insertOne(nuevaTarjeta);
@@ -151,25 +139,24 @@ module.exports = class usuario extends connect {
 
 
     
-    async actualizarRolUsuario(id, nuevoRol) {
+    async actualizarRolUsuario(usuarioObj) {
         try {
             await this.conexion.connect();
-
+            const { id, nuevoRol } = usuarioObj;
             const usuario = await this.collection.findOne({ id });
             if (!usuario) {
-
                 return { error: `No se encontró un usuario con el ID ${id}.` };
             }
-
+    
             const nombreUsuario = usuario.nombre.replace(/\s+/g, '');
-
             const db = this.conexion.db('cineCampus');
 
             await db.command({
                 dropUser: nombreUsuario
             });
-
+    
             await this.collection.updateOne({ id }, { $set: { rol: nuevoRol } });
+    
 
             const contraseña = `${nombreUsuario}${123}`;
             await db.command({
@@ -177,14 +164,55 @@ module.exports = class usuario extends connect {
                 pwd: contraseña,
                 roles: [{ role: nuevoRol, db: 'cineCampus' }]
             });
-
+    
+            const tarjetaCollection = this.conexion.db('cineCampus').collection('tarjeta');
+    
+            if (nuevoRol === 'usuarioVIP') {
+                const tarjetaExistente = await tarjetaCollection.findOne({ id_usuario: id });
+    
+                if (tarjetaExistente) {
+                    await tarjetaCollection.updateOne(
+                        { id_usuario: id },
+                        { $set: { estado: 'Activa', '%descuento': 10 } }
+                    );
+                } else {
+                    const generarNumeroTarjeta = () => Math.floor(Math.random() * 1e16).toString().padStart(16, '0');
+                    let numeroTarjeta;
+                    let tarjetaExistenteConNumero;
+    
+                    do {
+                        numeroTarjeta = generarNumeroTarjeta();
+                        tarjetaExistenteConNumero = await tarjetaCollection.findOne({ numero: numeroTarjeta });
+                    } while (tarjetaExistenteConNumero);
+    
+                    const nuevaTarjeta = {
+                        id: id, 
+                        numero: numeroTarjeta,
+                        id_usuario: id,
+                        estado: 'Activa',
+                        '%descuento': 10
+                    };
+    
+                    await tarjetaCollection.insertOne(nuevaTarjeta);
+                }
+            } else if (usuario.rol === 'usuarioVIP' && nuevoRol === 'usuarioEstandar') {
+                await tarjetaCollection.updateOne(
+                    { id_usuario: id },
+                    { $set: { estado: 'Inactiva' } }
+                );
+            }
+    
             const usuarioActualizado = await this.collection.findOne({ id });
             return { mensaje: 'Rol de usuario actualizado exitosamente', usuario: usuarioActualizado };
         } catch (error) {
             if (this.conexion) await this.conexion.close();
             return { error: `Error al actualizar el rol del usuario: ${error.message}` };
+        } finally {
+            if (this.conexion) await this.conexion.close();
         }
     }
+    
+    
 
 
     /**
