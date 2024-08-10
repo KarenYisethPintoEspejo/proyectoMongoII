@@ -290,44 +290,44 @@ module.exports = class boleto extends connect {
 
     
     /**
-     * Cancela la reserva de un asiento específico, actualizando el estado del pago y eliminando el boleto de la colección.
+     * Cancela la reserva de un boleto específico.
      *
-     * @param {number} id_boleto - El ID del boleto a cancelar.
-     * @returns {Promise<Object>} Una promesa que se resuelve con un objeto indicando el resultado de la cancelación.
+     * @param {Object} boletoObj - Un objeto que contiene el ID del boleto.
+     * @param {number} boletoObj.id - El ID del boleto.
+     * @returns {Promise<Object>} Una promesa que se resuelve con un objeto que indica el éxito de la cancelación
+     *                             o un mensaje de error si algo falla.
      *
-     * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de las operaciones de actualización/eliminación.
+     * @throws {Error} Lanza un error si el boleto no existe, si no hay una reserva asociada al boleto,
+     *                 o si ocurre un problema durante la conexión a la base de datos o la ejecución de la operación.
      */
-
-
-
-    async cancelarReserva(id_boleto) {
+    async cancelarReserva(boletoObj) {
         try {
             await this.conexion.connect();
 
-            const boletoExistente = await this.collection.findOne({ id: id_boleto });
+            const boletoExistente = await this.collection.findOne({ id: boletoObj.id });
             if (!boletoExistente) {
-                throw new Error(`El boleto con ID ${id_boleto} no existe.`);
+                throw new Error(`El boleto con ID ${boletoObj.id} no existe.`);
             }
 
             const pagoCollection = this.db.collection('pago');
-            const pagoExistente = await pagoCollection.findOne({ boleto: id_boleto, tipo_transaccion: 'Reserva' });
+            const pagoExistente = await pagoCollection.findOne({ boleto: boletoObj.id, tipo_transaccion: 'Reserva' });
             if (!pagoExistente) {
-                throw new Error(`No se encontró una reserva asociada al boleto con ID ${id_boleto}.`);
+                throw new Error(`No se encontró una reserva asociada al boleto con ID ${boletoObj.id}.`);
             }
 
             await pagoCollection.updateOne(
-                { boleto: id_boleto, tipo_transaccion: 'Reserva' },
+                { boleto: boletoObj.id, tipo_transaccion: 'Reserva' },
                 { $set: { estado: 'Cancelado' } }
             );
 
-            await this.collection.deleteOne({ id: id_boleto });
-            await this.conexion.close();
-            return { mensaje: `La reserva del asiento en el boleto con ID ${id_boleto} ha sido cancelada exitosamente.` };
+            await this.collection.deleteOne({ id: boletoObj.id });
+            return { mensaje: `La reserva del asiento en el boleto con ID ${boletoObj.id} ha sido cancelada exitosamente.` };
         } catch (error) {
             await this.conexion.close();
             return { error: `Error al cancelar la reserva del boleto: ${error.message}` };
         }
     }
+
 
 }
 
