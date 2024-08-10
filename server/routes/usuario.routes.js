@@ -40,5 +40,24 @@ appUsuario.post('/actualizarUsuario', async(req, res)=>{
     }
 })
 
+appUsuario.get('/usuarioPorRol/:rol', async (req, res) => {
+    let obj = new usuario();
+    const rol = req.params.rol; // Obtener el parámetro de consulta 'rol'
+
+    try {
+        const usuarios = await obj.listarUsuarios(rol);
+
+        if (usuarios.error) {
+            res.status(404).send(usuarios);
+        } else {
+            res.status(200).send(usuarios);
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al listar los usuarios' });
+    }
+});
+
+
+
 
 module.exports = appUsuario
