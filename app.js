@@ -5,6 +5,7 @@ app.use(express.json())
 const appPelicula = require('./server/routes/pelicula.routes');
 const appBoleto = require('./server/routes/boleto.routes');
 const appUsuario = require('./server/routes/usuario.routes')
+const appAsiento = require('./server/routes/asiento.routes')
 
 
 
@@ -34,6 +35,12 @@ app.get('/usuario', async(req, res)=>{
 });
 app.use('/usuario', appUsuario)
 
+
+//ASIENTO
+app.get('/asiento', async(req, res)=>{
+    res.sendFile(`${config.static}/views/asiento.html`, {root: __dirname})
+});
+app.use('/asiento', appAsiento)
 
 
 
