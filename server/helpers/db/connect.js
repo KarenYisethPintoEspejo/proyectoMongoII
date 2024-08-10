@@ -48,7 +48,7 @@ module.exports = class connect {
         await this.#open();
     }
     async #open() {
-        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}`;   ///${this.getDbName}
+        this.#url = `${this.#host}${this.user}:${this.#pass}@${this.cluster}:${this.port}/${this.getDbName}`;   ///${this.getDbName}
         this.conexion = new MongoClient(this.#url);
         await this.conexion.connect();
     }
