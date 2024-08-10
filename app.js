@@ -1,33 +1,33 @@
 const express = require('express');
-const pelicula = require('./server/modules/pelicula')
+// const pelicula = require('./server/modules/pelicula')
 const app = express()
+const appPelicula = require('./server/routes/pelicula.routes');
+const pelicula = require('./server/modules/pelicula');
+app.use(express.json())
 
+const config={
+    port:process.env.EXPRESS_PORT,
+    host:process.env.EXPRESS_HOST,
+    static:process.env.EXPRESS_STATIC
+}
 
-
-app.get("/peliculas", async(req, res)=>{
-    let obj= new pelicula();
-    res.status(200).send(await obj.getALLMovies());
+//PELICULA
+app.get('/pelicula', async(req, res)=>{
+    res.sendFile(`${config.static}/views/pelicula.html`, {root: __dirname})
 })
+app.use('/pelicula', appPelicula)
 
 
-app.get("/pelicula/:id", async (req, res) => {
-    let obj = new pelicula();
-    const id = req.params.id;  
-    const peliculaObj = { id: parseInt(id, 10) };
 
-    try {
-        const peliculas = await obj.consultarPeliculas(peliculaObj);
-
-        if (peliculas.error) {
-            res.status(404).send(peliculas);
-        } else {
-            res.status(200).send(peliculas);
-        }
-    } catch (error) {
-        res.status(500).send({ error: 'Error al consultar las películas' });
-    }
+app.use((err, req, res, next) =>{
+    res.status(err.status || 500).json({
+        status: err.status || 500,
+        message: err.message || 'Error interno del servidor'
+    });
 });
 
+
+
 app.listen({host: process.env.EXPRESS_HOST, port: process.env.EXPRESS_PORT},()=>{
-    console.log(`http://${process.env.EXPRESS_HOST}:${process.env.EXPRESS_PORT}`)
+    console.log(`http://${config.host}:${config.port}`)
 })
