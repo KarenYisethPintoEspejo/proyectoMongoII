@@ -12,4 +12,23 @@ appBoleto.post('/compraBoleto', async(req, res, next)=>{
     }
 });
 
+appBoleto.get("/disponibilidadAsientos/:id", async (req, res) => {
+    let obj = new boleto();
+    const id = req.params.id;
+    const proyeccionObj = { id: parseInt(id, 10) }; // Crear el objeto con el ID de la proyección
+
+    try {
+        const disponibilidad = await obj.verificarDisponibilidadAsientos(proyeccionObj);
+
+        if (disponibilidad.error) {
+            res.status(404).send(disponibilidad); // Error si la proyección no existe o ya sucedió
+        } else {
+            res.status(200).send(disponibilidad); // Enviar asientos disponibles
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al verificar la disponibilidad de asientos' });
+    }
+});
+
+
 module.exports = appBoleto
