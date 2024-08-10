@@ -31,4 +31,14 @@ appBoleto.get("/disponibilidadAsientos/:id", async (req, res) => {
 });
 
 
+appBoleto.post('/reservaAsiento', async(req, res, next)=>{
+    try {
+        let obj = new boleto();
+        const boletos = await obj.reservarAsiento(req.body);
+        res.status(200).send(boletos)
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = appBoleto
