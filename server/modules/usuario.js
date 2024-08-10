@@ -75,29 +75,30 @@ module.exports = class usuario extends connect {
      *
      * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la consulta.
      */
-    async obtenerDetallesUsuario(id) {
+    async obtenerDetallesUsuario(usuarioObj) {
         try {
             await this.conexion.connect();
-
+            const { id } = usuarioObj;
             const usuario = await this.collection.findOne({ id });
             if (!usuario) {
                 return { error: `No se encontró un usuario con el ID ${id}.` };
             }
-
             const tarjetaCollection = this.db.collection('tarjeta');
             const tarjeta = await tarjetaCollection.findOne({ id_usuario: id });
-
             const detallesUsuario = {
                 ...usuario,
                 tarjetaVIP: tarjeta ? tarjeta.estado : 'No tiene tarjeta VIP'
             };
-
+    
             return detallesUsuario;
         } catch (error) {
             if (this.conexion) await this.conexion.close();
             return { error: `Error al obtener los detalles del usuario: ${error.message}` };
+        } finally {
+            if (this.conexion) await this.conexion.close();
         }
     }
+    
 
 
     /**
