@@ -41,4 +41,23 @@ appBoleto.post('/reservaAsiento', async(req, res, next)=>{
     }
 })
 
+appBoleto.post("/cancelarReserva/:id", async (req, res) => {
+    let obj = new boleto();
+    const id = req.params.id;
+    const boletoObj = { id: parseInt(id, 10) }; // Crear el objeto con el ID del boleto
+
+    try {
+        const resultado = await obj.cancelarReserva(boletoObj);
+
+        if (resultado.error) {
+            res.status(404).send(resultado); // Error si el boleto no existe o no se encontró la reserva
+        } else {
+            res.status(200).send(resultado); // Mensaje de éxito de la cancelación
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al cancelar la reserva del boleto' });
+    }
+});
+
+
 module.exports = appBoleto
