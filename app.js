@@ -1,9 +1,11 @@
 const express = require('express');
 // const pelicula = require('./server/modules/pelicula')
 const app = express()
-const appPelicula = require('./server/routes/pelicula.routes');
-const pelicula = require('./server/modules/pelicula');
 app.use(express.json())
+const appPelicula = require('./server/routes/pelicula.routes');
+const appBoleto = require('./server/routes/boleto.routes');
+
+
 
 const config={
     port:process.env.EXPRESS_PORT,
@@ -16,6 +18,16 @@ app.get('/pelicula', async(req, res)=>{
     res.sendFile(`${config.static}/views/pelicula.html`, {root: __dirname})
 })
 app.use('/pelicula', appPelicula)
+
+
+//BOLETO
+app.get('/boleto', async(req, res)=>{
+    res.sendFile(`${config.static}/views/boleto.html`, {root: __dirname})
+});
+app.use('/boleto', appBoleto)
+
+
+
 
 
 
