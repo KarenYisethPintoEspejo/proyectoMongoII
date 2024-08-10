@@ -114,40 +114,37 @@ module.exports = class usuario extends connect {
 
 
     
-    async actualizarRolUsuario(id, nuevoRol) {
+    async actualizarRolUsuario(usuarioObj) {
         try {
             await this.conexion.connect();
-
+            const { id, nuevoRol } = usuarioObj;
             const usuario = await this.collection.findOne({ id });
             if (!usuario) {
-
                 return { error: `No se encontró un usuario con el ID ${id}.` };
             }
-
+    
             const nombreUsuario = usuario.nombre.replace(/\s+/g, '');
-
             const db = this.conexion.db('cineCampus');
-
             await db.command({
                 dropUser: nombreUsuario
             });
-
             await this.collection.updateOne({ id }, { $set: { rol: nuevoRol } });
-
             const contraseña = `${nombreUsuario}${123}`;
             await db.command({
                 createUser: nombreUsuario,
                 pwd: contraseña,
                 roles: [{ role: nuevoRol, db: 'cineCampus' }]
             });
-
             const usuarioActualizado = await this.collection.findOne({ id });
             return { mensaje: 'Rol de usuario actualizado exitosamente', usuario: usuarioActualizado };
         } catch (error) {
             if (this.conexion) await this.conexion.close();
             return { error: `Error al actualizar el rol del usuario: ${error.message}` };
+        } finally {
+            if (this.conexion) await this.conexion.close();
         }
     }
+    
 
 
     /**

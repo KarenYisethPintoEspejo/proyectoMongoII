@@ -30,4 +30,15 @@ appUsuario.get("/usuarioId/:id", async (req, res) => {
     }
 });
 
+appUsuario.post('/actualizarUsuario', async(req, res)=>{
+    try {
+        let obj = new usuario();
+        const usuarios = await obj.actualizarRolUsuario(req.body);
+        res.status(200).send(usuarios)
+    } catch (error) {
+        next (error)
+    }
+})
+
+
 module.exports = appUsuario
