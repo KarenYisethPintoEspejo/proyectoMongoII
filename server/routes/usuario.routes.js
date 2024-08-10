@@ -12,4 +12,22 @@ appUsuario.post('/crearUsuario', async(req, res, next)=>{
     }
 })
 
+appUsuario.get("/usuarioId/:id", async (req, res) => {
+    let obj = new usuario();
+    const id = req.params.id;  
+    const usuarioObj = { id: parseInt(id, 10) };
+
+    try {
+        const usuarios = await obj.obtenerDetallesUsuario(usuarioObj);
+
+        if (usuarios.error) {
+            res.status(404).send(usuarios);
+        } else {
+            res.status(200).send(usuarios);
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al consultar el usuario' });
+    }
+});
+
 module.exports = appUsuario
