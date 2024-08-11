@@ -1,0 +1,45 @@
+header {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+header .bx {
+    font-size: 30px; 
+    cursor: pointer;
+}
+
+.cinema-selection {
+    flex-grow: 1; 
+    text-align: center; 
+    padding: 10px;
+    margin: 0 10px; 
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column; 
+}
+
+.book-now {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
