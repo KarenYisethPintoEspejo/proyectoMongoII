@@ -23,7 +23,8 @@
   },
   "fecha_retiro": {
     "$date": "2024-08-30T00:00:00.000Z"
-  }
+  },
+  "imagen": "https://www.aceprensa.com/wp-content/uploads/2018/07/353081-0.jpg"
 },
 {
   "_id": {
@@ -49,7 +50,8 @@
   },
   "fecha_retiro": {
     "$date": "2024-09-15T00:00:00.000Z"
-  }
+  },
+  "imagen": "https://es.web.img3.acsta.net/pictures/23/05/25/13/41/1835431.jpg"
 },
 {
   "_id": {
@@ -75,7 +77,8 @@
   },
   "fecha_retiro": {
     "$date": "2024-08-25T00:00:00.000Z"
-  }
+  },
+  "imagen": "https://es.web.img2.acsta.net/pictures/23/07/20/11/29/5479684.jpg"
 },
 {
   "_id": {
@@ -96,13 +99,14 @@
   ],
   "duracion": 150,
   "clasificacion": "Mayores de 13 años",
-  "estado": "No disponible",
+  "estado": "Disponible",
   "fecha_estreno": {
-    "$date": "2024-06-01T00:00:00.000Z"
+    "$date": "2024-07-15T00:00:00.000Z"
   },
   "fecha_retiro": {
-    "$date": "2024-07-15T00:00:00.000Z"
-  }
+    "$date": "2024-09-15T00:00:00.000Z"
+  },
+  "imagen": "https://lumiere-a.akamaihd.net/v1/images/lat_2ae5e247.jpeg"
 },
 {
   "_id": {
@@ -123,11 +127,40 @@
   ],
   "duracion": 140,
   "clasificacion": "Apta para todo público",
-  "estado": "Disponible",
+  "estado": "No disponible",
   "fecha_estreno": {
     "$date": "2024-07-10T00:00:00.000Z"
   },
   "fecha_retiro": {
     "$date": "2024-08-05T00:00:00.000Z"
-  }
+  },
+  "imagen": "https://pics.filmaffinity.com/Spider_Man_Cruzando_el_Multiverso-257260163-large.jpg"
+},
+{
+  "_id": {
+    "$oid": "66b867a68b85160966b3c989"
+  },
+  "id": 6,
+  "nombre": "Avatar: El Sentido del Agua",
+  "sinopsis": "En esta secuela de Avatar, Jake Sully y Neytiri deben proteger su hogar de una nueva amenaza, mientras exploran las maravillas de Pandora.",
+  "generos": [
+    "Ciencia Ficción",
+    "Aventura",
+    "Acción"
+  ],
+  "actores": [
+    "Sam Worthington",
+    "Zoe Saldana",
+    "Sigourney Weaver"
+  ],
+  "duracion": 192,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-12-15T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2025-01-31T00:00:00.000Z"
+  },
+  "imagen": "https://pics.filmaffinity.com/avatar_the_way_of_water-722646748-mmed.jpg"
 }]

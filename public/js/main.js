@@ -27,22 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function displayMovies(movies) {
     const container = document.getElementById('movies-container');
-    container.innerHTML = ''; 
-    const today = new Date(); 
+    container.innerHTML = '';
+    const today = new Date();
     const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
     filteredMovies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-item');
-        const imageUrl = movie.imagen; 
+        movieItem.dataset.id = movie.id;  
+        const imageUrl = movie.imagen;
         movieItem.innerHTML = `
             <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
             <h3>${movie.nombre}</h3>
             <p>${movie.generos.join(', ')}</p>
         `;
 
+        movieItem.addEventListener('click', () => {
+            window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+        });
         container.appendChild(movieItem);
     });
 }
+
+
 
 function displayComingSoon(movies) {
     const container = document.querySelector('.movie-carousel1');
@@ -54,13 +60,16 @@ function displayComingSoon(movies) {
     comingSoonMovies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-item');
-
+        movieItem.dataset.id = movie.id;  
         const imageUrl = movie.imagen; 
         movieItem.innerHTML = `
             <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
             <h3>${movie.nombre}</h3>
             <p>${movie.generos.join(', ')}</p>
         `;
+        movieItem.addEventListener('click', () => {
+            window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+        });
 
         container.appendChild(movieItem);
     });
