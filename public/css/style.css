@@ -26,19 +26,19 @@ header {
 }
 
 .icon-box {
-    width: 50px; /* Ajusta el tamaño según tus necesidades */
-    height: 50px; /* Ajusta el tamaño según tus necesidades */
+    width: 50px; 
+    height: 50px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid ; /* Color de fondo del cuadro */
-    border-radius: 8px; /* Ajusta este valor para redondear las esquinas */
-    margin-left: 30px; /* Espacio entre el cuadro y el texto a la izquierda */
+    border: 1px solid ; 
+    border-radius: 8px; 
+    margin-left: 30px; 
 }
 
 .icon-box i {
-    font-size: 30px; /* Tamaño del ícono */
-    color: #fff; /* Color del ícono */
+    font-size: 30px; 
+    color: #fff; 
 }
 
 .profile-pic {
