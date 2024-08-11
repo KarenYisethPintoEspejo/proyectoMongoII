@@ -1,52 +1,44 @@
 const express = require('express');
-// const pelicula = require('./server/modules/pelicula')
-const app = express()
-app.use(express.json())
+const cors = require('cors');
+const app = express();
+app.use(cors()); 
+
+app.use(express.json());
+
 const appPelicula = require('./server/routes/pelicula.routes');
 const appBoleto = require('./server/routes/boleto.routes');
-const appUsuario = require('./server/routes/usuario.routes')
-const appAsiento = require('./server/routes/asiento.routes')
+const appUsuario = require('./server/routes/usuario.routes');
+const appAsiento = require('./server/routes/asiento.routes');
+
+const config = {
+    port: process.env.EXPRESS_PORT,
+    host: process.env.EXPRESS_HOST,
+    static: process.env.EXPRESS_STATIC
+};
 
 
-
-const config={
-    port:process.env.EXPRESS_PORT,
-    host:process.env.EXPRESS_HOST,
-    static:process.env.EXPRESS_STATIC
-}
-
-//PELICULA
-app.get('/pelicula', async(req, res)=>{
-    res.sendFile(`${config.static}/views/pelicula.html`, {root: __dirname})
-})
-app.use('/pelicula', appPelicula)
-
-
-//BOLETO
-app.get('/boleto', async(req, res)=>{
-    res.sendFile(`${config.static}/views/boleto.html`, {root: __dirname})
+app.get('/pelicula', (req, res) => {
+    res.sendFile(`${config.static}/views/pelicula.html`, { root: __dirname });
 });
-app.use('/boleto', appBoleto)
+app.use('/pelicula', appPelicula);
 
-
-//USUARIO
-app.get('/usuario', async(req, res)=>{
-    res.sendFile(`${config.static}/views/usuario.html`, {root: __dirname})
+app.get('/boleto', (req, res) => {
+    res.sendFile(`${config.static}/views/boleto.html`, { root: __dirname });
 });
-app.use('/usuario', appUsuario)
+app.use('/boleto', appBoleto);
 
-
-//ASIENTO
-app.get('/asiento', async(req, res)=>{
-    res.sendFile(`${config.static}/views/asiento.html`, {root: __dirname})
+app.get('/usuario', (req, res) => {
+    res.sendFile(`${config.static}/views/usuario.html`, { root: __dirname });
 });
-app.use('/asiento', appAsiento)
+app.use('/usuario', appUsuario);
+
+app.get('/asiento', (req, res) => {
+    res.sendFile(`${config.static}/views/asiento.html`, { root: __dirname });
+});
+app.use('/asiento', appAsiento);
 
 
-
-
-
-app.use((err, req, res, next) =>{
+app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
         status: err.status || 500,
         message: err.message || 'Error interno del servidor'
@@ -54,7 +46,6 @@ app.use((err, req, res, next) =>{
 });
 
 
-
-app.listen({host: process.env.EXPRESS_HOST, port: process.env.EXPRESS_PORT},()=>{
-    console.log(`http://${config.host}:${config.port}`)
-})
+app.listen({ host: config.host, port: config.port }, () => {
+    console.log(`http://${config.host}:${config.port}`);
+});

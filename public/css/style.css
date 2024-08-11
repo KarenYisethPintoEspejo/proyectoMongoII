@@ -57,7 +57,7 @@ header {
     width: 100%;
     max-width: 400px;
     padding: 10px 20px;
-    padding-left: 40px; /* Espacio para el ícono de búsqueda */
+    padding-left: 40px; 
     border-radius: 25px;
     border: 1px solid #444;
     background-color: #222;
@@ -94,32 +94,45 @@ header {
     font-size: 14px;
 }
 
+
 .movie-carousel {
     display: flex;
-    overflow-x: scroll;
-    padding: 20px;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding: 30px;
+    gap: 10px; 
 }
+
 
 .movie-item {
-    margin-right: 10px;
+    flex: 0 0 auto; 
+    width: 220px;
+    height: 450px; 
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
+    padding: 10px;
+    margin-left: 5px;
 }
 
-.movie-item img {
-    width: 120px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.movie-image{
+    width: 220px;
+    height: 360px;
+    border-radius: 15px;
 }
 
-.movie-item p {
-    font-size: 14px;
-    margin: 0;
+.movie-item h3{
+    margin-left: -12px;
+    margin-right: -2px;
+    margin-bottom: -2px;
 }
 
-.movie-item span {
+.movie-item p{
     font-size: 12px;
-    color: #aaa;
 }
+
+
 
 
 footer {
@@ -170,29 +183,4 @@ footer {
     filter: invert(49%) sepia(94%) saturate(2737%) hue-rotate(345deg) brightness(95%) contrast(105%); /* Aplicar color rojo al ícono activo */
 }
 
-/* Estilos Responsivos */
-@media (max-width: 600px) {
-    .nav-item {
-        font-size: 10px;
-    }
 
-    .nav-item img {
-        width: 20px;
-        height: 20px;
-    }
-    .movie-item img {
-        width: 100px;
-    }
-
-    .search-bar input {
-        font-size: 14px;
-    }
-
-    .user-text h2 {
-        font-size: 16px;
-    }
-
-    .user-text p {
-        font-size: 12px;
-    }
-}

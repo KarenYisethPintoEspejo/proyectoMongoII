@@ -1,15 +1,19 @@
 const express = require('express');
-const pelicula = require('../modules/pelicula')
-const appPelicula = express()
+const router = express.Router();
+const pelicula = require('../modules/pelicula');
 
+router.get('/listaPeliculas', async (req, res) => {
+    try {
+        let obj = new pelicula();
+        const movies = await obj.getALLMovies();
+        res.status(200).send(movies);
+    } catch (error) {
+        console.error('Error al obtener las películas:', error);
+        res.status(500).send({ error: 'Ocurrió un error al obtener las películas.' });
+    }
+});
 
-appPelicula.get("/listaPeliculas", async(req, res)=>{
-    let obj= new pelicula();
-    res.status(200).send(await obj.getALLMovies());
-})
-
-
-appPelicula.get("/peliculaId/:id", async (req, res) => {
+router.get("/peliculaId/:id", async (req, res) => {
     let obj = new pelicula();
     const id = req.params.id;  
     const peliculaObj = { id: parseInt(id, 10) };
@@ -27,4 +31,4 @@ appPelicula.get("/peliculaId/:id", async (req, res) => {
     }
 });
 
-module.exports= appPelicula
+module.exports = router;
