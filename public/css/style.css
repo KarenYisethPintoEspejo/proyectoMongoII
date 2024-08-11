@@ -107,13 +107,15 @@ header {
 }
 
 .section-header h3 {
-    margin: 0;
+    margin-top: -20px;
+    font-size: 22px;
 }
 
 .section-header a {
+    margin-top: -15px;
     color: #ff0000;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 
@@ -121,9 +123,15 @@ header {
     display: flex;
     overflow-x: auto; 
     scroll-snap-type: x mandatory; 
-    padding: 30px;
+    padding: 20px;
     gap: 10px; 
+    margin-top: -22px;
 }
+
+.movie-carousel::-webkit-scrollbar {
+    display: none;
+}
+
 
 
 .movie-item {
