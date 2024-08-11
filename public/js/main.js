@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(movies => {
-            console.log('Películas obtenidas:', movies); 
-            displayMovies(movies);
+            console.log('Películas obtenidas:', movies);
+            displayMovies(movies); 
+            displayComingSoon(movies); 
         })
         .catch(error => {
             console.error('Error al obtener las películas:', error);
@@ -27,13 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function displayMovies(movies) {
     const container = document.getElementById('movies-container');
     container.innerHTML = ''; 
-
-    movies.forEach(movie => {
+    const today = new Date(); 
+    const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
+    filteredMovies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-item');
-
         const imageUrl = movie.imagen; 
-
         movieItem.innerHTML = `
             <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
             <h3>${movie.nombre}</h3>
@@ -44,8 +44,24 @@ function displayMovies(movies) {
     });
 }
 
+function displayComingSoon(movies) {
+    const container = document.querySelector('.movie-carousel1');
+    container.innerHTML = ''; 
 
+    const today = new Date(); 
+    const comingSoonMovies = movies.filter(movie => new Date(movie.fecha_estreno) > today);
 
+    comingSoonMovies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-item');
 
+        const imageUrl = movie.imagen; 
+        movieItem.innerHTML = `
+            <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
+            <h3>${movie.nombre}</h3>
+            <p>${movie.generos.join(', ')}</p>
+        `;
 
-
+        container.appendChild(movieItem);
+    });
+}

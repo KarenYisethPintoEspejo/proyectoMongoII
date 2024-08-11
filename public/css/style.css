@@ -131,7 +131,19 @@ header {
 .movie-carousel::-webkit-scrollbar {
     display: none;
 }
+.movie-carousel1 {
+    display: flex;
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    padding: 20px;
+    gap: 10px; 
+    margin-top: -22px;
+    margin-bottom: 70px;
+}
 
+.movie-carousel1::-webkit-scrollbar {
+    display: none;
+}
 
 
 .movie-item {
@@ -167,11 +179,9 @@ header {
 
 footer {
     background-color: #222;
-    padding: 30px 0;
+    padding: 20px 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     position: fixed;
     bottom: 0;
     width: 100%;

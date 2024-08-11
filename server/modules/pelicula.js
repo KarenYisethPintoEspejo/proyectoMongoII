@@ -41,7 +41,7 @@ module.exports = class pelicula extends connect {
     async getALLMovies() {
         await this.conexion.connect();
         const currentDate = new Date();
-
+    
         const movies = await this.collection.aggregate([
             {
                 $lookup: {
@@ -64,8 +64,11 @@ module.exports = class pelicula extends connect {
             },
             {
                 $match: {
-                    fecha_estreno: { $lte: currentDate },
-                    fecha_retiro: { $gte: currentDate },
+                    $or: [
+                        { fecha_estreno: { $lte: currentDate } }, // Películas estrenadas antes o en la fecha actual
+                        { fecha_estreno: { $gt: currentDate } }   // Películas estrenadas después de la fecha actual
+                    ],
+                    fecha_retiro: { $gte: currentDate } // Asegúrate de que la película aún esté en exhibición
                 },
             },
             {
@@ -82,10 +85,12 @@ module.exports = class pelicula extends connect {
                 },
             },
         ]).toArray();
-
+    
         await this.conexion.close();
         return movies;
     }
+    
+    
 
 
 /**
