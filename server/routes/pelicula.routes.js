@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const pelicula = require('../modules/pelicula');
+const Pelicula = require('../modules/pelicula');
 
+// Ruta para obtener todas las películas
 router.get('/listaPeliculas', async (req, res) => {
     try {
-        let obj = new pelicula();
-        const movies = await obj.getALLMovies();
+        const pelicula = new Pelicula();
+        const movies = await pelicula.getALLMovies();
         res.status(200).send(movies);
     } catch (error) {
         console.error('Error al obtener las películas:', error);
@@ -13,21 +14,42 @@ router.get('/listaPeliculas', async (req, res) => {
     }
 });
 
-router.get("/peliculaId/:id", async (req, res) => {
-    let obj = new pelicula();
-    const id = req.params.id;  
-    const peliculaObj = { id: parseInt(id, 10) };
-
+// Ruta para buscar películas por consulta
+router.get('/buscarPeliculas', async (req, res) => {
+    const query = req.query.q || '';
     try {
-        const peliculas = await obj.consultarPeliculas(peliculaObj);
+        const pelicula = new Pelicula();
+        await pelicula.conexion.connect();
+        const movies = await pelicula.collection.find({
+            $or: [
+                { nombre: { $regex: query, $options: 'i' } },
+                { generos: { $regex: query, $options: 'i' } },
+                { actores: { $regex: query, $options: 'i' } }
+            ]
+        }).toArray();
+        await pelicula.conexion.close();
+        res.json(movies);
+    } catch (error) {
+        console.error('Error al buscar películas:', error);
+        res.status(500).send('Error al buscar películas');
+    }
+});
 
-        if (peliculas.error) {
-            res.status(404).send(peliculas);
+// Ruta para consultar una película por ID
+router.get('/peliculaId/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const pelicula = new Pelicula();
+        const peliculaObj = { id: parseInt(id, 10) };
+        const result = await pelicula.consultarPeliculas(peliculaObj);
+        if (result.error) {
+            res.status(404).send(result);
         } else {
-            res.status(200).send(peliculas);
+            res.status(200).send(result);
         }
     } catch (error) {
-        res.status(500).send({ error: 'Error al consultar las películas' });
+        console.error('Error al consultar la película:', error);
+        res.status(500).send({ error: 'Error al consultar la película' });
     }
 });
 

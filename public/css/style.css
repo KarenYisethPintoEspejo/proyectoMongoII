@@ -36,6 +36,13 @@ header {
     margin-left: 30px; 
 }
 
+.icon-box:hover{
+    color: #ff0000;
+}
+.icon-box:hover i{
+    color: #ff0000;
+}
+
 .icon-box i {
     font-size: 30px; 
     color: #fff; 
@@ -75,6 +82,14 @@ header {
     font-size: 25px;
 }
 
+.search-bar:hover i{
+    color: #ff0000;
+}
+#search-input:focus::placeholder {
+    color: transparent; /* Oculta el placeholder */
+}
+
+
 #search-input {
     width: 110%;
     max-width: 500px;
@@ -89,14 +104,10 @@ header {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#search-input::placeholder {
-    color: #777;
+#search-input:hover{
+    border: 1px solid red;
 }
 
-#search-input:focus {
-    border: 1px solid #555;
-    color: #fff;
-}
 
 
 .section-header {

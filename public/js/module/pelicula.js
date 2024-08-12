@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(movieData => {
             console.log("Detalles de la película:", movieData);
-
-            // Segunda petición para obtener las proyecciones
+            
             fetch(`http://localhost:5010/pelicula/listaPeliculas`)
                 .then(response => response.json())
                 .then(allMoviesData => {
@@ -59,3 +58,8 @@ function displayMovieDetail(movie) {
         </div>
     `;
 }
+
+
+
+
+
