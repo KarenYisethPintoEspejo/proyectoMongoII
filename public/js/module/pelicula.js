@@ -14,31 +14,25 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No movieId provided in the URL');
         return; 
     }
-
     fetch(`http://localhost:5010/pelicula/peliculaId/${movieId}`)
         .then(response => response.json())
         .then(movieData => {
+            console.log("Detalles de la película:", movieData);
+            
             fetch(`http://localhost:5010/pelicula/listaPeliculas`)
                 .then(response => response.json())
                 .then(allMoviesData => {
                     const movieProjections = allMoviesData.find(pelicula => pelicula.id === parseInt(movieId));
+
                     if (movieProjections) {
+                        console.log("Proyecciones encontradas:", movieProjections.fechas_proyecciones, movieProjections.horas_proyecciones);
                         movieData.fechas_proyecciones = movieProjections.fechas_proyecciones;
                         movieData.horas_proyecciones = movieProjections.horas_proyecciones;
+                    } else {
+                        console.error('No se encontraron proyecciones para la película con ID:', movieId);
                     }
+
                     displayMovieDetail(movieData);
-
-                    const trailerButton = document.querySelector('.trailer');
-                    trailerButton.dataset.trailerUrl = movieData.trailer;
-
-                    trailerButton.addEventListener('click', function() {
-                        const trailerUrl = this.dataset.trailerUrl;
-                        if (trailerUrl) {
-                            window.location.href = trailerUrl;
-                        } else {
-                            console.error('Trailer URL not found');
-                        }
-                    });
                 })
                 .catch(error => console.error('Error al cargar las proyecciones de la película:', error));
         })
@@ -59,11 +53,12 @@ function displayMovieDetail(movie) {
         <h3>Cast</h3>
         <p>${movie.actores.join(', ')}</p>
         <div class="proyecciones">
-            <h6>Showtimes</h6>
-            <ul>${proyeccionesHTML}</ul>
+        <h6>Showtimes</h6>
+        <ul>${proyeccionesHTML}</ul>
         </div>
     `;
 }
+
 
 
 
