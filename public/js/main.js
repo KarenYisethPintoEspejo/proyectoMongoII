@@ -49,7 +49,7 @@ function displayMovies(movies) {
     const today = new Date();
     const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
     
-    // Crear indicadores (dots)
+    
     const indicatorsContainer = document.getElementById('carousel-indicators');
     indicatorsContainer.innerHTML = '';
     
@@ -57,7 +57,7 @@ function displayMovies(movies) {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-item');
         movieItem.dataset.id = movie.id;  
-        movieItem.dataset.index = index;  // Añadir índice para referencia
+        movieItem.dataset.index = index;  
         const imageUrl = movie.imagen;
         movieItem.innerHTML = `
             <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
@@ -71,7 +71,6 @@ function displayMovies(movies) {
 
         container.appendChild(movieItem);
         
-        // Crear y añadir el dot
         const dot = document.createElement('span');
         dot.classList.add('indicator');
         if (index === 0) {
@@ -84,7 +83,7 @@ function displayMovies(movies) {
         indicatorsContainer.appendChild(dot);
     });
 
-    // Añadir evento para actualizar dot activo al hacer scroll
+
     container.addEventListener('scroll', () => {
         updateActiveIndicatorOnScroll();
     });
@@ -140,7 +139,6 @@ function updateMovieDetails(activeIndex) {
         }
     });
 }
-
 function displayComingSoon(movies) {
     const container = document.querySelector('.movie-carousel1');
     container.innerHTML = ''; 
@@ -150,14 +148,18 @@ function displayComingSoon(movies) {
 
     comingSoonMovies.forEach(movie => {
         const movieItem = document.createElement('div');
-        movieItem.classList.add('movie-item');
+        movieItem.classList.add('coming-soon-item');
         movieItem.dataset.id = movie.id;  
         const imageUrl = movie.imagen; 
+
         movieItem.innerHTML = `
             <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
-            <h3>${movie.nombre}</h3>
-            <p>${movie.generos.join(', ')}</p>
+            <div class="movie-text">
+                <h3>${movie.nombre}</h3>
+                <p>${movie.generos.join(', ')}</p>
+            </div>
         `;
+
         movieItem.addEventListener('click', () => {
             window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
         });
