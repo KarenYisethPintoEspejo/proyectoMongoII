@@ -3,11 +3,12 @@ header {
     align-items: center; 
     justify-content: space-between; 
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #111;
     color: white;
 }
 
 header .bx {
+    margin-top: 30px;
     font-size: 30px; 
     cursor: pointer;
 }
@@ -17,6 +18,7 @@ header .bx {
     text-align: center; 
     padding: 10px;
     margin: 0 10px; 
+    margin-top: 30px;
 }
 
 .container {
@@ -28,20 +30,26 @@ header .bx {
 }
 
 .book-now {
-    background-color: green;
+    background-color: red;
     color: white;
-    padding: 10px 20px;
     border: none;
     display: block;
     width: 90%;
+    height: 50px;
     margin: 20px auto;
     cursor: pointer;
+    margin-bottom: 80px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
 }
+
 
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #111;
 }
 
 
@@ -92,7 +100,7 @@ footer {
 }
 
 #movie-detail-container {
-    background: white;
+    background: #111;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -102,12 +110,79 @@ footer {
 .movie-image {
     width: 90%;
     height: auto;
+    clip-path: inset(80px 0px 150px 0px);
+    margin-top: -100px;
+    margin-left: 20px;
 }
 
-h1 {
-    color: #333;
+h4 {
+    margin-left: 30px;
+    margin-top: -120px;
+    color: #fff;
+    font-size: 16px;
 }
 
 p {
-    color: #666;
+    margin-left: 30px;
+    color: #aeaeae;
+    font-size: 12px;
+    margin-top: -18px;
 }
+
+h5 {
+    color: #fff;
+    font-weight: lighter;
+    font-size: 15px;
+    margin-left: 30px;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+
+h3 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 30px;
+    margin-right: 8px;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+
+
+/* CSS */
+.proyecciones {
+    border: 2px solid #ccc; /* Borde del cuadro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+ /* Color de fondo */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    max-width: 300px; /* Ancho máximo del cuadro */
+    margin-left: 20px;
+    margin-top: 25px; /* Margen superior/inferior y centrado horizontal */
+}
+
+.proyecciones h6 {
+    margin-top: 0px;
+    font-size: 16px; /* Tamaño de la fuente del título */
+    font-weight: bold; /* Negrita */
+    margin-bottom: 0px; /* Espacio debajo del título */
+    color: white; /* Color del texto */
+}
+
+.proyecciones ul {
+    list-style-type: none; /* Quitar los puntos de la lista */
+    padding-left: 0; /* Eliminar sangría de la lista */
+}
+
+.proyecciones li {
+    padding: 8px 0; /* Espacio entre los elementos de la lista */
+    border-bottom: 1px solid #fff;
+    color: #aeaeae; 
+    font-size: 14px;/* Línea divisoria entre elementos */
+}
+
+.proyecciones li:last-child {
+    border-bottom: none; /* Quitar la línea del último elemento */
+}
+

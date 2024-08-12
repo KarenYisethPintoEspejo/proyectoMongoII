@@ -5,21 +5,54 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No movieId provided in the URL');
         return; 
     }
+
+    // Primera petición para obtener detalles de la película
     fetch(`http://localhost:5010/pelicula/peliculaId/${movieId}`)
         .then(response => response.json())
-        .then(data => {
-            displayMovieDetail(data);
+        .then(movieData => {
+            console.log("Detalles de la película:", movieData);
+
+            // Segunda petición para obtener las proyecciones
+            fetch(`http://localhost:5010/pelicula/listaPeliculas`)
+                .then(response => response.json())
+                .then(allMoviesData => {
+                    const movieProjections = allMoviesData.find(pelicula => pelicula.id === parseInt(movieId));
+
+                    if (movieProjections) {
+                        console.log("Proyecciones encontradas:", movieProjections.fechas_proyecciones, movieProjections.horas_proyecciones);
+
+                        // Combinar detalles de la película con las proyecciones
+                        movieData.fechas_proyecciones = movieProjections.fechas_proyecciones;
+                        movieData.horas_proyecciones = movieProjections.horas_proyecciones;
+                    } else {
+                        console.error('No se encontraron proyecciones para la película con ID:', movieId);
+                    }
+
+                    displayMovieDetail(movieData);
+                })
+                .catch(error => console.error('Error al cargar las proyecciones de la película:', error));
         })
         .catch(error => console.error('Error al cargar detalles de la película:', error));
 });
 
-
 function displayMovieDetail(movie) {
     const container = document.getElementById('movie-detail-container');
+
+    // Generar las proyecciones
+    const proyeccionesHTML = movie.fechas_proyecciones?.map((fecha, index) => `
+        <li>Fecha: ${new Date(fecha).toLocaleDateString()} a las ${movie.horas_proyecciones[index]}</li>
+    `).join('') || '<p>No hay proyecciones disponibles.</p>';
+
     container.innerHTML = `
-        <h2>${movie.nombre}</h2>
         <img src="${movie.imagen}" alt="${movie.nombre}" class="movie-image">
-        <p>${movie.sinopsis}</p>
-        <!-- Agrega más detalles según necesites -->
+        <h4>${movie.nombre}</h4>
+        <p>${movie.generos.join(', ')}</p>
+        <h5>${movie.sinopsis}</h5>
+        <h3>Cast</h3>
+        <p>${movie.actores.join(', ')}</p>
+        <div class="proyecciones">
+        <h6>Showtimes</h6>
+        <ul>${proyeccionesHTML}</ul>
+        </div>
     `;
 }
