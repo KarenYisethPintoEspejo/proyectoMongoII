@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error al obtener las películas:', error);
-            document.getElementById('movies-container').innerHTML = '<p>No se pudieron cargar las películas.</p>';
         });
 });
 
@@ -56,7 +55,7 @@ function displayMovies(movies) {
         `;
 
         movieItem.addEventListener('click', () => {
-            window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+            window.location.href = `../views/pelicula.html?movieId=${movie.id}`;
         });
         container.appendChild(movieItem);
     });
