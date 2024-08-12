@@ -90,3 +90,24 @@ footer {
 .nav-item.active img {
     filter: invert(49%) sepia(94%) saturate(2737%) hue-rotate(345deg) brightness(95%) contrast(105%); /* Aplicar color rojo al ícono activo */
 }
+
+#movie-detail-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    justify-content: center;
+}
+
+.movie-image {
+    width: 90%;
+    height: auto;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
