@@ -1,3 +1,12 @@
+const navItems = document.querySelectorAll('.nav-item');
+navItems.forEach(item => {
+    item.addEventListener('click', function() {
+        navItems.forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('movieId');
@@ -5,8 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No movieId provided in the URL');
         return; 
     }
-
-    // Primera petición para obtener detalles de la película
     fetch(`http://localhost:5010/pelicula/peliculaId/${movieId}`)
         .then(response => response.json())
         .then(movieData => {
@@ -20,8 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (movieProjections) {
                         console.log("Proyecciones encontradas:", movieProjections.fechas_proyecciones, movieProjections.horas_proyecciones);
-
-                        // Combinar detalles de la película con las proyecciones
                         movieData.fechas_proyecciones = movieProjections.fechas_proyecciones;
                         movieData.horas_proyecciones = movieProjections.horas_proyecciones;
                     } else {
@@ -37,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function displayMovieDetail(movie) {
     const container = document.getElementById('movie-detail-container');
-
-    // Generar las proyecciones
     const proyeccionesHTML = movie.fechas_proyecciones?.map((fecha, index) => `
         <li>Fecha: ${new Date(fecha).toLocaleDateString()} a las ${movie.horas_proyecciones[index]}</li>
     `).join('') || '<p>No hay proyecciones disponibles.</p>';
