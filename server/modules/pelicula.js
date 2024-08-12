@@ -83,7 +83,8 @@ module.exports = class pelicula extends connect {
                     fecha_retiro: 1,
                     fechas_proyecciones: '$proyecciones.fecha',
                     horas_proyecciones: '$proyecciones.hora',
-                    imagen: 1
+                    imagen: 1,
+                    trailer: 1
                 },
             },
         ]).toArray();

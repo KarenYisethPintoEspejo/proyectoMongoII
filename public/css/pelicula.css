@@ -33,13 +33,13 @@ header .bx:hover{
     display: flex;
     flex-direction: column; 
 }
-
+.trailer,
 .book-now {
     background-color: red;
     color: #fff;
     border: none;
-    display: block;
-    width: 85%;
+  
+    width: 35%;
     height: 50px;
     margin: 20px auto;
     cursor: pointer;
@@ -47,8 +47,17 @@ header .bx:hover{
     border-radius: 5px;
     font-weight: bold;
     font-size: 18px;
+    
+}
+.button__trailer__buy{
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-around;
+   
 }
 
+.trailer:hover,
 .book-now:hover{
     background-color: #111;
     color: red;
