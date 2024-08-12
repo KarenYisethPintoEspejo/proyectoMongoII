@@ -66,7 +66,7 @@ header {
     font-size: 16px;
     color: #aaa;
 }
-/* 
+
 .search-bar {
     position: relative;
     display: flex;
@@ -86,7 +86,7 @@ header {
     color: #ff0000;
 }
 #search-input:focus::placeholder {
-    color: transparent; 
+    color: transparent; /* Oculta el placeholder */
 }
 
 
@@ -108,7 +108,7 @@ header {
     border: 1px solid red;
 }
 
- */
+
 
 .section-header {
     display: flex;
@@ -142,7 +142,7 @@ header {
 .movie-carousel::-webkit-scrollbar {
     display: none;
 }
-.movie-carousel1 {
+/* .movie-carousel1 {
     display: flex;
     overflow-x: auto; 
     scroll-snap-type: x mandatory; 
@@ -154,7 +154,7 @@ header {
 
 .movie-carousel1::-webkit-scrollbar {
     display: none;
-}
+} */
 
 
 .movie-item {
@@ -231,7 +231,7 @@ footer {
 }
 
 .nav-item.active img {
-    filter: invert(49%) sepia(94%) saturate(2737%) hue-rotate(345deg) brightness(95%) contrast(105%); /* Aplicar color rojo al ícono activo */
+    filter: invert(49%) sepia(94%) saturate(2737%) hue-rotate(345deg) brightness(95%) contrast(105%); 
 }
 
 
