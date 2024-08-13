@@ -201,12 +201,13 @@ header {
 }
 
 .coming-soon-item .movie-text h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: normal; 
+    margin-top: 0;
+    font-size: 17px;
+    font-weight:normal; 
 }
 
 .coming-soon-item .movie-text p {
+    margin-top: -12px;
     font-size: 12px; 
 }
 
