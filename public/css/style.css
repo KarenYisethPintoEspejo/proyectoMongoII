@@ -233,15 +233,16 @@ header {
 .movie-item h3{
     margin-left: -2px;
     margin-right: -2px;
-    margin-bottom: -2px;
-    font-size: 15px;
-    font-weight: normal;
+    margin-bottom: -3px;
+    margin-top: 14px;
+    font-size: 17px;
+    font-weight: bolder;
 }
 
 .movie-item p{
     font-weight: bold;
     color: grey;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .coming-soon .section-header{
@@ -304,7 +305,7 @@ footer {
 .carousel-indicators {
     display: flex;
     justify-content: center;
-    margin-top: -70px;
+    margin-top: -60px;
     margin-bottom: 10px;
     margin-right: 3px;
     /* padding: 5-0px; */
