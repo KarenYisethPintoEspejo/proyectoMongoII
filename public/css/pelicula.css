@@ -27,10 +27,10 @@ header .bx:hover {
     text-align: center; 
     padding: 10px;
     margin: 0 10px; 
-    margin-top: 30px;
+    margin-top: 27px;
     border: 1px solid red;
-
-
+    font-weight: normal;
+    font-size: 21px
 }
 
 .container {
@@ -129,9 +129,9 @@ footer {
 }
 
 #movie-detail-container {
-    margin-top: 28rem;
+    margin-top: 27.5rem;
     background: #111;
-    padding: 20px;
+    padding: 13px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
@@ -141,7 +141,7 @@ footer {
 .movies-container2{
     background: #111;
     padding: 130px 0px 0px;
-    border-radius: 8px;
+    border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
     /* border: 1px solid red; */
@@ -149,9 +149,9 @@ footer {
 }
 
 .movie-image {
-    width: 100%;
+    width: 402px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid red; 
 }
 
@@ -204,36 +204,37 @@ footer {
 
 
 h4 {
-    margin-left: 30px;
-    margin-top: -120px;
+    margin-left: 25px;
+    margin-top: -125px;
     color: #fff;
-    font-size: 16px;
+    font-size: 19px;
+    font-weight: normal;
+    margin-right: 10px;
 }
 
 p {
-    margin-left: 30px;
-    color: #aeaeae;
+    margin-left: 25px;
+    color: #dadada;
     font-size: 12px;
-    margin-top: -18px;
+    margin-top: -20px;
 }
 
 h5 {
     color: #fff;
     font-weight: lighter;
-    font-size: 15px;
-    margin-left: 30px;
-    margin-right: 50px;
-    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    margin-right: 60px;
+    margin-top: 15px;
 }
 
 h3 {
     color: #fff;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 30px;
-    margin-right: 8px;
-    margin-bottom: 20px;
-    margin-top: -10px;
+    font-weight: normal;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-right: 7px;
+    margin-top: 32px;
 }
 
 .trailer {
@@ -241,21 +242,22 @@ h3 {
     color: #fff;
     border: none;
     width: 110px;
-    height: 30px;
+    height: 28px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 7px;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 11px;
     display: flex; 
     align-items: center; 
-    justify-content: center;  
+    /* justify-content: center;   */
     position: relative; 
-    top: -140px; 
+    top: -210px; 
     left: 124px; 
 }
 
 .trailer i {
     font-size: 15px;
-    margin-left: 5px; 
+    margin-left: 1px; 
+    margin-right: 6px;
 }
 
