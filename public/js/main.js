@@ -144,7 +144,7 @@ function updateMovieDetails(activeIndex) {
         } else {
             movieItem.querySelector('.movie-title').style.display = 'none';
             movieItem.querySelector('.movie-genres').style.display = 'none';
-            movieItem.style.transform = 'scale(1)';
+            movieItem.style.transform = 'scale(1.2)';
         }
     });
 }
