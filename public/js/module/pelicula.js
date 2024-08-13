@@ -46,15 +46,13 @@ function displayMovieDetail(movie) {
     `).join('') || '<p>No hay proyecciones disponibles.</p>';
 
     container.innerHTML = `
-        <img src="${movie.imagen}" alt="${movie.nombre}" class="movie-image">
+        <img src="${movie.imagen2}" alt="${movie.nombre}" class="movie-image">
+        <div class="movies-container2">
         <h4>${movie.nombre}</h4>
         <p>${movie.generos.join(', ')}</p>
         <h5>${movie.sinopsis}</h5>
         <h3>Cast</h3>
         <p>${movie.actores.join(', ')}</p>
-        <div class="proyecciones">
-        <h6>Showtimes</h6>
-        <ul>${proyeccionesHTML}</ul>
         </div>
     `;
 }

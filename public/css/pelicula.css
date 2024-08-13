@@ -5,18 +5,21 @@ header {
     padding: 10px 20px;
     background-color: #111;
     color: white;
+    margin-bottom: -450px;
 }
 
 header .bx {
+    border: 1px solid red;
     margin-top: 30px;
     font-size: 30px; 
     cursor: pointer;
     color: #fff;
 }
 
-header .bx:hover{
+header .bx:hover {
     color: #ff0000;
 }
+
 
 .cinema-selection {
     flex-grow: 1; 
@@ -123,6 +126,7 @@ footer {
 }
 
 #movie-detail-container {
+    margin-top: 35rem;
     background: #111;
     padding: 20px;
     border-radius: 8px;
@@ -130,13 +134,23 @@ footer {
     justify-content: center;
 }
 
-.movie-image {
-    width: 90%;
-    height: auto;
-    clip-path: inset(80px 0px 150px 0px);
-    margin-top: -100px;
-    margin-left: 20px;
+.movies-container2{
+    background: #111;
+    padding: 130px 0px 0px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    justify-content: center;
+    border: 1px solid red;
 }
+
+.movie-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid red; 
+    margin-top: -130px;
+}
+
 
 h4 {
     margin-left: 30px;
@@ -171,47 +185,3 @@ h3 {
     margin-top: -10px;
 }
 
-
-
-
-.proyecciones {
-    border: 2px solid #ccc; 
-    border-radius: 10px; 
-    padding: 20px; 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    max-width: 300px; 
-    margin-left: 20px;
-    margin-top: 25px;  
-    transition: all 0.3s ease; 
-}
-
-
-.proyecciones:hover {
-    border-color: #ff0000; 
-    scale: 1.1;
-}
-
-.proyecciones h6 {
-    margin-top: 0px;
-    font-size: 16px; 
-    font-weight: bold; 
-    margin-bottom: 0px; 
-    color: white; 
-}
-
-
-.proyecciones ul {
-    list-style-type: none; 
-    padding-left: 0; 
-}
-
-.proyecciones li {
-    padding: 8px 0; 
-    border-bottom: 1px solid #fff; 
-    color: #aeaeae; 
-    font-size: 14px; 
-}
-
-.proyecciones li:last-child {
-    border-bottom: none; 
-}
