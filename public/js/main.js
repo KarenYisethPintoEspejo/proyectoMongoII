@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(movies => {
             console.log('Películas obtenidas:', movies);
-            displayMovies(movies); 
+            displayMovies(movies);
             displayComingSoon(movies);
             const searchInput = document.getElementById('search-input');
             searchInput.addEventListener('input', () => {
@@ -48,7 +48,6 @@ function displayMovies(movies) {
     container.innerHTML = '';
     const today = new Date();
     const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
-    
     
     const indicatorsContainer = document.getElementById('carousel-indicators');
     indicatorsContainer.innerHTML = '';
@@ -83,6 +82,12 @@ function displayMovies(movies) {
         indicatorsContainer.appendChild(dot);
     });
 
+    // Desplazar al tercer elemento al cargar la página
+    const thirdIndex = 1;
+    if (filteredMovies.length > thirdIndex) {
+        container.scrollLeft = container.offsetWidth * thirdIndex;
+        updateActiveIndicator(thirdIndex);
+    }
 
     container.addEventListener('scroll', () => {
         updateActiveIndicatorOnScroll();
@@ -139,6 +144,7 @@ function updateMovieDetails(activeIndex) {
         }
     });
 }
+
 function displayComingSoon(movies) {
     const container = document.querySelector('.movie-carousel1');
     container.innerHTML = ''; 
