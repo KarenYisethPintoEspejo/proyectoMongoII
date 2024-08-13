@@ -52,46 +52,50 @@ function displayMovies(movies) {
     const indicatorsContainer = document.getElementById('carousel-indicators');
     indicatorsContainer.innerHTML = '';
     
-    filteredMovies.forEach((movie, index) => {
-        const movieItem = document.createElement('div');
-        movieItem.classList.add('movie-item');
-        movieItem.dataset.id = movie.id;  
-        movieItem.dataset.index = index;  
-        const imageUrl = movie.imagen;
-        movieItem.innerHTML = `
-            <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
-            <h3 class="movie-title">${movie.nombre}</h3>
-            <p class="movie-genres">${movie.generos.join(', ')}</p>
-        `;
+    if (filteredMovies.length === 0) {
+        container.style.display = 'none'; 
+    } else {
+        container.style.display = 'flex'; 
+        filteredMovies.forEach((movie, index) => {
+            const movieItem = document.createElement('div');
+            movieItem.classList.add('movie-item');
+            movieItem.dataset.id = movie.id;  
+            movieItem.dataset.index = index;  
+            const imageUrl = movie.imagen;
+            movieItem.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
+                <h3 class="movie-title">${movie.nombre}</h3>
+                <p class="movie-genres">${movie.generos.join(', ')}</p>
+            `;
 
-        movieItem.addEventListener('click', () => {
-            window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+            movieItem.addEventListener('click', () => {
+                window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+            });
+
+            container.appendChild(movieItem);
+            
+            const dot = document.createElement('span');
+            dot.classList.add('indicator');
+            if (index === 0) {
+                dot.classList.add('active');
+            }
+            dot.addEventListener('click', () => {
+                container.scrollLeft = container.offsetWidth * index;
+                updateActiveIndicator(index);
+            });
+            indicatorsContainer.appendChild(dot);
         });
 
-        container.appendChild(movieItem);
-        
-        const dot = document.createElement('span');
-        dot.classList.add('indicator');
-        if (index === 0) {
-            dot.classList.add('active');
+        const thirdIndex = 1;
+        if (filteredMovies.length > thirdIndex) {
+            container.scrollLeft = container.offsetWidth * thirdIndex;
+            updateActiveIndicator(thirdIndex);
         }
-        dot.addEventListener('click', () => {
-            container.scrollLeft = container.offsetWidth * index;
-            updateActiveIndicator(index);
+
+        container.addEventListener('scroll', () => {
+            updateActiveIndicatorOnScroll();
         });
-        indicatorsContainer.appendChild(dot);
-    });
-
-    // Desplazar al tercer elemento al cargar la página
-    const thirdIndex = 1;
-    if (filteredMovies.length > thirdIndex) {
-        container.scrollLeft = container.offsetWidth * thirdIndex;
-        updateActiveIndicator(thirdIndex);
     }
-
-    container.addEventListener('scroll', () => {
-        updateActiveIndicatorOnScroll();
-    });
 }
 
 function updateActiveIndicatorOnScroll() {
@@ -152,24 +156,29 @@ function displayComingSoon(movies) {
     const today = new Date(); 
     const comingSoonMovies = movies.filter(movie => new Date(movie.fecha_estreno) > today);
 
-    comingSoonMovies.forEach(movie => {
-        const movieItem = document.createElement('div');
-        movieItem.classList.add('coming-soon-item');
-        movieItem.dataset.id = movie.id;  
-        const imageUrl = movie.imagen; 
+    if (comingSoonMovies.length === 0) {
+        container.style.display = 'none'; 
+    } else {
+        container.style.display = 'flex'; 
+        comingSoonMovies.forEach(movie => {
+            const movieItem = document.createElement('div');
+            movieItem.classList.add('coming-soon-item');
+            movieItem.dataset.id = movie.id;  
+            const imageUrl = movie.imagen; 
 
-        movieItem.innerHTML = `
-            <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
-            <div class="movie-text">
-                <h3>${movie.nombre}</h3>
-                <p>${movie.generos.join(', ')}</p>
-            </div>
-        `;
+            movieItem.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
+                <div class="movie-text">
+                    <h3>${movie.nombre}</h3>
+                    <p>${movie.generos.join(', ')}</p>
+                </div>
+            `;
 
-        movieItem.addEventListener('click', () => {
-            window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+            movieItem.addEventListener('click', () => {
+                window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+            });
+
+            container.appendChild(movieItem);
         });
-
-        container.appendChild(movieItem);
-    });
+    }
 }

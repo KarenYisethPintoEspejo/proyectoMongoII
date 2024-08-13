@@ -20,11 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = '';
 
             const searchInput = document.getElementById('search-input');
+            searchInput.focus();
             searchInput.addEventListener('input', () => {
                 const query = searchInput.value.toLowerCase();
                 const filteredMovies = filterMovies(movies, query);
                 displayMovies(filteredMovies); 
             });
+
+            // Establece el foco en el campo de búsqueda
+            searchInput.focus();
         })
         .catch(error => {
             console.error('Error al obtener las películas:', error);
