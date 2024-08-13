@@ -14,6 +14,7 @@ header .bx {
     font-size: 30px; 
     cursor: pointer;
     color: #fff;
+    position: relative;
 }
 
 header .bx:hover {
@@ -27,6 +28,8 @@ header .bx:hover {
     padding: 10px;
     margin: 0 10px; 
     margin-top: 30px;
+    border: 1px solid red;
+
 }
 
 .container {
@@ -36,13 +39,12 @@ header .bx:hover {
     display: flex;
     flex-direction: column; 
 }
-.trailer,
+
 .book-now {
     background-color: red;
     color: #fff;
     border: none;
-  
-    width: 35%;
+    width: 80%;
     height: 50px;
     margin: 20px auto;
     cursor: pointer;
@@ -60,7 +62,7 @@ header .bx:hover {
    
 }
 
-.trailer:hover,
+
 .book-now:hover{
     background-color: #111;
     color: red;
@@ -126,12 +128,13 @@ footer {
 }
 
 #movie-detail-container {
-    margin-top: 35rem;
+    margin-top: 28rem;
     background: #111;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
+    border: 1px solid red;
 }
 
 .movies-container2{
@@ -148,7 +151,6 @@ footer {
     height: auto;
     border-radius: 10px;
     border: 1px solid red; 
-    margin-top: -130px;
 }
 
 
@@ -183,5 +185,28 @@ h3 {
     margin-right: 8px;
     margin-bottom: 20px;
     margin-top: -10px;
+}
+
+.trailer {
+    background-color: red;
+    color: #fff;
+    border: none;
+    width: 110px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 12px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;  
+    position: relative; 
+    top: -140px; 
+    left: 124px; 
+}
+
+.trailer i {
+    font-size: 15px;
+    margin-left: 5px; 
 }
 

@@ -41,21 +41,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function displayMovieDetail(movie) {
     const container = document.getElementById('movie-detail-container');
-    const proyeccionesHTML = movie.fechas_proyecciones?.map((fecha, index) => `
-        <li>Fecha: ${new Date(fecha).toLocaleDateString()} a las ${movie.horas_proyecciones[index]}</li>
-    `).join('') || '<p>No hay proyecciones disponibles.</p>';
-
     container.innerHTML = `
         <img src="${movie.imagen2}" alt="${movie.nombre}" class="movie-image">
         <div class="movies-container2">
-        <h4>${movie.nombre}</h4>
-        <p>${movie.generos.join(', ')}</p>
-        <h5>${movie.sinopsis}</h5>
-        <h3>Cast</h3>
-        <p>${movie.actores.join(', ')}</p>
+            <h4>${movie.nombre}</h4>
+            <p>${movie.generos.join(', ')}</p>
+            <h5>${movie.sinopsis}</h5>
+            <h3>Cast</h3>
+            <p>${movie.actores.map(actor => actor.nombre).join(', ')}</p>
+        </div>
+        <div class="button__trailer__buy">
+            <button class="trailer" data-trailer-url="${movie.trailer}">
+                 <i class='bx bxs-right-arrow'></i> Watch Trailer
+            </button>
         </div>
     `;
+    const trailerButton = container.querySelector('.trailer');
+    trailerButton.addEventListener('click', function() {
+        const trailerUrl = this.getAttribute('data-trailer-url');
+        window.location.href = trailerUrl;
+    });
 }
+
 
 
 
