@@ -1,12 +1,35 @@
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach(item => {
-    item.addEventListener('click', function() {
-        navItems.forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
 document.addEventListener('DOMContentLoaded', () => {
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function () {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+
+            if (this.querySelector('.bx-search')) {
+                const moviesContainer = document.getElementById('movies-container');
+                moviesContainer.innerHTML = ''; 
+                moviesContainer.style.display = 'none'; 
+                const comingSoonContainer = document.querySelector('.movie-carousel1');
+                comingSoonContainer.innerHTML = ''; 
+                comingSoonContainer.style.display = 'none'; 
+                const searchInput = document.getElementById('search-input');
+                searchInput.focus(); 
+            }
+        });
+    });
+
+    
+    const searchInput = document.getElementById('search-input');
+    const searchIcon = document.querySelector('.search-icon'); 
+
+    searchInput.addEventListener('focus', () => {
+        searchIcon.classList.add('active-icon');
+    });
+
+    searchInput.addEventListener('blur', () => {
+        searchIcon.classList.remove('active-icon');
+    });
+
     fetch('http://localhost:5010/pelicula/listaPeliculas')
         .then(response => {
             if (!response.ok) {
@@ -18,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Películas obtenidas:', movies);
             displayMovies(movies);
             displayComingSoon(movies);
-            const searchInput = document.getElementById('search-input');
+
             searchInput.addEventListener('input', () => {
                 const query = searchInput.value.toLowerCase();
                 const filteredMovies = filterMovies(movies, query);
@@ -38,7 +61,7 @@ function filterMovies(movies, query) {
     return movies.filter(movie => {
         const nameMatch = movie.nombre.toLowerCase().includes(query);
         const genreMatch = movie.generos.some(genre => genre.toLowerCase().includes(query));
-        const actorMatch = movie.actores && movie.actores.some(actor => actor.toLowerCase().includes(query));
+        const actorMatch = movie.actores && movie.actores.some(actor => actor.nombre.toLowerCase().includes(query));
         return nameMatch || genreMatch || actorMatch;
     });
 }
@@ -48,10 +71,10 @@ function displayMovies(movies) {
     container.innerHTML = '';
     const today = new Date();
     const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
-    
+
     const indicatorsContainer = document.getElementById('carousel-indicators');
     indicatorsContainer.innerHTML = '';
-    
+
     if (filteredMovies.length === 0) {
         container.style.display = 'none'; 
     } else {
@@ -144,7 +167,7 @@ function updateMovieDetails(activeIndex) {
         } else {
             movieItem.querySelector('.movie-title').style.display = 'none';
             movieItem.querySelector('.movie-genres').style.display = 'none';
-            movieItem.style.transform = 'scale(1.2)';
+            movieItem.style.transform = 'scale(1.0)';
         }
     });
 }

@@ -90,10 +90,26 @@ header {
     font-size: 21px;
 }
 
+.search-icon.active-icon {
+    color: #ff0000; 
+}
+
+
+.search-icon {
+    font-size: 24px;
+}
+
+
+
+#search-input:focus + .search-icon {
+    color: red; 
+}
+
 
 #search-input:focus::placeholder {
     color: transparent; 
 }
+
 
 
 #search-input {
