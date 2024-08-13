@@ -45,6 +45,11 @@ function displayMovieDetail(movie) {
         <img src="${movie.imagen2}" alt="${movie.nombre}" class="movie-image">
         <div class="movies-container2">
             <h4>${movie.nombre}</h4>
+            <div class="actors-container">
+                ${movie.actores.map(actor => `
+                    <img src="${actor.foto}" alt="${actor.nombre}" class="movie-image-actor">
+                `).join('')}
+            </div>
             <p>${movie.generos.join(', ')}</p>
             <h5>${movie.sinopsis}</h5>
             <h3>Cast</h3>
@@ -52,16 +57,18 @@ function displayMovieDetail(movie) {
         </div>
         <div class="button__trailer__buy">
             <button class="trailer" data-trailer-url="${movie.trailer}">
-                 <i class='bx bxs-right-arrow'></i> Watch Trailer
+                <i class='bx bxs-right-arrow'></i> Watch Trailer
             </button>
         </div>
     `;
+    
     const trailerButton = container.querySelector('.trailer');
     trailerButton.addEventListener('click', function() {
         const trailerUrl = this.getAttribute('data-trailer-url');
         window.location.href = trailerUrl;
     });
 }
+
 
 
 
