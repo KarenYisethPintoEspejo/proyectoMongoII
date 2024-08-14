@@ -164,6 +164,7 @@ header {
     gap: 10px; 
     margin-top: 10px;
     height: 30rem;
+    scrollbar-width: none;
 }
 
 .movie-carousel::-webkit-scrollbar {

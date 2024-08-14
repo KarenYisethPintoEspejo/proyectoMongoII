@@ -135,7 +135,9 @@ footer {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
-    border: 1px solid red;
+    border: 1px solid rgb(0, 217, 255);
+    width: 93%;
+    height: 410px;
 }
 
 .movies-container2{
@@ -163,16 +165,16 @@ footer {
 .actors-container{
     display: flex;
     width: 100%;
-    height: 5rem;
+    height: 4rem;
     flex-direction: row;
-    margin-right: 3rem;
-    gap: 0.7rem;
-    /* border: 1px solid yellow; */
+    gap: 0.4rem;
+    border: 1px solid yellow;
+    margin-top: 1px;
 }
 .actor-info {
     /* border: 3px solid rgb(0, 255, 26); */
     display: flex;
-    width: 40%;
+    width: 30%;
     align-items: center;
     flex-direction: row;
     position: relative;  
@@ -184,8 +186,8 @@ footer {
     width: 6rem;
     height: 2rem;
     align-items: center;
-    left: 1.5rem;
-    font-size: 0.7rem;
+    left: 2.2rem;
+    font-size: 0.6rem;
     font-weight: bold;
     position: absolute;
     /* border: 1px solid yellow; */
@@ -195,16 +197,16 @@ footer {
     color: gray;
     /* border: 1px solid white; */
     position: absolute;
-    bottom: 10px;
-    left: 1.5rem;
+    bottom: 4px;
+    left: 2.2rem;
 }
 
 
 
 
 
-h4 {
-    margin-left: 25px;
+.movies-container2 h4 {
+    margin-left: 15px;
     margin-top: -125px;
     color: #fff;
     font-size: 18px;
@@ -212,29 +214,30 @@ h4 {
     margin-right: 110px;
 }
 
-p {
-    margin-left: 25px;
+.movies-container2 p {
+    margin-left: 15px;
     color: #dadada;
-    font-size: 12px;
-    margin-top: -20px;
+    font-size: 10px;
+    margin-top: -18px;
 }
 
-h5 {
+.movies-container2 h5 {
     color: #fff;
     font-weight: lighter;
     font-size: 14px;
-    margin-left: 25px;
+    margin-left: 15px;
     margin-right: 60px;
     margin-top: 15px;
 }
 
-h3 {
+.movies-container2 h3 {
     color: #fff;
     font-weight: normal;
     font-size: 20px;
-    margin-left: 25px;
+    margin-left: 15px;
     margin-right: 7px;
-    margin-top: 32px;
+    margin-top: 3px;
+    margin-bottom:-3px ;
 }
 
 .trailer {
@@ -251,7 +254,7 @@ h3 {
     align-items: center; 
     /* justify-content: center;   */
     position: relative; 
-    bottom: 240px;
+    bottom: 210px;
     left: 124px; 
 }
 
@@ -259,5 +262,61 @@ h3 {
     font-size: 15px;
     margin-left: 1px; 
     margin-right: 6px;
+}
+
+.cinema-info {
+    display: flex;
+    width: 84%;
+    align-items: center;
+    justify-content: center;
+    /* gap: 2rem; */
+    background: #272727;   
+    padding: 0rem;
+    border-radius: 0.5rem;
+    border: 1px solid rebeccapurple;
+    margin-left: 26px;
+    height: 50px;
+}
+
+.cinema-info div{
+    /* border: 1px solid rgb(211, 167, 255); */
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 10px;
+    gap: 0.7rem;
+    /* background-color: #272727; */
+}
+
+
+
+.cinema-info div p {
+    color: #fff;
+    /* background-color: #272727; */
+}
+
+.cinema-info img {
+    width: 3rem;
+    height: 2.8rem; 
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+.cinema{
+    color: white;
+    font-size: 20px;
+    font-weight: normal;
+    margin-left: 30px;
+}
+
+.place{
+    /* margin-top: -10px; */
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.place-city{
+    margin-top: -15px;
+    font-size: 10px;
 }
 
