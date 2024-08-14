@@ -45,14 +45,15 @@ header .bx:hover {
     background-color: red;
     color: #fff;
     border: none;
-    width: 80%;
+    width: 85%;
     height: 50px;
-    margin: 20px auto;
+    margin: 200px auto;
     cursor: pointer;
-    margin-bottom: 80px;
-    border-radius: 5px;
+    border-radius: 12px;
     font-weight: bold;
     font-size: 18px;
+    position: fixed;
+
     
 }
 .button__trailer__buy{
@@ -76,56 +77,9 @@ body, html {
     font-family: Arial, sans-serif;
     background-color: #111;
 }
-
-
-footer {
-    background-color: #191919;
-    padding: 25px 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-    border-top: 1px solid #4e4e4e;
-    border-bottom: 1px solid #4e4e4e 
-}
-
-.bottom-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 30px;
-}
-
-.nav-item {
-    color: #fff;
-    text-decoration: none;
-    font-size: 12px;
-    text-align: center;
-    flex-grow: 1;
-}
-
-.nav-item span{
-    font-size: 13px;
-}
-
-.nav-item i {
-    font-size: 24px;
-    width: 40px;
-    height: 20px;
-    display: block;
-    margin: 0 auto 5px auto;
-}
-
-.nav-item.active {
-    color: #ff0000; 
-}
-
-.nav-item.active img {
-    filter: invert(49%) sepia(94%) saturate(2737%) hue-rotate(345deg) brightness(95%) contrast(105%); 
+.detalle_video-cinema{
+    height: 7.4rem;
+    /* border: 1px solid yellow; */
 }
 
 #movie-detail-container {
@@ -135,7 +89,7 @@ footer {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
-    border: 1px solid rgb(0, 217, 255);
+    /* border: 1px solid rgb(0, 217, 255); */
     width: 93%;
     height: 410px;
 }
@@ -158,18 +112,19 @@ footer {
 }
 
 .actor-photo {
-    width: 3rem;
-    height: 3rem; 
+    width: 2.5rem;
+    height: 2.5rem; 
     border-radius: 50%;
 }
 .actors-container{
     display: flex;
-    width: 100%;
+    width: 96%;
     height: 4rem;
     flex-direction: row;
-    gap: 0.4rem;
+    gap: 1.1rem;
     /* border: 1px solid yellow; */
-    margin-top: 1px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 .actor-info {
     /* border: 3px solid rgb(0, 255, 26); */
@@ -186,7 +141,7 @@ footer {
     width: 6rem;
     height: 2rem;
     align-items: center;
-    left: 2.2rem;
+    left: 1.7rem;
     font-size: 0.6rem;
     font-weight: bold;
     position: absolute;
@@ -198,7 +153,7 @@ footer {
     /* border: 1px solid white; */
     position: absolute;
     bottom: 4px;
-    left: 2.2rem;
+    left: 1.7rem;
 }
 
 
@@ -275,10 +230,13 @@ footer {
     border-radius: 0.5rem;
     margin-left: 30px;
     height: 55px;
+    /* border: 2px solid rgb(81, 255, 0); */
+
 }
 
 .cinema-info:hover{
     border: 2px solid red;
+    scale: 1.1;
 }
 
 .cinema-info div{
@@ -311,8 +269,8 @@ footer {
     font-size: 20px;
     font-weight: normal;
     margin-left: 30px;
-    margin-bottom: 10px;
-    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .place{
@@ -331,4 +289,13 @@ footer {
     display: flex;
     justify-content: center;
     margin-left: 15px;
+}
+
+
+
+html, body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
