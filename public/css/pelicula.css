@@ -168,7 +168,7 @@ footer {
     height: 4rem;
     flex-direction: row;
     gap: 0.4rem;
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     margin-top: 1px;
 }
 .actor-info {
@@ -266,16 +266,19 @@ footer {
 
 .cinema-info {
     display: flex;
-    width: 84%;
+    width: 86%;
     align-items: center;
     justify-content: center;
     /* gap: 2rem; */
     background: #272727;   
     padding: 0rem;
     border-radius: 0.5rem;
-    border: 1px solid rebeccapurple;
-    margin-left: 26px;
-    height: 50px;
+    margin-left: 30px;
+    height: 55px;
+}
+
+.cinema-info:hover{
+    border: 2px solid red;
 }
 
 .cinema-info div{
@@ -300,6 +303,7 @@ footer {
     height: 2.8rem; 
     border-radius: 10%;
     object-fit: cover;
+    margin-right: 20px;
 }
 
 .cinema{
@@ -307,6 +311,8 @@ footer {
     font-size: 20px;
     font-weight: normal;
     margin-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .place{
@@ -316,7 +322,13 @@ footer {
 }
 
 .place-city{
-    margin-top: -15px;
+    margin-top: -22px;
     font-size: 10px;
 }
 
+.texto-cinema{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    margin-left: 15px;
+}
