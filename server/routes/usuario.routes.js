@@ -57,6 +57,11 @@ appUsuario.get('/usuarioPorRol/:rol', async (req, res) => {
     }
 });
 
+appUsuario.get('/get-username', (req, res) => {
+    const userName = process.env.MONGO_USER; // O cualquier variable de entorno que estés usando
+    res.json({ userName });
+});
+
 
 
 

@@ -207,9 +207,9 @@ h4 {
     margin-left: 25px;
     margin-top: -125px;
     color: #fff;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: normal;
-    margin-right: 10px;
+    margin-right: 110px;
 }
 
 p {
@@ -251,7 +251,7 @@ h3 {
     align-items: center; 
     /* justify-content: center;   */
     position: relative; 
-    top: -210px; 
+    bottom: 240px;
     left: 124px; 
 }
 
