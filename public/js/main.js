@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Obtener y mostrar el nombre de usuario desde el servidor
     fetch('http://localhost:5010/usuario/get-username')
         .then(response => response.json())
         .then(data => {
@@ -7,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
             userNameElement.textContent = `Hi, ${data.userName}!`;
         })
         .catch(error => console.error('Error fetching user name:', error));
-
-    // Resto de tu código...
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', function () {

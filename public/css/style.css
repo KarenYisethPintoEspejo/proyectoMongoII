@@ -342,10 +342,10 @@ footer {
 }
 
 .indicator.active {
-    margin-top: 14.3px;
-    width: 19px;
-    height: 5px;
-    border-radius: 30%;
+    margin-top: 13px;
+    width: 24px;
+    height: 8px;
+    border-radius: 10px;
     background-color: red;  
     transform: scale(1.1);   
 }

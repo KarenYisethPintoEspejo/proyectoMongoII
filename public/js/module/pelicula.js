@@ -52,15 +52,13 @@ function displayMovieDetail(movie) {
                 ${movie.actores.map(actor => `
                     <div class="actor-info">
                         <img src="${actor.foto}" alt="${actor.nombre}" class="actor-photo">
-                        <div>
+                        <div class="container__information">
                             <p class="actor-name">${actor.nombre}</p>
                             <p class="actor-role">${actor.rol}</p>
                         </div>
                     </div>
                 `).join('')}
             </div>
-        </div>
-        <div class="button__trailer__buy">
             <button class="trailer" data-trailer-url="${movie.trailer}">
                 <i class='bx bxs-right-arrow'></i> Watch Trailer
             </button>

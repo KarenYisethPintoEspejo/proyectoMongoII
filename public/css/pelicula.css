@@ -1,7 +1,7 @@
 header {
     display: flex;
-    align-items: center; 
-    justify-content: space-between; 
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
     background-color: #111;
     color: white;
@@ -11,7 +11,7 @@ header {
 header .bx {
     border: 1px solid red;
     margin-top: 30px;
-    font-size: 30px; 
+    font-size: 30px;
     cursor: pointer;
     color: #fff;
     position: relative;
@@ -23,10 +23,10 @@ header .bx:hover {
 
 
 .cinema-selection {
-    flex-grow: 1; 
-    text-align: center; 
+    flex-grow: 1;
+    text-align: center;
     padding: 10px;
-    margin: 0 10px; 
+    margin: 0 10px;
     margin-top: 27px;
     border: 1px solid red;
     font-weight: normal;
@@ -38,7 +38,7 @@ header .bx:hover {
     max-width: 600px;
     margin: auto;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .book-now {
@@ -54,14 +54,14 @@ header .bx:hover {
     font-size: 18px;
     position: fixed;
 
-    
+
 }
 .button__trailer__buy{
     display: flex;
     width: 100%;
     height: 10vh;
     justify-content: space-around;
-   
+
 }
 
 
@@ -78,8 +78,10 @@ body, html {
     background-color: #111;
 }
 .detalle_video-cinema{
-    height: 7.4rem;
+    height: 7.2rem;
+    
     /* border: 1px solid yellow; */
+    /* border: 1px solid red; */
 }
 
 #movie-detail-container {
@@ -96,24 +98,25 @@ body, html {
 
 .movies-container2{
     background: #111;
-    padding: 130px 0px 0px;
+    height: 13rem;
+    /* padding: 130px 0px 0px; */
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
-    /* border: 1px solid red; */
-
+    /* border: 1px solid rgb(0, 255, 136); */
+    position: relative;
 }
 
 .movie-image {
     width: 402px;
-    height: auto;
+    height: 220px;
     border-radius: 12px;
-    border: 1px solid red; 
+    /* border: 1px solid red; */
 }
 
 .actor-photo {
     width: 2.5rem;
-    height: 2.5rem; 
+    height: 2.5rem;
     border-radius: 50%;
 }
 .actors-container{
@@ -122,9 +125,58 @@ body, html {
     height: 4rem;
     flex-direction: row;
     gap: 1.1rem;
-    /* border: 1px solid yellow; */
-    margin-top: 5px;
+    /* margin-top: 5px; */
     margin-left: 15px;
+    position:absolute;
+    bottom: 1px;
+}
+
+.movies-container2 h3 {
+    color: #fff;
+    font-weight: normal;
+    font-size: 20px;
+    margin-left: 15px;
+    position:absolute;
+
+    /* border: 1px solid red; */
+    bottom: 3rem;
+
+}
+.movies-container2 h4 {
+    margin-left: 15px;
+   
+    color: #fff;
+    font-size: 18px;
+    font-weight: normal;
+   
+    position:absolute;
+    /* bottom: 0; */
+    bottom: 9.6rem;
+    /* border: 1px solid red; */
+}
+
+.movies-container2 p {
+    margin-left: 15px;
+    color: #dadada;
+    font-size: 10px;
+   
+    position:absolute;
+    /* border: 1px solid red; */
+    bottom: 9.7rem;
+
+}
+
+.movies-container2 h5 {
+    color: #fff;
+    font-weight: lighter;
+    font-size: 14px;
+    margin-left: 15px;
+    margin-right: 60px;
+   
+    /* border: 1px solid red; */
+    position:absolute;
+    bottom: 6.2rem;
+
 }
 .actor-info {
     /* border: 3px solid rgb(0, 255, 26); */
@@ -132,7 +184,7 @@ body, html {
     width: 30%;
     align-items: center;
     flex-direction: row;
-    position: relative;  
+    position: relative;
 
 }
 
@@ -145,6 +197,11 @@ body, html {
     font-size: 0.6rem;
     font-weight: bold;
     position: absolute;
+}
+.container__information p{
+    display: flex;
+    left: 1.89rem;
+    bottom: 0.5rem;
     /* border: 1px solid yellow; */
 }
 
@@ -156,66 +213,45 @@ body, html {
     left: 1.7rem;
 }
 
+.movies-container2{
+    position: relative;
+    /* border: 2px solid rgb(255, 0, 170); */
 
-
-
-
-.movies-container2 h4 {
-    margin-left: 15px;
-    margin-top: -125px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: normal;
-    margin-right: 110px;
 }
 
-.movies-container2 p {
-    margin-left: 15px;
-    color: #dadada;
-    font-size: 10px;
-    margin-top: -18px;
-}
 
-.movies-container2 h5 {
-    color: #fff;
-    font-weight: lighter;
-    font-size: 14px;
-    margin-left: 15px;
-    margin-right: 60px;
-    margin-top: 15px;
-}
 
-.movies-container2 h3 {
-    color: #fff;
-    font-weight: normal;
-    font-size: 20px;
-    margin-left: 15px;
-    margin-right: 7px;
-    margin-top: 3px;
-    margin-bottom:-3px ;
-}
+
+
 
 .trailer {
     background-color: red;
+    display: flex;
     color: #fff;
     border: none;
-    width: 110px;
+    width: 6.6rem;
+
     height: 28px;
     cursor: pointer;
     border-radius: 7px;
     font-weight: normal;
     font-size: 11px;
-    display: flex; 
-    align-items: center; 
+    align-items: center;
     /* justify-content: center;   */
-    position: relative; 
-    bottom: 210px;
-    left: 124px; 
+    /* position: relative;  */
+    /* bottom: 195px; */
+    right: 1rem;
+    top: 0;
+    margin-top: 0.4rem;
+    /* border: 2px solid green; */
+
+    position: absolute;
+
 }
 
 .trailer i {
     font-size: 15px;
-    margin-left: 1px; 
+    margin-left: 1px;
     margin-right: 6px;
 }
 
@@ -225,7 +261,7 @@ body, html {
     align-items: center;
     justify-content: center;
     /* gap: 2rem; */
-    background: #272727;   
+    background: #272727;
     padding: 0rem;
     border-radius: 0.5rem;
     margin-left: 30px;
@@ -258,19 +294,23 @@ body, html {
 
 .cinema-info img {
     width: 3rem;
-    height: 2.8rem; 
+    height: 2.8rem;
     border-radius: 10%;
     object-fit: cover;
     margin-right: 20px;
 }
 
 .cinema{
+    display: flex;
+    height: 2rem;
     color: white;
     font-size: 20px;
     font-weight: normal;
     margin-left: 30px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+   
+    /* margin-top: 100px; */
+    /* border: 1px solid rgb(255, 208, 0); */
+    
 }
 
 .place{
