@@ -94,13 +94,15 @@ body, html {
 }
 
 .precio h2{
-    
+    font-weight: 550;
     margin: 0px
 }
 
 .precio h3{
+    font-size: 1.3rem;
     font-weight: normal;
     margin: 2px;
+    margin-bottom: 4px;
 }
 
 .asientos{
@@ -182,7 +184,7 @@ body, html {
     /* border: 1px solid red; */
     /* color: white; */
     margin-top: 12.8px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 .status p{
     font-size: 12.5px;
@@ -206,4 +208,101 @@ body, html {
 
 .status :nth-child(5){
     color: #FE0000;
+}
+
+.schedule{
+    margin-left: 30px;
+    /* border: 1px solid red; */
+    color: #fff;
+    margin-bottom: 100px;
+}
+.days {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px; 
+    padding: 10px 0;
+    scrollbar-width: none; 
+    margin-bottom: 10px;
+}
+
+.days div {
+    display: flex;
+    scroll-snap-align: start;
+    flex: 0 0 auto; 
+    width: 3.5rem; 
+    text-align: center;
+    /* border: 1px solid white; */
+    border-radius: 15px;
+    height: 5.4rem;
+    background-color: white;
+    position: relative;
+    justify-content: center;
+}
+
+.days div h2{
+    position: absolute;
+    color: #111;
+    font-size: 1.5rem;
+    top: 1.7rem;
+
+}
+
+.days div p{
+    position: absolute;
+    color: #8a8a8a;
+    font-size: 0.9rem;
+    bottom: 2.5rem;
+}
+
+.hour-price {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    /* padding: 10px 0; */
+    scrollbar-width: none; 
+    /* border: 1px solid white; */
+
+}
+
+.hour-price div {
+    display: flex;
+    scroll-snap-align: start;
+    flex: 0 0 auto; 
+    width: 5.7rem;
+    height: 4.2rem; 
+    /* text-align: center; */
+    flex-direction: column;
+    /* border: 1px solid white; */
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+    position: relative;
+    background-color: white;
+}
+
+.hour-price div h2{
+    /* border: 1px solid red; */
+    /* bottom: 2rem; */
+    position: absolute;
+    bottom: 0.8rem;
+    font-size: 1.39rem;
+    color: #111;
+}
+.hour-price div p{
+    display: flex;
+    /* border: 1px solid red; */
+    top: 1.7rem;
+    position: absolute;
+    font-size: 0.89rem;
+    color: #8a8a8a;
+
+
+}
+
+.days::-webkit-scrollbar,
+.hour-price::-webkit-scrollbar {
+    display: none;
 }
