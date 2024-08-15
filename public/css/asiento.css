@@ -102,3 +102,65 @@ body, html {
     font-weight: normal;
     margin: 2px;
 }
+
+.asientos{
+    padding: 0 15px;
+    /* border: 1px solid red; */
+    margin-top: 90px;
+}
+.asientos__normal{
+    margin-bottom: 30px !important;
+}
+.asientos__normal, 
+.asientos__preferenciales{
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-direction: column;
+    align-items: center;
+}
+.asientos__normal div,
+.asientos__preferenciales div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.asientos__lista button,
+.asientos__preferenciales button{
+    font-family: "Inter_18pt-Regular";
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    background: #323232;
+    border-radius: 5px;
+    /* border: 1px solid #CECECE; */
+}
+.image-text{
+    margin-top: -12px;
+    display: flex;
+    width: 26.78rem;
+    height: 4rem;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid red; */
+    position: relative;
+    top: 0px;
+}
+
+
+.image-text p{
+    font-size: 13px;
+    margin-top: 0px;
+    color: white;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 11rem;
+}
+
+.image-text img{
+    margin-left: 18px;
+    width: 85%;
+}
