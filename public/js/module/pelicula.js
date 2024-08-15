@@ -1,12 +1,3 @@
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach(item => {
-    item.addEventListener('click', function() {
-        navItems.forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('movieId');

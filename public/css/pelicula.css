@@ -47,7 +47,7 @@ header .bx:hover {
     border: none;
     width: 85%;
     height: 50px;
-    margin: 200px auto;
+    margin: 200px -180px;
     cursor: pointer;
     border-radius: 12px;
     font-weight: bold;

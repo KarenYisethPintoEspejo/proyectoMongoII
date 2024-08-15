@@ -1,0 +1,104 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #111;
+    color: white;
+}
+
+header .bx {
+    /* border: 1px solid red; */
+    margin-top: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+    position: relative;
+}
+
+header .bx:hover {
+    color: #ff0000;
+}
+html, body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.book-now {
+    background-color: red;
+    color: #fff;
+    border: none;
+    width: 55%;
+    height: 58px;
+    /* cursor: pointer; */
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    position: fixed;
+
+
+}
+.button__trailer__buy{
+    display: flex;
+    width: 60%;
+    height: 6vh;
+    justify-content: space-around;
+    margin-left: 150px;
+    /* border: 1px solid red; */
+    margin-top: -58px
+}
+
+
+.book-now:hover{
+    background-color: #111;
+    color: red;
+    border: 1px solid red;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+}
+.cinema-selection {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+    margin: 0 10px;
+    margin-top: 27px;
+    /* border: 1px solid red; */
+    font-weight: normal;
+    font-size: 21px
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.precio{
+    margin-top: 750px;
+    display: flex;
+    flex-direction: column;
+    width: 9rem;
+    height: 3.5rem;
+    /* border: 1px solid white; */
+    color: #fff;
+    margin-left: 35px;
+}
+
+.precio h2{
+    
+    margin: 0px
+}
+
+.precio h3{
+    font-weight: normal;
+    margin: 2px;
+}
