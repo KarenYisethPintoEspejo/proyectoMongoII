@@ -203,12 +203,12 @@ header {
     background-color: #1e1e1e; 
     margin-top: 90px;
     margin-left: 5px;
-    height: 100px;
+    height: 80px;
 }
 
 .coming-soon-item .movie-image {
-    width: 75px; 
-    height: 100px;
+    width: 80px; 
+    height: 85px;
     border-radius: 20px;
     margin-left: 10px;
 }
@@ -220,13 +220,13 @@ header {
 }
 
 .coming-soon-item .movie-text h3 {
-    margin-top: 0;
+    margin-top: -10px;
     font-size: 17px;
     font-weight:normal; 
 }
 
 .coming-soon-item .movie-text p {
-    margin-top: -12px;
+    margin-top: -16px;
     font-size: 12px; 
 }
 
@@ -253,7 +253,7 @@ header {
 .movie-item h3{
     margin-left: -2px;
     margin-right: -2px;
-    margin-bottom: -3px;
+    margin-bottom: -1px;
     margin-top: 14px;
     font-size: 17px;
     font-weight: bolder;
@@ -325,8 +325,8 @@ footer {
 .carousel-indicators {
     display: flex;
     justify-content: center;
-    margin-top: -60px;
-    margin-bottom: 10px;
+    margin-top: -84px;
+    margin-bottom: 5px;
     margin-right: 3px;
     /* padding: 5-0px; */
 }

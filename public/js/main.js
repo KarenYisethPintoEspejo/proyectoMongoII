@@ -11,15 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', function () {
             navItems.forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
-
+            
             if (this.querySelector('.bx-search')) {
-                const moviesContainer = document.getElementById('movies-container');
-                moviesContainer.innerHTML = ''; 
-                moviesContainer.style.display = 'none'; 
-                const comingSoonContainer = document.querySelector('.movie-carousel1');
-                comingSoonContainer.innerHTML = ''; 
-                comingSoonContainer.style.display = 'none'; 
-                const searchInput = document.getElementById('search-input');
                 searchInput.focus(); 
             }
         });

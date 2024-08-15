@@ -9,7 +9,7 @@ header {
 }
 
 header .bx {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin-top: 30px;
     font-size: 30px;
     cursor: pointer;
@@ -28,7 +28,7 @@ header .bx:hover {
     padding: 10px;
     margin: 0 10px;
     margin-top: 27px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px
 }
@@ -265,7 +265,8 @@ body, html {
     padding: 0rem;
     border-radius: 0.5rem;
     margin-left: 30px;
-    height: 55px;
+    height: 60px;
+    margin-top: -18px;
     /* border: 2px solid rgb(81, 255, 0); */
 
 }
