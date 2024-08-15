@@ -131,8 +131,8 @@ body, html {
     font-family: "Inter_18pt-Regular";
     outline: none;
     border: none;
-    width: 34px;
-    height: 34px;
+    width: 33px;
+    height: 33px;
     margin: 0 3.2px;
     background: #323232;
     border-radius: 5px;
@@ -175,16 +175,35 @@ body, html {
 .status{
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    /* gap: 1.4rem; */
     align-items: center;
-    width: 99%;
+    width: 90%;
     height: 30px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    /* color: white; */
+    margin-top: 12.8px;
+    margin-bottom: 20px;
+}
+.status p{
+    font-size: 12.5px;
     color: white;
 }
 
-.status
+
+.status i{
+    margin-right: 12px;
+    margin-left: 35px;
+    font-size: 15px;
+}
 
 .status :nth-child(1){
-    color: white;
+    color: #323232;
+}
+
+.status :nth-child(3){
+    color: #CECECE;
+}
+
+.status :nth-child(5){
+    color: #FE0000;
 }
