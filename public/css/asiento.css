@@ -139,12 +139,52 @@ body, html {
     background: #323232;
     border-radius: 5px;
     /* border: 1px solid #CECECE; */
+    color: transparent;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.asientos__lista button.active, 
+.asientos__preferenciales button.active {
+    background-color: #FE0000; 
+    color: white; 
+    /* font-weight: bold; */
+    font-size: 1.5rem; 
+}
+
+.asientos__lista button.active::before, 
+.asientos__preferenciales button.active::before {
+    content: attr(data-numero); 
+    color: white;
+    display: block;
+    text-align: center;
+}
+
+
+.asientos__preferenciales div[colum="4"] button,
+.asientos__preferenciales div[colum="5"] button,
+.asientos__preferenciales div[colum="6"] button {
+    background-color: white; 
+    color: transparent;
 }
 
 .asientos small{
     margin-left: 15px;
     color: #fff;
 }
+
+.asiento-seleccionado {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.asiento-seleccionado::after {
+    content: attr(data-numero);
+    display: block;
+    color: white;
+    text-align: center;
+}
+
 
 .image-text{
     margin-top: -12px;
@@ -224,6 +264,8 @@ body, html {
     padding: 10px 0;
     scrollbar-width: none; 
     margin-bottom: 10px;
+    margin-left: 7px;
+    /* border: 2px solid yellow; */
 }
 
 .days div {
@@ -238,6 +280,7 @@ body, html {
     background-color: white;
     position: relative;
     justify-content: center;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
 }
 
 .days div h2{
@@ -254,6 +297,21 @@ body, html {
     font-size: 0.9rem;
     bottom: 2.5rem;
 }
+.day.active {
+    background-color: #FE0000; 
+}
+
+.day.active h2,
+.day.active p {
+    color: white; 
+}
+
+.days div.active-state {
+    transform: scale(1.08);
+    border-radius: 10px; 
+}
+
+
 
 .hour-price {
     display: flex;
@@ -263,6 +321,7 @@ body, html {
     /* padding: 10px 0; */
     scrollbar-width: none; 
     /* border: 1px solid white; */
+    margin-left: 7px;
 
 }
 
@@ -281,7 +340,9 @@ body, html {
     /* border: 1px solid red; */
     position: relative;
     background-color: white;
+    transition: transform 0.3s ease, border-radius 0.3s ease;
 }
+
 
 .hour-price div h2{
     /* border: 1px solid red; */
@@ -298,9 +359,28 @@ body, html {
     position: absolute;
     font-size: 0.89rem;
     color: #8a8a8a;
+    left: 10px;
 
 
 }
+.hour.active {
+    background-color: #FE0000;
+}
+
+.hour.active h2,
+.hour.active p {
+    color: white; 
+}
+
+.hour-price div.active-state {
+    transform: scale(1.08);
+    border-radius: 11px; 
+}
+
+.days, .hour-price {
+    overflow-x: visible; 
+}
+
 
 .days::-webkit-scrollbar,
 .hour-price::-webkit-scrollbar {
