@@ -40,7 +40,7 @@ module.exports = class usuario extends connect {
     
             const usuarioExistente = await this.collection.findOne({ id: usuarioData.id });
             if (usuarioExistente) {
-                await this.conexion.close();
+
                 return { error: `Ya existe un usuario con el ID ${usuarioData.id}.` };
             }
     
@@ -58,7 +58,7 @@ module.exports = class usuario extends connect {
                 const tarjetaCollection = this.db.collection('tarjeta');
                 const tarjetaExistente = await tarjetaCollection.findOne({ id_usuario: usuarioData.id });
                 if (tarjetaExistente) {
-                    await this.conexion.close();
+
                     return { error: `El usuario con ID ${usuarioData.id} ya tiene una tarjeta VIP.` };
                 }
                 const generarNumeroTarjeta = () => Math.floor(Math.random() * 1e16).toString().padStart(16, '0');
@@ -81,11 +81,9 @@ module.exports = class usuario extends connect {
                 await tarjetaCollection.insertOne(nuevaTarjeta);
             }
     
-            await this.conexion.close();
     
             return { mensaje: 'Usuario creado exitosamente', usuario: usuarioSinContraseña };
         } catch (error) {
-            if (this.conexion) await this.conexion.close();
             return { error: `Error al crear el usuario: ${error.message}` };
         }
     }
@@ -117,10 +115,10 @@ module.exports = class usuario extends connect {
     
             return detallesUsuario;
         } catch (error) {
-            if (this.conexion) await this.conexion.close();
+
             return { error: `Error al obtener los detalles del usuario: ${error.message}` };
         } finally {
-            if (this.conexion) await this.conexion.close();
+
         }
     }
     
@@ -205,10 +203,10 @@ module.exports = class usuario extends connect {
             const usuarioActualizado = await this.collection.findOne({ id });
             return { mensaje: 'Rol de usuario actualizado exitosamente', usuario: usuarioActualizado };
         } catch (error) {
-            if (this.conexion) await this.conexion.close();
+
             return { error: `Error al actualizar el rol del usuario: ${error.message}` };
         } finally {
-            if (this.conexion) await this.conexion.close();
+
         }
     }
     
@@ -232,11 +230,9 @@ module.exports = class usuario extends connect {
             const query = rol ? { rol } : {};
             const usuarios = await this.collection.find(query).toArray();
 
-            await this.conexion.close();
 
             return usuarios;
         } catch (error) {
-            if (this.conexion) await this.conexion.close();
             return { error: `Error al listar los usuarios: ${error.message}` };
         }
     }

@@ -90,7 +90,6 @@ module.exports = class pelicula extends connect {
             },
         ]).toArray();
     
-        await this.conexion.close();
         return movies;
     }
     
@@ -113,13 +112,13 @@ module.exports = class pelicula extends connect {
             await this.conexion.connect();
             const consulta = { id: peliculaObj.id };
             const pelicula = await this.collection.findOne(consulta);
-            await this.conexion.close();
+
             if (!pelicula) {
                 return { error: `No se encontró una película con el ID ${peliculaObj.id}` };
             }
             return pelicula;
         } catch (error) {
-            await this.conexion.close();
+
             throw new Error(`Error al consultar la película: ${error.message}`);
         }
     }

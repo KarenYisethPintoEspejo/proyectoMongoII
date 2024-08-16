@@ -30,8 +30,6 @@ module.exports = class asiento extends connect {
             return { mensaje: "Lista de asientos de la sala", data: res };
         } catch (error) {
             return { mensaje: "La sala no tiene asientos registrados", data: id };
-        } finally {
-            await this.conexion.close();
         }
     }
     

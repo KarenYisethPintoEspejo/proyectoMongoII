@@ -106,11 +106,11 @@ module.exports = class boleto extends connect {
             };
 
             await pagoCollection.insertOne(nuevoPago);
-            await this.conexion.close();
+
 
             return { mensaje: 'Boleto comprado exitosamente', boleto: ticketData, pago: nuevoPago };
         } catch (error) {
-            await this.conexion.close();
+
             return { error: `Error al comprar el boleto: ${error.message}` };
         }
     }
@@ -168,15 +168,12 @@ module.exports = class boleto extends connect {
                 !asientosOcupados.some(boleto => boleto.id_asiento === asiento.id)
             );
 
-            await this.conexion.close();
-
             if (asientosDisponibles.length > 0) {
                 return { disponible: true, asientos: asientosDisponibles };
             } else {
                 return { disponible: false, mensaje: `No hay asientos disponibles para la proyección con ID ${proyeccionObj.id}.` };
             }
         } catch (error) {
-            await this.conexion.close();
             return { error: `Error al verificar la disponibilidad de los asientos: ${error.message}` };
         }
     }
@@ -269,7 +266,7 @@ module.exports = class boleto extends connect {
             };
 
             await pagoCollection.insertOne(nuevoPago);
-            await this.conexion.close();
+
 
  
             const plazoPago = new Date(fechaProyeccion);
@@ -281,7 +278,7 @@ module.exports = class boleto extends connect {
                 pago: nuevoPago 
             };
         } catch (error) {
-            await this.conexion.close();
+
             return { error: `Error al reservar el boleto: ${error.message}` };
         }
     }
@@ -323,7 +320,7 @@ module.exports = class boleto extends connect {
             await this.collection.deleteOne({ id: boletoObj.id });
             return { mensaje: `La reserva del asiento en el boleto con ID ${boletoObj.id} ha sido cancelada exitosamente.` };
         } catch (error) {
-            await this.conexion.close();
+
             return { error: `Error al cancelar la reserva del boleto: ${error.message}` };
         }
     }

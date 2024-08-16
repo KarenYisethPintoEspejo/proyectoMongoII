@@ -27,7 +27,6 @@ router.get('/buscarPeliculas', async (req, res) => {
                 { actores: { $regex: query, $options: 'i' } }
             ]
         }).toArray();
-        await pelicula.conexion.close();
         res.json(movies);
     } catch (error) {
         console.error('Error al buscar películas:', error);
