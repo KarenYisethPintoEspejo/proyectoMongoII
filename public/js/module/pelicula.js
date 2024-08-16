@@ -9,23 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(movieData => {
             console.log("Detalles de la película:", movieData);
-            
-            fetch(`/pelicula/listaPeliculas`)
-                .then(response => response.json())
-                .then(allMoviesData => {
-                    const movieProjections = allMoviesData.find(pelicula => pelicula.id === parseInt(movieId));
-
-                    if (movieProjections) {
-                        console.log("Proyecciones encontradas:", movieProjections.fechas_proyecciones, movieProjections.horas_proyecciones);
-                        movieData.fechas_proyecciones = movieProjections.fechas_proyecciones;
-                        movieData.horas_proyecciones = movieProjections.horas_proyecciones;
-                    } else {
-                        console.error('No se encontraron proyecciones para la película con ID:', movieId);
-                    }
-
-                    displayMovieDetail(movieData);
-                })
-                .catch(error => console.error('Error al cargar las proyecciones de la película:', error));
+            displayMovieDetail(movieData);
         })
         .catch(error => console.error('Error al cargar detalles de la película:', error));
 });

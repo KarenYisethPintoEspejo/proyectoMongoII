@@ -5,7 +5,6 @@ header {
     padding: 10px 20px;
     background-color: #111;
     color: white;
-    margin-bottom: -450px;
 }
 
 header .bx {
@@ -27,7 +26,7 @@ header .bx:hover {
     text-align: center;
     padding: 10px;
     margin: 0 10px;
-    margin-top: 27px;
+    margin-top: 18px;
     /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px
@@ -47,7 +46,8 @@ header .bx:hover {
     border: none;
     width: 85%;
     height: 50px;
-    margin: 200px -180px;
+    margin: 90px;
+    margin-left: 1.9rem;
     cursor: pointer;
     border-radius: 12px;
     font-weight: bold;
@@ -56,13 +56,7 @@ header .bx:hover {
 
 
 }
-.button__trailer__buy{
-    display: flex;
-    width: 100%;
-    height: 10vh;
-    justify-content: space-around;
 
-}
 
 
 .book-now:hover{
@@ -85,7 +79,6 @@ body, html {
 }
 
 #movie-detail-container {
-    margin-top: 27.5rem;
     background: #111;
     padding: 13px;
     border-radius: 8px;
@@ -108,7 +101,7 @@ body, html {
 }
 
 .movie-image {
-    width: 402px;
+    width: 364px;
     height: 220px;
     border-radius: 12px;
     /* border: 1px solid red; */
@@ -273,7 +266,7 @@ body, html {
 
 .cinema-info:hover{
     border: 2px solid red;
-    scale: 1.1;
+    scale: 1.02;
 }
 
 .cinema-info div{

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Pelicula = require('../modules/pelicula');
 
-// Ruta para obtener todas las películas
 router.get('/listaPeliculas', async (req, res) => {
     try {
         const pelicula = new Pelicula();
@@ -14,7 +13,6 @@ router.get('/listaPeliculas', async (req, res) => {
     }
 });
 
-// Ruta para buscar películas por consulta
 router.get('/buscarPeliculas', async (req, res) => {
     const query = req.query.q || '';
     try {
@@ -33,8 +31,6 @@ router.get('/buscarPeliculas', async (req, res) => {
         res.status(500).send('Error al buscar películas');
     }
 });
-
-// Ruta para consultar una película por ID
 router.get('/peliculaId/:id', async (req, res) => {
     const id = req.params.id;
     try {

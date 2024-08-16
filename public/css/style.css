@@ -12,7 +12,7 @@ header {
     display: flex;
     flex-direction: column;
     background-color: #111;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .user-info {
@@ -27,15 +27,15 @@ header {
 }
 
 .icon-box {
-    width: 45px; 
-    height: 45px; 
+    width: 41px; 
+    height: 41px; 
     display: flex;
     align-items: center;
     justify-content: center;
     border: 0.5px solid rgb(108, 108, 108); 
     border-radius: 8px; 
-    margin-left: 33px; 
-    margin-top: 5px;
+    margin-left: 19px; 
+    margin-top: 18px;
 }
 
 .icon-box:hover{
@@ -46,13 +46,13 @@ header {
 }
 
 .icon-box i {
-    font-size: 28px; 
+    font-size: 23.5px; 
     color: #fff; 
 }
 
 .profile-pic {
-    width: 56px;
-    height: 56px;
+    width: 47px;
+    height: 47px;
     border-radius: 50%;
     margin-left: 9px;
     margin-right: 12px;
@@ -60,14 +60,13 @@ header {
 
 .user-text p {
     margin-bottom: 10px;
-    margin-top: -52px;
     font-size: 15px;
     font-weight: normal;
 }
 
 .user-text h2 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -85,7 +84,7 @@ header {
 
 .search-bar i {
     position: absolute;
-    margin-right: 310px;
+    margin-right: 280px;
     color: #aaa;
     font-size: 21px;
 }
@@ -116,7 +115,7 @@ header {
     width: 100%;
     max-width: 600px;
     padding: 14px 20px;
-    padding-left: 50px; 
+    padding-left: 45px; 
     border-radius: 10px;
     border: 1px solid #fff;
     background-color: #181818;
@@ -189,11 +188,12 @@ header {
     margin-top: -118px;
     margin-bottom: 90px;
     height: auto; 
+    scrollbar-width: none;
 }
 
 .coming-soon-item {
     flex: 0 0 auto; 
-    width: 360px;
+    width: 19.7rem;
     display: flex;
     align-items: center;
     gap: 18px; 
@@ -202,13 +202,13 @@ header {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: #1e1e1e; 
     margin-top: 90px;
-    margin-left: 5px;
-    height: 80px;
+    margin-left: 7px;
+    height: 70px;
 }
 
 .coming-soon-item .movie-image {
     width: 80px; 
-    height: 85px;
+    height: 70px;
     border-radius: 20px;
     margin-left: 10px;
 }
@@ -229,6 +229,7 @@ header {
     margin-top: -16px;
     font-size: 12px; 
 }
+
 
 
 
