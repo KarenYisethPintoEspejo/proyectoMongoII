@@ -261,7 +261,7 @@ body, html {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px; 
-    padding: 10px 0;
+    padding: 15px 15px;
     scrollbar-width: none; 
     margin-bottom: 10px;
     margin-left: 7px;
@@ -307,7 +307,7 @@ body, html {
 }
 
 .days div.active-state {
-    transform: scale(1.08);
+    transform: scale(1.07);
     border-radius: 10px; 
 }
 
@@ -318,7 +318,7 @@ body, html {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px;
-    /* padding: 10px 0; */
+    padding: 15px 15px;
     scrollbar-width: none; 
     /* border: 1px solid white; */
     margin-left: 7px;
@@ -375,10 +375,6 @@ body, html {
 .hour-price div.active-state {
     transform: scale(1.08);
     border-radius: 11px; 
-}
-
-.days, .hour-price {
-    overflow-x: visible; 
 }
 
 
