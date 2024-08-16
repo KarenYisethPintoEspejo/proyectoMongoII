@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No movieId provided in the URL');
         return; 
     }
-    fetch(`http://localhost:5010/pelicula/peliculaId/${movieId}`)
+    fetch(`/pelicula/peliculaId/${movieId}`)
         .then(response => response.json())
         .then(movieData => {
             console.log("Detalles de la película:", movieData);
             
-            fetch(`http://localhost:5010/pelicula/listaPeliculas`)
+            fetch(`/pelicula/listaPeliculas`)
                 .then(response => response.json())
                 .then(allMoviesData => {
                     const movieProjections = allMoviesData.find(pelicula => pelicula.id === parseInt(movieId));

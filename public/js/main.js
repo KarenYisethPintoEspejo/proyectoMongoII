@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('http://localhost:5010/usuario/get-username')
+    fetch('/usuario/get-username')
         .then(response => response.json())
         .then(data => {
             const userNameElement = document.querySelector('.user-text p');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchIcon.classList.remove('active-icon');
     });
 
-    fetch('http://localhost:5010/pelicula/listaPeliculas')
+    fetch('/pelicula/listaPeliculas')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la red');

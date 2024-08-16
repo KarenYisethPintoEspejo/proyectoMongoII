@@ -1,168 +1,708 @@
 [{
   "_id": {
-    "$oid": "66a78075c46b9e19746ff822"
+    "$oid": "66bf7e7f2e7725d8e54a0a85"
   },
   "id": 1,
-  "fila": "A",
+  "fila": "E",
   "numero": 1,
   "id_sala": 1,
-  "tipo": "Normal"
+  "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff823"
+    "$oid": "66bf7e7f2e7725d8e54a0a86"
   },
   "id": 2,
-  "fila": "A",
+  "fila": "E",
   "numero": 2,
   "id_sala": 1,
-  "tipo": "Normal"
+  "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff824"
+    "$oid": "66bf7e7f2e7725d8e54a0a87"
   },
   "id": 3,
-  "fila": "A",
+  "fila": "E",
   "numero": 3,
   "id_sala": 1,
   "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff825"
+    "$oid": "66bf7e7f2e7725d8e54a0a88"
   },
   "id": 4,
-  "fila": "A",
+  "fila": "E",
   "numero": 4,
   "id_sala": 1,
   "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff826"
+    "$oid": "66bf7e7f2e7725d8e54a0a89"
   },
   "id": 5,
-  "fila": "B",
-  "numero": 1,
+  "fila": "E",
+  "numero": 5,
   "id_sala": 1,
-  "tipo": "Normal"
+  "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff827"
+    "$oid": "66bf7e7f2e7725d8e54a0a8a"
   },
   "id": 6,
-  "fila": "B",
-  "numero": 2,
+  "fila": "F",
+  "numero": 1,
   "id_sala": 1,
-  "tipo": "Normal"
+  "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff828"
+    "$oid": "66bf7e7f2e7725d8e54a0a8b"
   },
   "id": 7,
-  "fila": "B",
+  "fila": "F",
+  "numero": 2,
+  "id_sala": 1,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a8c"
+  },
+  "id": 8,
+  "fila": "F",
   "numero": 3,
   "id_sala": 1,
   "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff829"
+    "$oid": "66bf7e7f2e7725d8e54a0a8d"
   },
-  "id": 8,
-  "fila": "B",
+  "id": 9,
+  "fila": "F",
   "numero": 4,
   "id_sala": 1,
   "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff82a"
-  },
-  "id": 9,
-  "fila": "A",
-  "numero": 1,
-  "id_sala": 2,
-  "tipo": "Normal"
-},
-{
-  "_id": {
-    "$oid": "66a78075c46b9e19746ff82b"
+    "$oid": "66bf7e7f2e7725d8e54a0a8e"
   },
   "id": 10,
-  "fila": "A",
-  "numero": 2,
-  "id_sala": 2,
-  "tipo": "Normal"
+  "fila": "F",
+  "numero": 5,
+  "id_sala": 1,
+  "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff82c"
+    "$oid": "66bf7e7f2e7725d8e54a0a8f"
   },
   "id": 11,
   "fila": "A",
-  "numero": 3,
-  "id_sala": 2,
-  "tipo": "VIP"
+  "numero": 1,
+  "id_sala": 1,
+  "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff82d"
+    "$oid": "66bf7e7f2e7725d8e54a0a90"
   },
   "id": 12,
   "fila": "A",
-  "numero": 4,
-  "id_sala": 2,
-  "tipo": "VIP"
+  "numero": 2,
+  "id_sala": 1,
+  "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff82e"
+    "$oid": "66bf7e7f2e7725d8e54a0a91"
   },
   "id": 13,
-  "fila": "B",
-  "numero": 1,
-  "id_sala": 2,
+  "fila": "A",
+  "numero": 3,
+  "id_sala": 1,
   "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff82f"
+    "$oid": "66bf7e7f2e7725d8e54a0a92"
   },
   "id": 14,
-  "fila": "B",
-  "numero": 2,
-  "id_sala": 2,
+  "fila": "A",
+  "numero": 4,
+  "id_sala": 1,
   "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff830"
+    "$oid": "66bf7e7f2e7725d8e54a0a93"
   },
   "id": 15,
-  "fila": "B",
-  "numero": 3,
-  "id_sala": 2,
-  "tipo": "VIP"
+  "fila": "A",
+  "numero": 5,
+  "id_sala": 1,
+  "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff831"
+    "$oid": "66bf7e7f2e7725d8e54a0a94"
   },
   "id": 16,
   "fila": "B",
+  "numero": 1,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a95"
+  },
+  "id": 17,
+  "fila": "B",
+  "numero": 2,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a96"
+  },
+  "id": 18,
+  "fila": "B",
+  "numero": 3,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a97"
+  },
+  "id": 19,
+  "fila": "B",
+  "numero": 4,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a98"
+  },
+  "id": 20,
+  "fila": "B",
+  "numero": 5,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a99"
+  },
+  "id": 21,
+  "fila": "C",
+  "numero": 1,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9a"
+  },
+  "id": 22,
+  "fila": "C",
+  "numero": 2,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9b"
+  },
+  "id": 23,
+  "fila": "C",
+  "numero": 3,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9c"
+  },
+  "id": 24,
+  "fila": "C",
+  "numero": 4,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9d"
+  },
+  "id": 25,
+  "fila": "C",
+  "numero": 5,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9e"
+  },
+  "id": 26,
+  "fila": "D",
+  "numero": 1,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0a9f"
+  },
+  "id": 27,
+  "fila": "D",
+  "numero": 2,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa0"
+  },
+  "id": 28,
+  "fila": "D",
+  "numero": 3,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa1"
+  },
+  "id": 29,
+  "fila": "D",
+  "numero": 4,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa2"
+  },
+  "id": 30,
+  "fila": "D",
+  "numero": 5,
+  "id_sala": 1,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa3"
+  },
+  "id": 31,
+  "fila": "E",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa4"
+  },
+  "id": 32,
+  "fila": "E",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa5"
+  },
+  "id": 33,
+  "fila": "E",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa6"
+  },
+  "id": 34,
+  "fila": "E",
   "numero": 4,
   "id_sala": 2,
   "tipo": "VIP"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff832"
+    "$oid": "66bf7e7f2e7725d8e54a0aa7"
   },
-  "id": 17,
+  "id": 35,
+  "fila": "E",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa8"
+  },
+  "id": 36,
+  "fila": "F",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aa9"
+  },
+  "id": 37,
+  "fila": "F",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aaa"
+  },
+  "id": 38,
+  "fila": "F",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aab"
+  },
+  "id": 39,
+  "fila": "F",
+  "numero": 4,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aac"
+  },
+  "id": 40,
+  "fila": "F",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aad"
+  },
+  "id": 41,
+  "fila": "A",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aae"
+  },
+  "id": 42,
+  "fila": "A",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aaf"
+  },
+  "id": 43,
+  "fila": "A",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab0"
+  },
+  "id": 44,
+  "fila": "A",
+  "numero": 4,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab1"
+  },
+  "id": 45,
+  "fila": "A",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab2"
+  },
+  "id": 46,
+  "fila": "B",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab3"
+  },
+  "id": 47,
+  "fila": "B",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab4"
+  },
+  "id": 48,
+  "fila": "B",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab5"
+  },
+  "id": 49,
+  "fila": "B",
+  "numero": 4,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab6"
+  },
+  "id": 50,
+  "fila": "B",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab7"
+  },
+  "id": 51,
+  "fila": "C",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab8"
+  },
+  "id": 52,
+  "fila": "C",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ab9"
+  },
+  "id": 53,
+  "fila": "C",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aba"
+  },
+  "id": 54,
+  "fila": "C",
+  "numero": 4,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0abb"
+  },
+  "id": 55,
+  "fila": "C",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0abc"
+  },
+  "id": 56,
+  "fila": "D",
+  "numero": 1,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0abd"
+  },
+  "id": 57,
+  "fila": "D",
+  "numero": 2,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0abe"
+  },
+  "id": 58,
+  "fila": "D",
+  "numero": 3,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0abf"
+  },
+  "id": 59,
+  "fila": "D",
+  "numero": 4,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac0"
+  },
+  "id": 60,
+  "fila": "D",
+  "numero": 5,
+  "id_sala": 2,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac1"
+  },
+  "id": 61,
+  "fila": "E",
+  "numero": 1,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac2"
+  },
+  "id": 62,
+  "fila": "E",
+  "numero": 2,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac3"
+  },
+  "id": 63,
+  "fila": "E",
+  "numero": 3,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac4"
+  },
+  "id": 64,
+  "fila": "E",
+  "numero": 4,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac5"
+  },
+  "id": 65,
+  "fila": "E",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac6"
+  },
+  "id": 66,
+  "fila": "F",
+  "numero": 1,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac7"
+  },
+  "id": 67,
+  "fila": "F",
+  "numero": 2,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac8"
+  },
+  "id": 68,
+  "fila": "F",
+  "numero": 3,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ac9"
+  },
+  "id": 69,
+  "fila": "F",
+  "numero": 4,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0aca"
+  },
+  "id": 70,
+  "fila": "F",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "VIP"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0acb"
+  },
+  "id": 71,
   "fila": "A",
   "numero": 1,
   "id_sala": 3,
@@ -170,9 +710,9 @@
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff833"
+    "$oid": "66bf7e7f2e7725d8e54a0acc"
   },
-  "id": 18,
+  "id": 72,
   "fila": "A",
   "numero": 2,
   "id_sala": 3,
@@ -180,21 +720,181 @@
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff834"
+    "$oid": "66bf7e7f2e7725d8e54a0acd"
   },
-  "id": 19,
+  "id": 73,
   "fila": "A",
   "numero": 3,
   "id_sala": 3,
-  "tipo": "VIP"
+  "tipo": "Normal"
 },
 {
   "_id": {
-    "$oid": "66a78075c46b9e19746ff835"
+    "$oid": "66bf7e7f2e7725d8e54a0ace"
   },
-  "id": 20,
+  "id": 74,
   "fila": "A",
   "numero": 4,
   "id_sala": 3,
-  "tipo": "VIP"
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0acf"
+  },
+  "id": 75,
+  "fila": "A",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad0"
+  },
+  "id": 76,
+  "fila": "B",
+  "numero": 1,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad1"
+  },
+  "id": 77,
+  "fila": "B",
+  "numero": 2,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad2"
+  },
+  "id": 78,
+  "fila": "B",
+  "numero": 3,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad3"
+  },
+  "id": 79,
+  "fila": "B",
+  "numero": 4,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad4"
+  },
+  "id": 80,
+  "fila": "B",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad5"
+  },
+  "id": 81,
+  "fila": "C",
+  "numero": 1,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad6"
+  },
+  "id": 82,
+  "fila": "C",
+  "numero": 2,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad7"
+  },
+  "id": 83,
+  "fila": "C",
+  "numero": 3,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad8"
+  },
+  "id": 84,
+  "fila": "C",
+  "numero": 4,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ad9"
+  },
+  "id": 85,
+  "fila": "C",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ada"
+  },
+  "id": 86,
+  "fila": "D",
+  "numero": 1,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0adb"
+  },
+  "id": 87,
+  "fila": "D",
+  "numero": 2,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0adc"
+  },
+  "id": 88,
+  "fila": "D",
+  "numero": 3,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0add"
+  },
+  "id": 89,
+  "fila": "D",
+  "numero": 4,
+  "id_sala": 3,
+  "tipo": "Normal"
+},
+{
+  "_id": {
+    "$oid": "66bf7e7f2e7725d8e54a0ade"
+  },
+  "id": 90,
+  "fila": "D",
+  "numero": 5,
+  "id_sala": 3,
+  "tipo": "Normal"
 }]
