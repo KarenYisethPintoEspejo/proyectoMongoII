@@ -19,3 +19,23 @@ asientos.forEach(asiento => {
         asiento.classList.toggle('active');
     });
 });
+
+const precioElemento = document.querySelector('.precio h2');
+let precioTotal = 0;
+function selectHour(element) {
+    const precioTexto = element.querySelector('p').textContent.trim();
+    const precio = parseFloat(precioTexto.replace('$', '').replace(' ·3D', '')); 
+    
+    if (isNaN(precio)) {
+        console.error('Error al extraer el precio:', precioTexto);
+        return;
+    }
+    if (element.classList.contains('active')) {
+        element.classList.remove('active', 'active-state');
+        precioTotal -= precio;
+    } else {
+        element.classList.add('active', 'active-state');
+        precioTotal += precio;
+    }
+    precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
+}
