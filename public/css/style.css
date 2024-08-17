@@ -153,6 +153,13 @@ header {
     font-size: 14px;
 }
 
+.no-results-message {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    padding: 10px;
+}
 
 .movie-carousel {
     /* border: 1px solid red; */

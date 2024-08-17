@@ -46,8 +46,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filteredMovies = filterMovies(movies, query);
                 const nowPlayingMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) < new Date());
                 const comingSoonMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) > new Date());
-                displayMovies(nowPlayingMovies);
-                displayComingSoon(comingSoonMovies);
+                
+                
+                if (nowPlayingMovies.length === 0 && comingSoonMovies.length === 0) {
+                    document.querySelector('.now-playing').style.display = 'none';
+                    document.querySelector('.coming-soon').style.display = 'none';
+                    document.getElementById('no-results-message').style.display = 'block';
+                } else {
+                    document.querySelector('.now-playing').style.display = 'block';
+                    document.querySelector('.coming-soon').style.display = 'block';
+                    document.getElementById('no-results-message').style.display = 'none';
+
+                    displayMovies(nowPlayingMovies);
+                    displayComingSoon(comingSoonMovies);
+                }
             });
         })
         .catch(error => {
