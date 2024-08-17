@@ -1,39 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/usuario/get-username')
-        .then(response => response.json())
-        .then(data => {
-            const userNameElement = document.querySelector('.user-text p');
-            userNameElement.textContent = `Hi, ${data.userName}!`;
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
         })
-        .catch(error => console.error('Error fetching user name:', error));
+        .then(data => {
+            document.querySelector('.user-text p').textContent = `Hi, ${data.userName}!`;
+        })
+        .catch(error => console.error('Error al cargar el nombre de usuario:', error));
+
     const navItems = document.querySelectorAll('.nav-item');
+    const searchInput = document.getElementById('search-input');
+    const searchIcon = document.querySelector('.search-icon');
+
     navItems.forEach(item => {
-        item.addEventListener('click', function () {
+        item.addEventListener('click', function() {
             navItems.forEach(nav => nav.classList.remove('active'));
             this.classList.add('active');
-            
-            if (this.querySelector('.bx-search')) {
-                searchInput.focus(); 
-            }
+            if (this.querySelector('.bx-search')) searchInput.focus();
         });
     });
 
-    const searchInput = document.getElementById('search-input');
-    const searchIcon = document.querySelector('.search-icon'); 
-
-    searchInput.addEventListener('focus', () => {
-        searchIcon.classList.add('active-icon');
-    });
-
-    searchInput.addEventListener('blur', () => {
-        searchIcon.classList.remove('active-icon');
-    });
+    searchInput.addEventListener('focus', () => searchIcon.classList.add('active-icon'));
+    searchInput.addEventListener('blur', () => searchIcon.classList.remove('active-icon'));
 
     fetch('/pelicula/listaPeliculas')
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la red');
-            }
+            if (!response.ok) throw new Error('Error en la red');
             return response.json();
         })
         .then(movies => {
@@ -44,108 +37,108 @@ document.addEventListener('DOMContentLoaded', () => {
             searchInput.addEventListener('input', () => {
                 const query = searchInput.value.toLowerCase();
                 const filteredMovies = filterMovies(movies, query);
-                const nowPlayingMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) < new Date());
+                const nowPlayingMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) <= new Date());
                 const comingSoonMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) > new Date());
-                
-                
-                if (nowPlayingMovies.length === 0 && comingSoonMovies.length === 0) {
-                    document.querySelector('.now-playing').style.display = 'none';
-                    document.querySelector('.coming-soon').style.display = 'none';
-                    document.getElementById('no-results-message').style.display = 'block';
-                } else {
-                    document.querySelector('.now-playing').style.display = 'block';
-                    document.querySelector('.coming-soon').style.display = 'block';
-                    document.getElementById('no-results-message').style.display = 'none';
 
-                    displayMovies(nowPlayingMovies);
-                    displayComingSoon(comingSoonMovies);
-                }
+                toggleSections(nowPlayingMovies, comingSoonMovies);
             });
         })
-        .catch(error => {
-            console.error('Error al obtener las películas:', error);
-            document.getElementById('movies-container').innerHTML = '<p>No se pudieron cargar las películas.</p>';
-        });
+        .catch(error => console.error('No se pudieron cargar las películas:', error));
 });
-function filterMovies(movies, query) {
-    return movies.filter(movie => {
-        const nameMatch = movie.nombre.toLowerCase().includes(query);
-        const genreMatch = movie.generos.some(genre => genre.toLowerCase().includes(query));
-        const actorMatch = movie.actores && movie.actores.some(actor => actor.nombre.toLowerCase().includes(query));
-        return nameMatch || genreMatch || actorMatch;
-    });
-}
 
-function displayMovies(movies) {
+const filterMovies = (movies, query) => movies.filter(movie => 
+    movie.nombre.toLowerCase().includes(query) ||
+    movie.generos.some(genre => genre.toLowerCase().includes(query)) ||
+    (movie.actores && movie.actores.some(actor => actor.nombre.toLowerCase().includes(query)))
+);
+
+const toggleSections = (nowPlayingMovies, comingSoonMovies) => {
+    const nowPlayingSection = document.querySelector('.now-playing');
+    const comingSoonSection = document.querySelector('.coming-soon');
+    const noResultsMessage = document.getElementById('no-results-message');
+
+    if (nowPlayingMovies.length === 0 && comingSoonMovies.length === 0) {
+        nowPlayingSection.style.display = 'none';
+        comingSoonSection.style.display = 'none';
+        noResultsMessage.style.display = 'block';
+    } else {
+        nowPlayingSection.style.display = 'block';
+        comingSoonSection.style.display = 'block';
+        noResultsMessage.style.display = 'none';
+        displayMovies(nowPlayingMovies);
+        displayComingSoon(comingSoonMovies);
+    }
+};
+
+const displayMovies = (movies) => {
     const container = document.getElementById('movies-container');
-    container.innerHTML = '';
-    const today = new Date();
-    const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) < today);
-
     const indicatorsContainer = document.getElementById('carousel-indicators');
+    container.innerHTML = '';
     indicatorsContainer.innerHTML = '';
 
+    const today = new Date();
+    const filteredMovies = movies.filter(movie => new Date(movie.fecha_estreno) <= today);
+
     if (filteredMovies.length === 0) {
-        container.style.display = 'none'; 
-    } else {
-        container.style.display = 'flex'; 
-        filteredMovies.forEach((movie, index) => {
-            const movieItem = document.createElement('div');
-            movieItem.classList.add('movie-item');
-            movieItem.dataset.id = movie.id;  
-            movieItem.dataset.index = index;  
-            const imageUrl = movie.imagen;
-            movieItem.innerHTML = `
-                <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
-                <h3 class="movie-title">${movie.nombre}</h3>
-                <p class="movie-genres">${movie.generos.join(', ')}</p>
-            `;
-
-            movieItem.addEventListener('click', () => {
-                window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
-            });
-
-            container.appendChild(movieItem);
-            
-            const dot = document.createElement('span');
-            dot.classList.add('indicator');
-            if (index === 0) {
-                dot.classList.add('active');
-            }
-            dot.addEventListener('click', () => {
-                container.scrollLeft = container.offsetWidth * index;
-                updateActiveIndicator(index);
-            });
-            indicatorsContainer.appendChild(dot);
-        });
-
-        const thirdIndex = 1;
-        if (filteredMovies.length > thirdIndex) {
-            container.scrollLeft = container.offsetWidth * thirdIndex;
-            updateActiveIndicator(thirdIndex);
-        }
-
-        container.addEventListener('scroll', () => {
-            updateActiveIndicatorOnScroll();
-        });
+        container.style.display = 'none';
+        return;
     }
-}
 
-function updateActiveIndicatorOnScroll() {
+    container.style.display = 'flex';
+    filteredMovies.forEach((movie, index) => {
+        const movieItem = createMovieItem(movie, index);
+        container.appendChild(movieItem);
+        
+        const dot = createIndicatorDot(index, container);
+        indicatorsContainer.appendChild(dot);
+    });
+
+    const initialIndex = Math.min(1, filteredMovies.length - 1);
+    container.scrollLeft = container.offsetWidth * initialIndex;
+    updateActiveIndicator(initialIndex);
+
+    container.addEventListener('scroll', updateActiveIndicatorOnScroll);
+};
+
+const createMovieItem = (movie, index) => {
+    const movieItem = document.createElement('div');
+    movieItem.classList.add('movie-item');
+    movieItem.dataset.id = movie.id;
+    movieItem.dataset.index = index;
+    movieItem.innerHTML = `
+        <img src="${movie.imagen}" alt="${movie.nombre}" class="movie-image" loading="lazy">
+        <h3 class="movie-title">${movie.nombre}</h3>
+        <p class="movie-genres">${movie.generos.join(', ')}</p>
+    `;
+    movieItem.addEventListener('click', () => {
+        window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+    });
+    return movieItem;
+};
+
+const createIndicatorDot = (index, container) => {
+    const dot = document.createElement('span');
+    dot.classList.add('indicator');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+        container.scrollLeft = container.offsetWidth * index;
+        updateActiveIndicator(index);
+    });
+    return dot;
+};
+
+const updateActiveIndicatorOnScroll = () => {
     const container = document.getElementById('movies-container');
-    const indicators = document.querySelectorAll('.indicator');
     const movieItems = document.querySelectorAll('.movie-item');
-    const containerWidth = container.offsetWidth;
-    const scrollLeft = container.scrollLeft;
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.left + containerRect.width / 2;
 
     let closestIndex = 0;
     let minDistance = Infinity;
 
     movieItems.forEach((movieItem, index) => {
         const rect = movieItem.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const distance = Math.abs((rect.left + rect.width / 2) - (containerRect.left + containerRect.width / 2));
-
+        const distance = Math.abs((rect.left + rect.width / 2) - containerCenter);
         if (distance < minDistance) {
             minDistance = distance;
             closestIndex = index;
@@ -154,64 +147,55 @@ function updateActiveIndicatorOnScroll() {
 
     updateActiveIndicator(closestIndex);
     updateMovieDetails(closestIndex);
-}
+};
 
-function updateActiveIndicator(activeIndex) {
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((indicator, index) => {
-        if (index === activeIndex) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
+const updateActiveIndicator = (activeIndex) => {
+    document.querySelectorAll('.indicator').forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === activeIndex);
     });
-}
+};
 
-function updateMovieDetails(activeIndex) {
-    const movieItems = document.querySelectorAll('.movie-item');
-    movieItems.forEach((movieItem, index) => {
-        if (index === activeIndex) {
-            movieItem.querySelector('.movie-title').style.display = 'block';
-            movieItem.querySelector('.movie-genres').style.display = 'block';
-            movieItem.style.transform = 'scale(1.2)';
-        } else {
-            movieItem.querySelector('.movie-title').style.display = 'none';
-            movieItem.querySelector('.movie-genres').style.display = 'none';
-            movieItem.style.transform = 'scale(1.2)';
-        }
+const updateMovieDetails = (activeIndex) => {
+    document.querySelectorAll('.movie-item').forEach((movieItem, index) => {
+        const isActive = index === activeIndex;
+        movieItem.querySelector('.movie-title').style.display = isActive ? 'block' : 'none';
+        movieItem.querySelector('.movie-genres').style.display = isActive ? 'block' : 'none';
+        movieItem.style.transform = isActive ? 'scale(1.2)' : 'scale(1.2)';
     });
-}
+};
 
-function displayComingSoon(movies) {
+const displayComingSoon = (movies) => {
     const container = document.querySelector('.movie-carousel1');
-    container.innerHTML = ''; 
+    container.innerHTML = '';
 
-    const today = new Date(); 
+    const today = new Date();
     const comingSoonMovies = movies.filter(movie => new Date(movie.fecha_estreno) > today);
 
     if (comingSoonMovies.length === 0) {
-        container.style.display = 'none'; 
-    } else {
-        container.style.display = 'flex'; 
-        comingSoonMovies.forEach(movie => {
-            const movieItem = document.createElement('div');
-            movieItem.classList.add('coming-soon-item');
-            movieItem.dataset.id = movie.id;  
-            const imageUrl = movie.imagen; 
-
-            movieItem.innerHTML = `
-                <img src="${imageUrl}" alt="${movie.nombre}" class="movie-image">
-                <div class="movie-text">
-                    <h3>${movie.nombre}</h3>
-                    <p>${movie.generos.join(', ')}</p>
-                </div>
-            `;
-
-            movieItem.addEventListener('click', () => {
-                window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
-            });
-
-            container.appendChild(movieItem);
-        });
+        container.style.display = 'none';
+        return;
     }
-}
+
+    container.style.display = 'flex';
+    comingSoonMovies.forEach(movie => {
+        const movieItem = createComingSoonItem(movie);
+        container.appendChild(movieItem);
+    });
+};
+
+const createComingSoonItem = (movie) => {
+    const movieItem = document.createElement('div');
+    movieItem.classList.add('coming-soon-item');
+    movieItem.dataset.id = movie.id;
+    movieItem.innerHTML = `
+        <img src="${movie.imagen}" alt="${movie.nombre}" class="movie-image" loading="lazy">
+        <div class="movie-text">
+            <h3>${movie.nombre}</h3>
+            <p>${movie.generos.join(', ')}</p>
+        </div>
+    `;
+    movieItem.addEventListener('click', () => {
+        window.location.href = `./views/pelicula.html?movieId=${movie.id}`;
+    });
+    return movieItem;
+};
