@@ -41,6 +41,7 @@ header .bx:hover {
 }
 
 .book-now {
+    display: none;
     background-color: red;
     color: #fff;
     border: none;
@@ -265,6 +266,11 @@ body, html {
 }
 
 .cinema-info:hover{
+    border: none; 
+    transform: scale(1); 
+}
+
+.cinema-info.no-hover:hover {
     border: 2px solid red;
     scale: 1.02;
 }

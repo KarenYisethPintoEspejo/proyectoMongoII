@@ -12,6 +12,22 @@ document.addEventListener('DOMContentLoaded', function() {
             displayMovieDetail(movieData);
         })
         .catch(error => console.error('Error al cargar detalles de la película:', error));
+
+    const cinemaInfo = document.querySelector('.cinema-info');
+    const bookNowButton = document.querySelector('.book-now');
+
+    function toggleBookNowButton() {
+        if (bookNowButton.style.display === 'block') {
+            bookNowButton.style.display = 'none';
+            cinemaInfo.classList.remove('no-hover');
+        } else {
+            bookNowButton.style.display = 'block';
+            cinemaInfo.classList.add('no-hover');
+        }
+    }
+    cinemaInfo.addEventListener('click', () => {
+        toggleBookNowButton();
+    });
 });
 
 function displayMovieDetail(movie) {
