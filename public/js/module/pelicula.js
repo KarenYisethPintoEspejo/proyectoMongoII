@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No movieId provided in the URL');
         return; 
     }
+
     fetch(`/pelicula/peliculaId/${movieId}`)
         .then(response => response.json())
         .then(movieData => {
             console.log("Detalles de la película:", movieData);
             displayMovieDetail(movieData);
+            setupBookNowButton(movieData.id); 
         })
         .catch(error => console.error('Error al cargar detalles de la película:', error));
 
@@ -29,6 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBookNowButton();
     });
 });
+
+function setupBookNowButton(movieId) {
+    document.querySelector('.book-now').addEventListener('click', function() {
+        console.log('Setting movieId in localStorage:', movieId); 
+        localStorage.setItem('selectedMovieID', movieId);
+        window.location.href = './asiento.html';
+    });
+}
 
 function displayMovieDetail(movie) {
     const container = document.getElementById('movie-detail-container');

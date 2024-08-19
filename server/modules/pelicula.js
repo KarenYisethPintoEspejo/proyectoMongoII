@@ -65,10 +65,10 @@ module.exports = class pelicula extends connect {
             {
                 $match: {
                     $or: [
-                        { fecha_estreno: { $lte: currentDate } }, // Películas estrenadas antes o en la fecha actual
-                        { fecha_estreno: { $gt: currentDate } }   // Películas estrenadas después de la fecha actual
+                        { fecha_estreno: { $lte: currentDate } }, 
+                        { fecha_estreno: { $gt: currentDate } }   
                     ],
-                    fecha_retiro: { $gte: currentDate } // Asegúrate de que la película aún esté en exhibición
+                    fecha_retiro: { $gte: currentDate } 
                 },
             },
             {
@@ -83,6 +83,8 @@ module.exports = class pelicula extends connect {
                     fecha_retiro: 1,
                     fechas_proyecciones: '$proyecciones.fecha',
                     horas_proyecciones: '$proyecciones.hora',
+                    precios_proyecciones: '$proyecciones.precio',
+                    formatos_proyecciones: '$proyecciones.formato',
                     imagen: 1,
                     imagen2: 1,
                     trailer: 1

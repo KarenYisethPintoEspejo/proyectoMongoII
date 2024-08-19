@@ -338,11 +338,11 @@ body, html {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px;
-    padding: 15px 15px;
+    padding: 15px 7px;
     padding-top: 0px;
     scrollbar-width: none; 
     /* border: 1px solid white; */
-    margin-left: 6px;
+    margin-left: 0px;
 
 }
 
