@@ -57,6 +57,8 @@ html, body{
     
     color: #fff;
     margin-left: 2.28rem;
+    position: fixed;
+    margin-top: 3.6rem;
 }
 
 .precio h2{

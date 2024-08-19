@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="../css/pago.css">
+</head>
+<body>
+    <header class="header">
+        <a><i class='bx bx-left-arrow-alt'></i></a>
+        <h2 class="title">Order Summary</h2>
+        <i class='bx bx-dots-vertical-rounded'></i>
+    </header>
+    
+    <main class="movie-info">
+        <img src="https://lumiere-a.akamaihd.net/v1/images/image_26964b90.jpeg" alt="Puss In Boots The Last Wish">
+        <div class="movie-details">
+            <h1>Puss In Boots The Last Wish</h1>
+            <p>Adventure</p>
+            <h2>HARTONO MALL</h2>
+            <p>Sun, 12 Feb 2023, 13:00</p>
+        </div>
+    </main>
+    
+    <section class="order-details">
+        <p>ORDER NUMBER: <span class="order-number">123456786</span></p>
+        <p>1 TICKET <span class="seat-number">C5</span></p>
+        <p>REGULAR SEAT <span class="price">$24,99 x 3</span></p>
+        <p>SERVICE FEE <span class="price">$1,99 x 1</span></p>
+    </section>
+    
+    <section class="payment-method">
+        <h2>Payment method</h2>
+        <div class="card">
+            <img src="https://www.mastercard.com/content/dam/public/mastercardcom/co/es/logos/mastercard-og-image.png">
+            <span>MasterCard **** **** 0998 7865</span>
+            <div class="radio-button"></div>
+        </div>
+    </section>
+
+    <section class="payment-timer">
+        <p>Complete your payment in <span id="timer">04:59</span></p>
+    </section>
+    
+    <footer>
+        <button class="buy-ticket">Buy ticket</button>
+    </footer>
+    <script src="../js/module/pago.js"></script>
+</body>
+</html>
