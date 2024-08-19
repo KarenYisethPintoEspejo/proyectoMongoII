@@ -1,0 +1,149 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: white;
+}
+
+
+
+header {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+
+header a {
+    display: flex;
+    width: 10%;
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-style: none;
+
+    /* color: white; */
+    /* border: 1px solid red; */
+}
+header i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    color: white;
+    font-style: none;
+}
+
+
+
+.movie-info {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #323232;
+}
+
+.movie-info img {
+    width: 100px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.movie-details h1 {
+    font-size: 18px;
+    margin: 0;
+    color: red;
+}
+
+.movie-details p {
+    margin: 5px 0;
+}
+
+.order-details {
+    margin-bottom: 20px;
+}
+
+.order-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.payment-method {
+    margin-bottom: 20px;
+}
+
+.payment-method h2 {
+    margin-bottom: 10px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    background-color: #323232;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.card img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.radio-button {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.payment-timer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-timer p {
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+.buy-ticket {
+    width: 100%;
+    padding: 15px;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+html, body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
