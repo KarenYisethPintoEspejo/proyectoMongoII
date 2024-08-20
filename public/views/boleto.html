@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <a onclick="history.back()"><i class='bx bx-left-arrow-alt'></i></a>
+        <a onclick="history.go(-4)"><i class='bx bx-left-arrow-alt'></i></a>
         <h2 class="title">Ticket</h2>
         <a><i class="bi bi-three-dots-vertical"></i></a>
     </header>
@@ -29,53 +29,62 @@
 
         <section class="ticket-info">
             <div class="info">
-                <div class="text-cinema">
-                    <p class="label">Cinema</p>
-                    <p class="value">HARTONO MALL 12</p>
+                <div class="info-cinema">
+                    <div class="text-cinema">
+                        <p class="label">Cinema</p>
+                        <p class="value">HARTONO MALL 12</p>
+                    </div>
                     <div class="image-cinema">
                         <img src="https://ugc.production.linktr.ee/ZJXG7pbLSwyitEyTNSc8_O1cTAW6KAObqc4un?io=true&size=avatar-v3_0" alt="">
                     </div>
                 </div>
             </div>
 
-            <div class="info">
-                <p class="label">Date</p>
-                <p class="value">Sun, Feb 12th 2023</p>
-            </div>
-    
-            <div class="info">
-                <p class="label">Time</p>
-                <p class="value">13:00</p>
-            </div>
-    
-            <div class="info">
-                <p class="label">Cinema Hall #</p>
-                <p class="value">Cinema A</p>
-            </div>
-    
-            <div class="info">
-                <p class="label">Seat</p>
-                <p class="value">C5</p>
-            </div>
-    
-            <div class="info">
-                <p class="label">Cost</p>
-                <p class="value">$26,99</p>
-            </div>
+            <section class="info-ticket">
+                <div class="first-box">
+                    <div class="info">
+                        <p class="label">Date</p>
+                        <p class="value">Sun, Feb 12th 2023</p>
+                    </div>
             
-            <div class="info">
-                <p class="label">Order ID</p>
-                <p class="value">12345678</p>
+                    <div class="info">
+                        <p class="label">Time</p>
+                        <p class="value">13:00</p>
+                    </div>
+                </div>
+                
+                <div class="second-box">
+                    <div class="info">
+                        <p class="label">Cinema Hall #</p>
+                        <p class="value">Cinema A</p>
+                    </div>
+            
+                    <div class="info">
+                        <p class="label">Seat</p>
+                        <p class="value">C5</p>
+                    </div>
+                </div>
+                
+    
+                <div class="third-box"> 
+                    <div class="info">
+                        <p class="label">Cost</p>
+                        <p class="value">$26,99</p>
+                    </div>
+                    
+                    <div class="info">
+                        <p class="label">Order ID</p>
+                        <p class="value">12345678</p>
+                    </div>
+                </div>
+            </section>
+            <div class="custom-dashed-line"></div>
+            <div class="barcode">
+                <svg id="barcode"></svg>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="barcode">
-            <img src="" alt="Barcode">
-        </div>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
     <script src="../js/module/boleto.js"></script>
 </body>
 </html>
