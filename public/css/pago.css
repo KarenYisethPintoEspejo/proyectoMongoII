@@ -182,15 +182,16 @@ header .bi{
     position: relative;
     width: 20.5rem;
     height: 4.2rem;
+    border: 1px solid white;
 }
 
-/* Imagen de la tarjeta */
+
 .card img {
     width: 60px;
     margin-right: 10px;
 }
 
-/* Detalles de la tarjeta (nombre y número) */
+
 .card-details {
     display: flex;
     flex-direction: column;
@@ -199,14 +200,13 @@ header .bi{
     margin-left: 0.8rem;
 }
 
-/* Nombre de la tarjeta */
+
 .card-name {
     font-weight: normal;
     font-size: 15px;
-    margin-bottom: 5px; /* Espacio entre el nombre y el número */
+    margin-bottom: 5px; 
 }
 
-/* Número de la tarjeta */
 .card-number {
     font-size: 13px;
     color: #ccc;
@@ -216,14 +216,45 @@ header .bi{
 
 
 .radio-button {
-    width: 20px;
-    height: 20px;
-    border: 2px solid white;
-    border-radius: 50%;
     position: absolute;
     right: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.radio-button input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.radio-button .checkmark {
+    position: relative;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    border: 1.8px solid red; 
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+
+.radio-button input:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background-color: red; 
+    border-radius: 50%;
+}
+
+
 
 .payment-timer {
     width: 20.5rem;
