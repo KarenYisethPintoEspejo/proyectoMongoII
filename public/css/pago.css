@@ -17,9 +17,30 @@ header {
     height: 8vh;
     align-items: center;
     justify-content: space-around;
-
+    padding: 15px 20px;
+    /* margin-bottom: 2.1rem; */
+    background-color: #323232;
 }
 
+header :nth-child(1){
+    margin-left: 0.55rem;
+}
+
+header :nth-child(3){
+    margin-right: 0.7rem;
+}
+
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+    margin: 0 10px;
+    margin-top: 36px;
+    /* border: 1px solid red; */
+    font-weight: normal;
+    font-size: 21px
+}
 
 header a {
     display: flex;
@@ -31,6 +52,7 @@ header a {
 
     /* color: white; */
     /* border: 1px solid red; */
+    text-decoration: none;
 }
 header i{
     display: flex;
@@ -39,56 +61,116 @@ header i{
     /* border: 1px solid red; */
     width: 100%;
     height: 100%;
-    margin-left: 0.5rem;
-    font-size: 1.5rem;
+    margin-top: 38px;
+    font-size: 30px;
     color: white;
     font-style: none;
+}
+
+header .bi{
+    font-size: 25px;
+    margin-bottom: 0.2rem;
 }
 
 
 
 .movie-info {
+    width: 100%;
+    height: 13.8rem;
     display: flex;
     margin-bottom: 20px;
     background-color: #323232;
+    /* border: 1px solid red; */
 }
 
 .movie-info img {
-    width: 100px;
+    width: 8rem;
+    height: 9rem;
     border-radius: 10px;
     margin-right: 15px;
+    margin-left: 2rem;
+    margin-top: 2.1rem;
 }
 
 .movie-details h1 {
     font-size: 18px;
     margin: 0;
     color: red;
+    margin-top: 2.2rem;
+    font-weight: normal;
+    margin-right: 3rem;
+
 }
 
 .movie-details p {
-    margin: 5px 0;
+    font-weight: bolder;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    color: grey;
+}
+
+.movie-details h5{
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.movie-details h6{
+    font-size: 0.9rem;
+    color: grey;
 }
 
 .order-details {
-    margin-bottom: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1.3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
-.order-details p {
+.order-number{
+    /* border: 1px solid red; */
+    color: gray;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 1.7rem;
+}
+
+.order-number-value {
+    font-weight: normal;
+    color: white; 
+}
+
+
+.order-details .line {
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 25px 0;
+    color: grey;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
+
+.order-details .line {
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px; 
+    margin-bottom: 10px; 
+}
+
 
 .price {
     font-weight: bold;
 }
 
 .payment-method {
+    margin-left: 2rem;
     margin-bottom: 20px;
 }
 
 .payment-method h2 {
+    font-size: 1.27rem;
     margin-bottom: 10px;
+    font-weight: normal;
 }
 
 .card {
@@ -98,12 +180,40 @@ header i{
     padding: 10px;
     border-radius: 5px;
     position: relative;
+    width: 20.5rem;
+    height: 4.2rem;
 }
 
+/* Imagen de la tarjeta */
 .card img {
-    width: 50px;
+    width: 60px;
     margin-right: 10px;
 }
+
+/* Detalles de la tarjeta (nombre y número) */
+.card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    margin-left: 0.8rem;
+}
+
+/* Nombre de la tarjeta */
+.card-name {
+    font-weight: normal;
+    font-size: 15px;
+    margin-bottom: 5px; /* Espacio entre el nombre y el número */
+}
+
+/* Número de la tarjeta */
+.card-number {
+    font-size: 13px;
+    color: #ccc;
+}
+
+
+
 
 .radio-button {
     width: 20px;
@@ -111,19 +221,29 @@ header i{
     border: 2px solid white;
     border-radius: 50%;
     position: absolute;
-    right: 10px;
+    right: 20px;
     cursor: pointer;
 }
 
 .payment-timer {
+    width: 20.5rem;
     text-align: center;
     margin-bottom: 20px;
+    margin-left: 2rem;
+    margin-right: 1.8rem;
+}
+
+.payment-timer span{
+    margin-left: 5rem;
+    color: red;
 }
 
 .payment-timer p {
-    background-color: red;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #381818;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #a3a3a3;
 }
 
 footer {
@@ -136,9 +256,13 @@ footer {
     padding: 15px;
     background-color: red;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 18px;
     cursor: pointer;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    color: white;
+    margin-top: 4rem;
 }
 
 html, body{

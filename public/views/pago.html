@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <a><i class="bi bi-skip-start"></i></a>
+        <a onclick="history.back()"><i class='bx bx-left-arrow-alt'></i></a>
         <h2 class="title">Order Summary</h2>
         <a><i class="bi bi-three-dots-vertical"></i></a>
     </header>
@@ -21,25 +21,28 @@
         <div class="movie-details">
             <h1>Puss In Boots The Last Wish</h1>
             <p>Adventure</p>
-            <h2>HARTONO MALL</h2>
-            <p>Sun, 12 Feb 2023, 13:00</p>
+            <h5>HARTONO MALL</h5>
+            <h6>Sun, 12 Feb 2023, 13:00</h6>
         </div>
     </main>
     
     <section class="order-details">
-        <p>ORDER NUMBER: <span class="order-number">123456786</span></p>
-        <p>1 TICKET <span class="seat-number">C5</span></p>
-        <p>REGULAR SEAT <span class="price">$24,99 x 3</span></p>
-        <p>SERVICE FEE <span class="price">$1,99 x 1</span></p>
+        <p class="order-number">ORDER NUMBER : <span class="order-number-value">123456786</span></p>
+        <p class="line">1 TICKET <span class="seat-number">C5</span></p>
+        <p class="line">REGULAR SEAT <span class="price">$24,99 x 3</span></p>
+        <p class="line">SERVICE FEE <span class="price">$1,99 x 1</span></p>
     </section>
-    
     <section class="payment-method">
         <h2>Payment method</h2>
         <div class="card">
-            <img src="https://www.mastercard.com/content/dam/public/mastercardcom/co/es/logos/mastercard-og-image.png">
-            <span>MasterCard **** **** 0998 7865</span>
+            <img src="https://www.svgrepo.com/show/452059/mastercard.svg" alt="MasterCard">
+            <div class="card-details">
+                <span class="card-name">MasterCard</span>
+                <span class="card-number">**** **** 0998 7865</span>
+            </div>
             <div class="radio-button"></div>
         </div>
+        
     </section>
 
     <section class="payment-timer">

@@ -8,19 +8,20 @@ header {
     color: white;
     /* border: 1px solid red; */
     margin-bottom: 0.05rem;
+    margin-top: 0.2rem;
 }
 
 header :nth-child(1){
-    margin-left: 12px;
+    margin-left: 0.8rem;
 }
 
 header :nth-child(3){
-    margin-right: 15px;
+    margin-right: 1.3rem;
 }
 
 header .bx {
     /* border: 1px solid red; */
-    margin-top: 30px;
+    margin-top: 28px;
     font-size: 30px;
     cursor: pointer;
     color: #fff;
@@ -109,7 +110,7 @@ body, html {
     text-align: center;
     padding: 10px;
     margin: 0 10px;
-    margin-top: 27px;
+    margin-top: 28px;
     /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px

@@ -2,18 +2,26 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0px 20px;
     background-color: #111;
     color: white;
 }
 
 header .bx {
     /* border: 1px solid red; */
-    margin-top: 30px;
+    margin-top: 28px;
     font-size: 30px;
     cursor: pointer;
     color: #fff;
     position: relative;
+}
+
+header :nth-child(1){
+    margin-left: 0.5rem;
+}
+
+header :nth-child(3){
+    margin-right: 0.7rem;
 }
 
 header .bx:hover {
@@ -25,8 +33,8 @@ header .bx:hover {
     flex-grow: 1;
     text-align: center;
     padding: 10px;
-    margin: 0 10px;
-    margin-top: 18px;
+    margin: 0 0px;
+    margin-top: 28px;
     /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px
