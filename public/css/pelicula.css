@@ -73,6 +73,9 @@ header .bx:hover {
     color: red;
     border: 1px solid red;
 }
+.no-hover {
+    pointer-events: none;
+}
 
 body, html {
     margin: 0;

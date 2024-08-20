@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const chooseseat = document.getElementById("back")
+    chooseseat.addEventListener("click", function(event) {
+        event.preventDefault();
+        history.back()
+    })
     const movieId = localStorage.getItem('selectedMovieID');
     console.log('ID de la película desde localStorage:', movieId);
     if (!movieId) {
         console.error('No movieId found in localStorage');
         return;
     }
-
     let selectedDate = null;
 
     const hourPriceContainer = document.getElementById('hour-price-container');
@@ -145,4 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         displayMovieProjections(movieData);
     }
+
+
 });

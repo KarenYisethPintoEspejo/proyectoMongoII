@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     cinemaInfo.addEventListener('click', () => {
         toggleBookNowButton();
+
+        setTimeout(function(){
+            bookNowButton.style.display='none'
+            cinemaInfo.classList.remove('no-hover');
+        }, 4000)
     });
 });
 

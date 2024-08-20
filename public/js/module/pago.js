@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const chooseseat = document.getElementById("back")
+    chooseseat.addEventListener("click", function(event) {
+        event.preventDefault();
+        history.back()
+    })
+    
     const countdownElement = document.getElementById('countdown');
     let timeLeft =  14 * 60 + 59;
     function updateCountdown() {
