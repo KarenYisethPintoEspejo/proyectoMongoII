@@ -3,9 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="../css/boleto.css">
 </head>
 <body>
-    <h1>Boletos</h1>
+    <header>
+        <a onclick="history.back()"><i class='bx bx-left-arrow-alt'></i></a>
+        <h2 class="title">Ticket</h2>
+        <a><i class="bi bi-three-dots-vertical"></i></a>
+    </header>
+
+    <main class="ticket">
+        <section class="info-movie">
+            <div class="ticket-header">
+                <img src="https://lumiere-a.akamaihd.net/v1/images/image_26964b90.jpeg" alt="Movie Image" class="movie-image">
+            </div>
+
+            <div class="movie-title">
+                <h1>Puss In Boots: The Last Wish</h1>
+                <p>Show this ticket at the entrance</p>
+            </div>
+        </section>
+
+        <section class="ticket-info">
+            <div class="info">
+                <div class="text-cinema">
+                    <p class="label">Cinema</p>
+                    <p class="value">HARTONO MALL 12</p>
+                </div>
+                <div class="image-cinema">
+                    <img src="" alt="">
+                </div>
+            </div>
+
+            <div class="info">
+                <p class="label">Date</p>
+                <p class="value">Sun, Feb 12th 2023</p>
+            </div>
+    
+            <div class="info">
+                <p class="label">Time</p>
+                <p class="value">13:00</p>
+            </div>
+    
+            <div class="info">
+                <p class="label">Cinema Hall #</p>
+                <p class="value">Cinema A</p>
+            </div>
+    
+            <div class="info">
+                <p class="label">Seat</p>
+                <p class="value">C5</p>
+            </div>
+    
+            <div class="info">
+                <p class="label">Cost</p>
+                <p class="value">$26,99</p>
+            </div>
+            
+            <div class="info">
+                <p class="label">Order ID</p>
+                <p class="value">12345678</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="barcode">
+            <img src="" alt="Barcode">
+        </div>
+    </footer>
+
+    <script src="../js/module/boleto.js"></script>
 </body>
 </html>

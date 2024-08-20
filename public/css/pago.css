@@ -283,15 +283,13 @@ footer {
 }
 
 .buy-ticket {
-    width: 100%;
+    width: 20rem;
     padding: 15px;
     background-color: red;
     border: none;
     border-radius: 8px;
     font-size: 18px;
     cursor: pointer;
-    margin-left: 2rem;
-    margin-right: 2rem;
     color: white;
     margin-top: 4rem;
 }
