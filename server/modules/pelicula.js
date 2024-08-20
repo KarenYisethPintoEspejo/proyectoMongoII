@@ -85,6 +85,8 @@ module.exports = class pelicula extends connect {
                     horas_proyecciones: '$proyecciones.hora',
                     precios_proyecciones: '$proyecciones.precio',
                     formatos_proyecciones: '$proyecciones.formato',
+                    id_proyecciones: '$proyecciones.id',
+                    id_proyecciones_sala: '$proyecciones.id_sala',
                     imagen: 1,
                     imagen2: 1,
                     trailer: 1
