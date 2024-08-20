@@ -65,7 +65,6 @@ header .bi{
 .ticket {
     border: 1px solid red;
     display: flex;
-    justify-content: center;
     height: 40rem;
     padding: 20px;
     background-color: white;
@@ -75,6 +74,7 @@ header .bi{
     margin-left: 2.5rem;
     margin-top: 2.9rem;
     color: #222;
+    flex-direction: column;
 }
 
 .ticket-header {
@@ -83,7 +83,32 @@ header .bi{
 }
 
 .movie-image {
-    width: 100%;
-    border-radius: 10px;
+    width: 17rem;
+    border-radius: 15px;
+    margin-top: 0.5rem;
+    height: 7.5rem;
+}
+
+.movie-title{
+    margin-top: 0.8rem;
+    height: 4.7rem;
+    border-bottom: 1px solid #ccc; 
+    padding-bottom: 10px; 
+    margin-bottom: 1rem;
+}
+
+.movie-title h1{
+    font-size: 1.18rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-title p{
+    color: grey;
+    font-size: 0.9rem;
+}
+
+.text-cinema{
+    border: 1px solid red;
+    display: flex;
 }
 
