@@ -209,6 +209,37 @@ body, html {
     text-align: center;
 }
 
+.row-a .seat{
+    border: 1px solid red;
+    font-family: "Inter_18pt-Regular";
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    margin: 0 3.2px;
+    background: #323232;
+    border-radius: 5px;
+    /* border: 1px solid #CECECE; */
+    color: transparent;
+    transition: color 0.3s, background-color 0.3s;
+    
+}
+
+.row-b .seat{
+    font-family: "Inter_18pt-Regular";
+    outline: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    margin: 0 3.2px;
+    background: #323232;
+    border-radius: 5px;
+    /* border: 1px solid #CECECE; */
+    color: transparent;
+    transition: color 0.3s, background-color 0.3s;
+    
+}
+
 
 .image-text{
     display: flex;
@@ -407,3 +438,4 @@ body, html {
 .hour-price::-webkit-scrollbar {
     display: none;
 }
+
