@@ -17,6 +17,8 @@ appAsiento.get("/listarAsientos/:id", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al consultar los asientos' });
+    } finally{
+        obj.destructor()
     }
 });
 
@@ -35,6 +37,8 @@ appAsiento.get("/listarAsientosProyeccion/:id", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al consultar los asientos' });
+    } finally{
+        obj.destructor()
     }
 });
 

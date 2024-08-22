@@ -3,12 +3,14 @@ const usuario = require('../modules/usuario');
 const appUsuario = express.Router();
 
 appUsuario.post('/crearUsuario', async(req, res, next)=>{
+    let obj = new usuario();
     try {
-        let obj = new usuario();
         const usuarios = await obj.crearUsuario(req.body);
         res.status(200).send(usuarios)
     } catch (error) {
         next(error)
+    } finally{
+        obj.destructor()
     }
 })
 
@@ -27,16 +29,20 @@ appUsuario.get("/usuarioId/:id", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al consultar el usuario' });
+    } finally{
+        obj.destructor()
     }
 });
 
 appUsuario.post('/actualizarUsuario', async(req, res)=>{
+    let obj = new usuario();
     try {
-        let obj = new usuario();
         const usuarios = await obj.actualizarRolUsuario(req.body);
         res.status(200).send(usuarios)
     } catch (error) {
         next (error)
+    } finally{
+        obj.destructor()
     }
 })
 
@@ -54,6 +60,8 @@ appUsuario.get('/usuarioPorRol/:rol', async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al listar los usuarios' });
+    } finally{
+        obj.destructor()
     }
 });
 

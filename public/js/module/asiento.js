@@ -1,20 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-    const chooseseat = document.getElementById("back")
+    const chooseseat = document.getElementById("back");
     chooseseat.addEventListener("click", function(event) {
         event.preventDefault();
-        history.back()
-    })
+        history.back();
+    });
+
     const movieId = localStorage.getItem('selectedMovieID');
     console.log('ID de la película desde localStorage:', movieId);
     if (!movieId) {
         console.error('No movieId found in localStorage');
         return;
     }
+
     let selectedDate = null;
+    let selectedProjectionId = null;
 
     const hourPriceContainer = document.getElementById('hour-price-container');
-    hourPriceContainer.innerHTML = '<p>Select a date to view projections.</p>';
+    const seatsContainerFront = document.getElementById('seatsContainerFront');
+    const seatsContainer = document.getElementById('seatsContainer');
+    const precioElemento = document.querySelector('.precio h2');
+    let precioTotal = 0;
 
     let movieData = null;
 
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         if (!isActive) {
             element.classList.add('active', 'active-state');
-            selectedDate = new Date(element.dataset.date).toISOString().split('T')[0]; 
+            selectedDate = new Date(element.dataset.date).toISOString().split('T')[0];
             updateProjectionsForSelectedDate(); 
         }
     }
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const dayDiv = document.createElement('div');
         dayDiv.className = 'day';
-        dayDiv.dataset.date = date.toISOString().split('T')[0]; 
+        dayDiv.dataset.date = date.toISOString().split('T')[0];
         dayDiv.onclick = () => selectDay(dayDiv);
 
         const dayName = document.createElement('p');
@@ -78,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isActive) {
             element.classList.add('active', 'active-state');
 
+            selectedProjectionId = element.dataset.projectionId; 
+
             const precioTexto = element.querySelector('p').textContent.trim();
             const precio = parseFloat(precioTexto.replace('$', '').replace(' ·3D', '')); 
             
@@ -87,6 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             precioTotal = precio;
             precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
+
+            if (selectedProjectionId) {
+                fetchSeats(selectedProjectionId); 
+            }
         } else {
             precioTotal = 0; 
             precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
@@ -100,48 +111,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const precioElemento = document.querySelector('.precio h2');
-    let precioTotal = 0;
-
     function displayMovieProjections(movie) {
         if (!selectedDate) {
             hourPriceContainer.innerHTML = '<p>Select a date to view projections.</p>';
             return;
         }
-
+    
         hourPriceContainer.innerHTML = '';
+    
 
-        if (!movie.horas_proyecciones || movie.horas_proyecciones.length === 0) {
-            hourPriceContainer.innerHTML = '<p>No projections available for this movie.</p>';
+        if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones) {
+            console.error('Datos de proyección no encontrados en movieData');
+            hourPriceContainer.innerHTML = '<p>No projections data available.</p>';
             return;
         }
+    
 
+        if (movie.horas_proyecciones.length !== movie.id_proyecciones.length ||
+            movie.horas_proyecciones.length !== movie.precios_proyecciones.length) {
+            console.error('Los arrays de proyecciones tienen longitudes diferentes');
+            hourPriceContainer.innerHTML = '<p>Data inconsistency found.</p>';
+            return;
+        }
+    
         const filteredProjections = movie.horas_proyecciones
             .map((hora, index) => ({
+                id: movie.id_proyecciones[index],
                 hora: hora,
-                fecha: new Date(movie.fechas_proyecciones[index]).toISOString().split('T')[0],
-                precio: movie.precios_proyecciones[index],
-                formato: movie.formatos_proyecciones[index]
+                fecha: selectedDate,  
+                precio: movie.precios_proyecciones[index]
             }))
             .filter(proyeccion => proyeccion.fecha === selectedDate);
-
+    
         filteredProjections.forEach(proyeccion => {
             const hourDiv = document.createElement('div');
             hourDiv.className = 'hour';
+            hourDiv.dataset.projectionId = proyeccion.id;
             hourDiv.innerHTML = `
                 <h2>${proyeccion.hora}</h2>
-                <p> $${proyeccion.precio} · ${proyeccion.formato}</p>
+                <p> $${proyeccion.precio}</p>
             `;
             hourDiv.addEventListener('click', function() {
                 selectHour(this);
             });
             hourPriceContainer.appendChild(hourDiv);
         });
-
+    
         if (filteredProjections.length === 0) {
             hourPriceContainer.innerHTML = '<p>No projections available for this date.</p>';
         }
     }
+    
 
     function updateProjectionsForSelectedDate() {
         if (!movieData) {
@@ -151,5 +171,63 @@ document.addEventListener('DOMContentLoaded', function() {
         displayMovieProjections(movieData);
     }
 
-
+    async function fetchSeats(projectionId) {
+        try {
+            const seatsContainerFront = document.getElementById('seatsContainerFront');
+            const seatsContainer = document.getElementById('seatsContainer');
+            if (!seatsContainerFront || !seatsContainer) {
+                console.error('Elementos del DOM no encontrados');
+                return;
+            }
+    
+            const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log(data);
+    
+            seatsContainerFront.innerHTML = '';
+            seatsContainer.innerHTML = '';
+    
+            if (data.error) {
+                seatsContainer.innerHTML = `<p>${data.error}</p>`;
+            } else {
+                data.asientos.forEach(asiento => {
+                    const seatElement = document.createElement('div');
+                    seatElement.className = 'seat';
+                    const numeroAsiento = String(asiento.numero);
+    
+                    if (asiento.ocupado) {
+                        seatElement.className = 'seat ocupado';
+                        seatElement.style.backgroundColor = '#808080';
+                        seatElement.style.pointerEvents = 'none';
+                    } else {
+                        seatElement.style.backgroundColor = '#323232';
+                    }
+                    if (asiento.fila === 'A' || asiento.fila === 'B') {
+                        seatElement.className += ' front__seat'; 
+                        seatsContainerFront.appendChild(seatElement);
+                    } else {
+                        seatsContainer.appendChild(seatElement);
+                    }
+                });
+            }
+    
+        } catch (error) {
+            console.error('Error al obtener los asientos:', error);
+            const seatsContainer = document.getElementById('seatsContainer');
+            if (seatsContainer) {
+                seatsContainer.innerHTML = `<p>Error al obtener los asientos.</p>`;
+            }
+        }
+    }
+    
 });

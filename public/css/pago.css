@@ -279,6 +279,9 @@ header .bi{
 
 footer {
     display: flex;
+    width: 100%;
+    height: 7rem;
+    /* border: 1px solid red; */
     justify-content: center;
 }
 
@@ -291,11 +294,11 @@ footer {
     font-size: 18px;
     cursor: pointer;
     color: white;
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
 }
 
 html, body{
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 0;
     padding: 0;
     height: 100%;

@@ -1,6 +1,4 @@
-const connect  = require('../helpers/db/connect')
-
-
+const connect = require('../helpers/db/connect');
 
 module.exports = class asiento extends connect {
     static instanceAsiento;
@@ -22,53 +20,47 @@ module.exports = class asiento extends connect {
         connect.instanceConnect = undefined;
     }
 
-    async listarAsientos({id}) {
+    async listarAsientos({ id }) {
         await this.conexion.connect();
         try {
-            const collection = this.db.collection('asiento');
-            const res = await collection.find({ id_sala: id }).toArray(); // No desestructures el resultado
-            return { mensaje: "Lista de asientos de la sala", data: res };
+            const asientos = await this.collection.find({ id_sala: id }).toArray();
+            return { mensaje: "Lista de asientos de la sala", data: asientos };
         } catch (error) {
-            return { mensaje: "La sala no tiene asientos registrados", data: id };
+            console.error("Error en listarAsientos:", error);
+            return { error: "Error al listar los asientos", detalles: error.message };
         }
     }
 
-    async verificarDisponibilidadProyeccion(proyeccionObj) {
+    async verificarDisponibilidadProyeccion({ id }) {
         try {
             await this.conexion.connect();
             const proyeccionCollection = this.db.collection('proyeccion');
-            const proyeccionExistente = await proyeccionCollection.findOne({ id: proyeccionObj.id });
-    
+            const proyeccionExistente = await proyeccionCollection.findOne({ id });
+
             if (!proyeccionExistente) {
-                throw new Error(`La proyección con ID ${proyeccionObj.id} no existe.`);
+                throw new Error(`La proyección con ID ${id} no existe.`);
             }
-    
+
             const fechaActual = new Date();
             if (new Date(proyeccionExistente.fecha) < fechaActual) {
-                throw new Error(`La proyección con ID ${proyeccionObj.id} ya ha sucedido y no se puede realizar la consulta de asientos.`);
+                throw new Error(`La proyección con ID ${id} ya ha sucedido.`);
             }
+
             const id_sala = proyeccionExistente.id_sala;
-            const asientoCollection = this.db.collection('asiento');
-            const asientosSala = await asientoCollection.find({ id_sala }).toArray();
-    
+            const asientosSala = await this.collection.find({ id_sala }).toArray();
             const boletoCollection = this.db.collection('boleto');
-            const asientosOcupados = await boletoCollection.find({ id_proyeccion: proyeccionObj.id }).toArray();
+            const asientosOcupados = await boletoCollection.find({ id_proyeccion: id }).toArray();
 
             const asientosOcupadosIds = new Set(asientosOcupados.map(boleto => boleto.id_asiento));
-
             const asientosConEstado = asientosSala.map(asiento => ({
                 ...asiento,
-                ocupado: asientosOcupadosIds.has(asiento.id) 
+                ocupado: asientosOcupadosIds.has(asiento.id)
             }));
-    
-            if (asientosConEstado.length > 0) {
-                return { disponible: true, asientos: asientosConEstado };
-            } else {
-                return { disponible: false, mensaje: `No hay asientos disponibles para la proyección con ID ${proyeccionObj.id}.` };
-            }
+
+            return { disponible: asientosConEstado.length > 0, asientos: asientosConEstado };
         } catch (error) {
-            return { error: `Error al verificar la disponibilidad de los asientos: ${error.message}` };
+            console.error("Error en verificarDisponibilidadProyeccion:", error);
+            return { error: `Error al verificar la disponibilidad: ${error.message}` };
         }
     }
-
-}
+};

@@ -3,12 +3,14 @@ const boleto = require('../modules/boleto');
 const appBoleto = express.Router();
 
 appBoleto.post('/compraBoleto', async(req, res, next)=>{
+    let obj = new boleto();
     try {
-        let obj = new boleto();
         const boletos = await obj.comprarBoleto(req.body)
         res.status(200).send(boletos)
     } catch (error) {
         next(error)
+    } finally{
+        obj.destructor()
     }
 });
 
@@ -27,17 +29,21 @@ appBoleto.get("/disponibilidadAsientos/:id", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al verificar la disponibilidad de asientos' });
+    } finally{
+        obj.destructor()
     }
 });
 
 
 appBoleto.post('/reservaAsiento', async(req, res, next)=>{
+    let obj = new boleto();
     try {
-        let obj = new boleto();
         const boletos = await obj.reservarAsiento(req.body);
         res.status(200).send(boletos)
     } catch (error) {
         next(error)
+    } finally{
+        obj.destructor()
     }
 })
 
@@ -56,6 +62,8 @@ appBoleto.post("/cancelarReserva/:id", async (req, res) => {
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al cancelar la reserva del boleto' });
+    } finally{
+        obj.destructor()
     }
 });
 
