@@ -24,16 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let movieData = null;
 
     fetch('/pelicula/listaPeliculas')
-        .then(response => response.json())
-        .then(peliculasData => {
-            movieData = peliculasData.find(pelicula => String(pelicula.id) === String(movieId));
-            if (!movieData) {
-                console.error('No se encontró la película con el ID proporcionado');
-                return;
-            }
-            console.log("Detalles de la película:", movieData);
-        })
-        .catch(error => console.error('Error al cargar la lista de películas:', error));
+    .then(response => response.json())
+    .then(peliculasData => {
+        movieData = peliculasData.find(pelicula => String(pelicula.id) === String(movieId));
+        if (!movieData) {
+            console.error('No se encontró la película con el ID proporcionado');
+            return;
+        }
+        console.log("Detalles de la película:", movieData);
+        updateProjectionsForSelectedDate(); 
+    })
+    .catch(error => console.error('Error al cargar la lista de películas:', error));
+
 
     function selectDay(element) {
         const isActive = element.classList.contains('active');
@@ -43,10 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!isActive) {
             element.classList.add('active', 'active-state');
             selectedDate = new Date(element.dataset.date).toISOString().split('T')[0];
-            updateProjectionsForSelectedDate(); 
+    
+            if (movieData) {
+                updateProjectionsForSelectedDate();
+            } else {
+                console.log('Esperando datos de la película...');
+            }
         }
     }
-
+    
+        
     const daysContainer = document.getElementById('days-container');
     const today = new Date();
 
@@ -119,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         hourPriceContainer.innerHTML = '';
     
-        if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones || !movie.formatos_proyecciones) {
+        if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones || !movie.formatos_proyecciones || !movie.fechas_proyecciones) {
             console.error('Datos de proyección no encontrados en movieData');
             hourPriceContainer.innerHTML = '<p>No projections data available.</p>';
             return;
@@ -127,21 +135,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
         if (movie.horas_proyecciones.length !== movie.id_proyecciones.length ||
             movie.horas_proyecciones.length !== movie.precios_proyecciones.length ||
-            movie.horas_proyecciones.length !== movie.formatos_proyecciones.length) {
+            movie.horas_proyecciones.length !== movie.formatos_proyecciones.length ||
+            movie.horas_proyecciones.length !== movie.fechas_proyecciones.length) {
             console.error('Los arrays de proyecciones tienen longitudes diferentes');
             hourPriceContainer.innerHTML = '<p>Data inconsistency found.</p>';
             return;
         }
     
+        const selectedDateFormatted = new Date(selectedDate).toISOString().split('T')[0];
+    
         const filteredProjections = movie.horas_proyecciones
             .map((hora, index) => ({
                 id: movie.id_proyecciones[index],
                 hora: hora,
-                fecha: selectedDate,
+                fecha: new Date(movie.fechas_proyecciones[index]).toISOString().split('T')[0], 
                 precio: movie.precios_proyecciones[index],
-                formato: movie.formatos_proyecciones[index] 
+                formato: movie.formatos_proyecciones[index]
             }))
-            .filter(proyeccion => proyeccion.fecha === selectedDate);
+            .filter(proyeccion => proyeccion.fecha === selectedDateFormatted);
     
         filteredProjections.forEach(proyeccion => {
             const hourDiv = document.createElement('div');
@@ -149,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hourDiv.dataset.projectionId = proyeccion.id;
             hourDiv.innerHTML = `
                 <h2>${proyeccion.hora}</h2>
-                <p>$${proyeccion.precio} · ${proyeccion.formato}</p> <!-- Mostrar formato aquí -->
+                <p>$${proyeccion.precio} · ${proyeccion.formato}</p>
             `;
             hourDiv.addEventListener('click', function() {
                 selectHour(this);
@@ -163,14 +174,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     
+    
 
     function updateProjectionsForSelectedDate() {
         if (!movieData) {
-            console.error('Movie data is not loaded yet.');
+            console.error('Movie data is not loaded yet.'); 
             return;
         }
         displayMovieProjections(movieData);
     }
+    
+    
 
         function createRowContainer(container, rowName, isFrontRow = false) {
         const rowContainer = document.createElement('div');
