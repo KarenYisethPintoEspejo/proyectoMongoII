@@ -119,16 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
         hourPriceContainer.innerHTML = '';
     
-
-        if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones) {
+        if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones || !movie.formatos_proyecciones) {
             console.error('Datos de proyección no encontrados en movieData');
             hourPriceContainer.innerHTML = '<p>No projections data available.</p>';
             return;
         }
     
-
         if (movie.horas_proyecciones.length !== movie.id_proyecciones.length ||
-            movie.horas_proyecciones.length !== movie.precios_proyecciones.length) {
+            movie.horas_proyecciones.length !== movie.precios_proyecciones.length ||
+            movie.horas_proyecciones.length !== movie.formatos_proyecciones.length) {
             console.error('Los arrays de proyecciones tienen longitudes diferentes');
             hourPriceContainer.innerHTML = '<p>Data inconsistency found.</p>';
             return;
@@ -138,8 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .map((hora, index) => ({
                 id: movie.id_proyecciones[index],
                 hora: hora,
-                fecha: selectedDate,  
-                precio: movie.precios_proyecciones[index]
+                fecha: selectedDate,
+                precio: movie.precios_proyecciones[index],
+                formato: movie.formatos_proyecciones[index] 
             }))
             .filter(proyeccion => proyeccion.fecha === selectedDate);
     
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hourDiv.dataset.projectionId = proyeccion.id;
             hourDiv.innerHTML = `
                 <h2>${proyeccion.hora}</h2>
-                <p> $${proyeccion.precio}</p>
+                <p>$${proyeccion.precio} · ${proyeccion.formato}</p> <!-- Mostrar formato aquí -->
             `;
             hourDiv.addEventListener('click', function() {
                 selectHour(this);
@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hourPriceContainer.innerHTML = '<p>No projections available for this date.</p>';
         }
     }
+    
     
 
     function updateProjectionsForSelectedDate() {
