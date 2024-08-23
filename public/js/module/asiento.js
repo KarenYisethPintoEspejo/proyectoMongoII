@@ -216,18 +216,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
             const data = await response.json();
             console.log(data);
-
-            seatsContainerFront.innerHTML = '';
-            seatsContainer.innerHTML = '';
+    
+            seatsContainerFront.querySelectorAll('.asientos__lista').forEach(div => div.innerHTML = '');
+            seatsContainer.querySelectorAll('div > div').forEach(div => div.innerHTML = '');
     
             if (data.error) {
                 seatsContainer.innerHTML = `<p>${data.error}</p>`;
             } else {
+                const frontRowA = seatsContainerFront.querySelector('[fila="1"] .asientos__lista');
+                const frontRowB = seatsContainerFront.querySelector('[fila="2"] .asientos__lista');
 
-                const frontRowA = createRowContainer(seatsContainerFront, 'row-a', true);
-                const frontRowB = createRowContainer(seatsContainerFront, 'row-b', true);
-    
-                const otherRows = {};
+                const otherRows = {
+                    'C': seatsContainer.querySelector('[colum="3"]'),
+                    'D': seatsContainer.querySelector('[colum="4"]'),
+                    'E': seatsContainer.querySelector('[colum="5"]'),
+                    'F': seatsContainer.querySelector('[colum="6"]')
+                };
     
                 data.asientos.forEach(asiento => {
                     const seatElement = document.createElement('button');
@@ -241,16 +245,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         seatElement.style.backgroundColor = '#323232';
                     }
-
                     if (asiento.fila === 'A') {
                         frontRowA.appendChild(seatElement);
                     } else if (asiento.fila === 'B') {
                         frontRowB.appendChild(seatElement);
-                    } else {
-                        if (!otherRows[asiento.fila]) {
-                            otherRows[asiento.fila] = createRowContainer(seatsContainer, asiento.fila);
+                    } else if (['C', 'D', 'E', 'F'].includes(asiento.fila)) {
+                        const rowDiv = otherRows[asiento.fila];
+                        if (rowDiv) {
+                            rowDiv.appendChild(seatElement);
+                        } else {
+                            console.warn(`Fila no reconocida: ${asiento.fila}`);
                         }
-                        otherRows[asiento.fila].appendChild(seatElement);
+                    } else {
+                        console.warn(`Fila no reconocida: ${asiento.fila}`);
                     }
                 });
             }
@@ -262,6 +269,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
-    
 });
