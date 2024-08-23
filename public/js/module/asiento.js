@@ -197,76 +197,85 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const seatsContainerFront = document.querySelector('.asientos__normal');
             const seatsContainer = document.querySelector('.asientos__preferenciales');
-    
+        
             if (!seatsContainerFront || !seatsContainer) {
                 console.error('Elementos del DOM no encontrados');
                 return;
             }
-    
-            const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-    
-            const data = await response.json();
-            console.log(data);
-    
-            seatsContainerFront.querySelectorAll('.asientos__lista').forEach(div => div.innerHTML = '');
-            seatsContainer.querySelectorAll('div > div').forEach(div => div.innerHTML = '');
-    
-            if (data.error) {
-                seatsContainer.innerHTML = `<p>${data.error}</p>`;
-            } else {
-                const frontRowA = seatsContainerFront.querySelector('[fila="1"] .asientos__lista');
-                const frontRowB = seatsContainerFront.querySelector('[fila="2"] .asientos__lista');
 
-                const otherRows = {
-                    'C': seatsContainer.querySelector('[colum="3"]'),
-                    'D': seatsContainer.querySelector('[colum="4"]'),
-                    'E': seatsContainer.querySelector('[colum="5"]'),
-                    'F': seatsContainer.querySelector('[colum="6"]')
-                };
+    seatsContainerFront.querySelectorAll('.asientos__lista').forEach(div => div.innerHTML = '');
+
+    seatsContainer.querySelectorAll('div').forEach(div => {
+        Array.from(div.childNodes).forEach(child => {
+            if (child.nodeName !== 'SMALL') {
+                div.removeChild(child);
+            }
+        });
+    });
+
+        const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     
-                data.asientos.forEach(asiento => {
-                    const seatElement = document.createElement('button');
-                    seatElement.textContent = asiento.numero;
-                    seatElement.className = 'seat';
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
     
-                    if (asiento.ocupado) {
-                        seatElement.classList.add('ocupado');
-                        seatElement.style.backgroundColor = '#808080';
-                        seatElement.style.pointerEvents = 'none';
-                    } else {
-                        seatElement.style.backgroundColor = '#323232';
-                    }
-                    if (asiento.fila === 'A') {
-                        frontRowA.appendChild(seatElement);
-                    } else if (asiento.fila === 'B') {
-                        frontRowB.appendChild(seatElement);
-                    } else if (['C', 'D', 'E', 'F'].includes(asiento.fila)) {
-                        const rowDiv = otherRows[asiento.fila];
-                        if (rowDiv) {
-                            rowDiv.appendChild(seatElement);
-                        } else {
-                            console.warn(`Fila no reconocida: ${asiento.fila}`);
-                        }
+        const data = await response.json();
+        console.log(data);
+    
+        if (data.error) {
+            seatsContainer.innerHTML = `<p>${data.error}</p>`;
+        } else {
+            const frontRowA = seatsContainerFront.querySelector('[fila="1"] .asientos__lista');
+            const frontRowB = seatsContainerFront.querySelector('[fila="2"] .asientos__lista');
+    
+            const otherRows = {
+                'C': seatsContainer.querySelector('[colum="3"]'),
+                'D': seatsContainer.querySelector('[colum="4"]'),
+                'E': seatsContainer.querySelector('[colum="5"]'),
+                'F': seatsContainer.querySelector('[colum="6"]')
+            };
+    
+            data.asientos.forEach(asiento => {
+                const seatElement = document.createElement('button');
+                seatElement.textContent = asiento.numero;
+                seatElement.className = 'seat';
+    
+                if (asiento.ocupado) {
+                    seatElement.classList.add('ocupado');
+                    seatElement.style.backgroundColor = '#808080';
+                    seatElement.style.pointerEvents = 'none';
+                } else {
+                    seatElement.style.backgroundColor = '#323232';
+                }
+    
+                if (asiento.fila === 'A') {
+                    frontRowA.appendChild(seatElement);
+                } else if (asiento.fila === 'B') {
+                    frontRowB.appendChild(seatElement);
+                } else if (['C', 'D', 'E', 'F'].includes(asiento.fila)) {
+                    const rowDiv = otherRows[asiento.fila];
+                    if (rowDiv) {
+                        rowDiv.appendChild(seatElement);
                     } else {
                         console.warn(`Fila no reconocida: ${asiento.fila}`);
                     }
-                });
-            }
-        } catch (error) {
-            console.error('Error al obtener los asientos:', error);
-            const seatsContainer = document.querySelector('.asientos__preferenciales > div');
-            if (seatsContainer) {
-                seatsContainer.innerHTML = `<p>Error al obtener los asientos.</p>`;
-            }
+                } else {
+                    console.warn(`Fila no reconocida: ${asiento.fila}`);
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error al obtener los asientos:', error);
+        const seatsContainer = document.querySelector('.asientos__preferenciales > div');
+        if (seatsContainer) {
+            seatsContainer.innerHTML = `<p>Error al obtener los asientos.</p>`;
         }
     }
+}
+
 });
