@@ -205,12 +205,7 @@ body, html {
     /* background-color: #FE0000;  */
    
 }
-.asientos__preferenciales div[colum="4"] button,
-.asientos__preferenciales div[colum="5"] button,
-.asientos__preferenciales div[colum="6"] button {
-    background-color: white; 
-    color: transparent;
-}
+
 
 .asientos small{
     display: none;

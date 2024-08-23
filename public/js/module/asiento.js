@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
             if (selectedProjectionId) {
                 fetchSeats(selectedProjectionId); 
-                document.querySelector('.asientos').classList.remove('hidden'); // Mostrar los asientos
+                document.querySelector('.asientos').classList.remove('hidden'); 
             }
         } else {
             precioTotal = 0; 
             precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
-            document.querySelector('.asientos').classList.add('hidden'); // Ocultar los asientos si se deselecciona
+            document.querySelector('.asientos').classList.add('hidden'); 
         }
     }
     
@@ -254,13 +254,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const seatElement = document.createElement('button');
                     seatElement.textContent = asiento.numero;
                     seatElement.className = 'seat';
-    
+        
                     if (asiento.ocupado) {
                         seatElement.classList.add('ocupado');
                         seatElement.style.backgroundColor = '#808080';
                         seatElement.style.pointerEvents = 'none';
                     } else {
                         seatElement.style.backgroundColor = '#323232';
+                        seatElement.addEventListener('click', () => {
+                            seatElement.classList.toggle('active'); // Alterna la clase active
+                        });
                     }
     
                     if (asiento.fila === 'A') {
