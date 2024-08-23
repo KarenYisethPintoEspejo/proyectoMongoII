@@ -213,6 +213,7 @@ body, html {
 }
 
 .asientos small{
+    display: none;
     margin-left: 0.88rem;
     /* width: 0.5rem; */
     /* height: 10rem; */
@@ -472,3 +473,13 @@ body, html {
 .hour-price::-webkit-scrollbar {
     display: none;
 }
+
+
+.hidden {
+    display: none;
+}
+
+.hidden-letters small {
+    display: none;
+}
+
