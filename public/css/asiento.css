@@ -478,3 +478,28 @@ body, html {
     display: none;
 }
 
+
+.seat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px; 
+    width: 50px; 
+    height: 50px; 
+    background-color: #2c2c2c;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+.seat.active {
+    background-color: red !important;
+}
+
+html, body{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}

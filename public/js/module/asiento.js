@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let selectedDate = null;
     let selectedProjectionId = null;
+    let selectedSeat = null;
 
     const hourPriceContainer = document.getElementById('hour-price-container');
     const seatsContainerFront = document.getElementById('seatsContainerFront');
@@ -95,10 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    
-        
-
-        
     const daysContainer = document.getElementById('days-container');
     const today = new Date();
 
@@ -152,13 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.asientos').classList.remove('hidden');
         }
     }
-
-    const asientos = document.querySelectorAll('.asientos__lista button, .asientos__preferenciales button');
-    asientos.forEach(asiento => {
-        asiento.addEventListener('click', () => {
-            asiento.classList.toggle('active');
-        });
-    });
 
     function displayMovieProjections(movie) {
         if (!selectedDate) {
@@ -231,11 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             asientosSection.classList.add('hidden');
-    
-    
-          
 
-          
             const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
                 method: 'GET',
                 headers: {
@@ -292,7 +278,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         seatElement.style.backgroundColor = '#323232';
                         seatElement.addEventListener('click', () => {
+                            if (selectedSeat && selectedSeat !== seatElement) {
+                                selectedSeat.classList.remove('active');
+                            }
                             seatElement.classList.toggle('active');
+                            if (seatElement.classList.contains('active')) {
+                                selectedSeat = seatElement;
+                            } else {
+                                selectedSeat = null;
+                            }
                         });
                     }
 
