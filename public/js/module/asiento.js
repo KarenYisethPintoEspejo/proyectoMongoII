@@ -335,21 +335,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         seatElement.style.backgroundColor = '#323232';
                         seatElement.addEventListener('click', () => {
-                            if (selectedSeat && selectedSeat !== seatElement) {
+
+                            if (selectedSeat) {
                                 selectedSeat.classList.remove('active');
                             }
-                            seatElement.classList.toggle('active');
-                            if (seatElement.classList.contains('active')) {
-                                selectedSeat = {
-                                    numero: seatElement.dataset.numero, 
-                                    fila: seatElement.dataset.fila 
-                                };
-                                saveSelectionInfo();
-                                updateBuyButton(); 
-                            } else {
+                
+                            if (selectedSeat === seatElement) {
+
                                 selectedSeat = null;
+                                seatElement.classList.remove('active');
                                 localStorage.removeItem('selectionInfo');
+                            } else {
+
+                                selectedSeat = seatElement;
+                                seatElement.classList.add('active');
+                                saveSelectionInfo();
                             }
+                            updateBuyButton();
                         });
                     }
                 
@@ -369,6 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
+                
                 asientosSection.querySelectorAll('small').forEach(letter => {
                     letter.style.display = 'inline';
                 });
@@ -386,36 +389,30 @@ document.addEventListener('DOMContentLoaded', function() {
     function saveSelectionInfo() {
         console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, selectedHour, precioTotal });
     
-        if (selectedDate && selectedProjectionId && selectedSeat && selectedSeat.numero && selectedSeat.fila && precioTotal) {
+        if (selectedDate && selectedProjectionId && selectedSeat && precioTotal) {
+            const asientoSeleccionado = {
+                fila: selectedSeat.dataset.fila,
+                numero: parseInt(selectedSeat.dataset.numero, 10)
+            };
     
-            const asientoSeleccionado = availableSeats.find(seat =>
-                seat.numero === parseInt(selectedSeat.numero, 10) && seat.fila === selectedSeat.fila
-            );
-            if (asientoSeleccionado) {
-                const selectionInfo = {
-                    fecha: selectedDate,
-                    hora: selectedHour, 
-                    proyeccionId: selectedProjectionId,
-                    asiento: {
-                        fila: asientoSeleccionado.fila,
-                        numero: asientoSeleccionado.numero
-                    },
-                    precio: precioTotal
-                };
-                localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
-                console.log('Información de selección guardada:', selectionInfo);
-            } else {
-                console.error('Asiento no encontrado:', selectedSeat);
-            }
+            const selectionInfo = {
+                fecha: selectedDate,
+                hora: selectedHour, 
+                proyeccionId: selectedProjectionId,
+                asiento: asientoSeleccionado,
+                precio: precioTotal
+            };
+            localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
+            console.log('Información de selección guardada:', selectionInfo);
         } else {
             console.error('Información de selección incompleta', {
                 selectedDate,
                 selectedProjectionId,
-                selectedSeat,
-                asiento: selectedSeat ? 'No encontrado' : 'No definido',
+                selectedSeat: selectedSeat ? 'Seleccionado' : 'No definido',
                 precioTotal,
                 selectedHour
             });
+            localStorage.removeItem('selectionInfo');
         }
     }
     
