@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const precioElemento = document.querySelector('.precio h2');
     let precioTotal = 0;
 
+    
     let movieData = null;
+
 
     function encontrarPrimeraProyeccionDisponible(movie) {
         if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones || !movie.formatos_proyecciones || !movie.fechas_proyecciones) {
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         element.classList.add('active', 'active-state');
         selectedDate = new Date(element.dataset.date).toISOString().split('T')[0];
+        saveSelectionInfo();
 
         if (movieData) {
             updateProjectionsForSelectedDate(programmatic);
@@ -147,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedProjectionId) {
             fetchSeats(selectedProjectionId);
             document.querySelector('.asientos').classList.remove('hidden');
+            saveSelectionInfo();
         }
     }
 
@@ -212,37 +216,41 @@ document.addEventListener('DOMContentLoaded', function() {
         displayMovieProjections(movieData);
     }
 
+    let availableSeats = []; 
+
     async function fetchSeats(projectionId) {
         try {
             const asientosSection = document.querySelector('.asientos');
-
+    
             if (!asientosSection) {
                 console.error('Contenedor de asientos no encontrado');
                 return;
             }
             asientosSection.classList.add('hidden');
-
+    
             const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-
+    
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-
+    
             const data = await response.json();
             console.log(data);
-
+    
+            availableSeats = data.asientos; 
+    
             const seatsContainerFront = document.querySelector('.asientos__normal');
             const seatsContainer = document.querySelector('.asientos__preferenciales');
-
+    
             if (seatsContainerFront) {
                 seatsContainerFront.querySelectorAll('.asientos__lista').forEach(div => div.innerHTML = '');
             }
-
+    
             if (seatsContainer) {
                 seatsContainer.querySelectorAll('div').forEach(div => {
                     Array.from(div.childNodes).forEach(child => {
@@ -252,25 +260,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
             }
-
+    
             if (data.error) {
                 asientosSection.innerHTML = `<p>${data.error}</p>`;
             } else {
                 const frontRowA = seatsContainerFront.querySelector('[fila="1"] .asientos__lista');
                 const frontRowB = seatsContainerFront.querySelector('[fila="2"] .asientos__lista');
-
+    
                 const otherRows = {
                     'C': seatsContainer.querySelector('[colum="3"]'),
                     'D': seatsContainer.querySelector('[colum="4"]'),
                     'E': seatsContainer.querySelector('[colum="5"]'),
                     'F': seatsContainer.querySelector('[colum="6"]')
                 };
-
+    
                 data.asientos.forEach(asiento => {
                     const seatElement = document.createElement('button');
-                    seatElement.textContent = asiento.numero;
                     seatElement.className = 'seat';
-
+                    seatElement.dataset.fila = asiento.fila; 
+                    seatElement.dataset.numero = asiento.numero; 
+                
                     if (asiento.ocupado) {
                         seatElement.classList.add('ocupado');
                         seatElement.style.backgroundColor = '#808080';
@@ -283,13 +292,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                             seatElement.classList.toggle('active');
                             if (seatElement.classList.contains('active')) {
-                                selectedSeat = seatElement;
+                                selectedSeat = {
+                                    numero: seatElement.dataset.numero, 
+                                    fila: seatElement.dataset.fila 
+                                };
+                                saveSelectionInfo();
                             } else {
                                 selectedSeat = null;
+                                localStorage.removeItem('selectionInfo');
                             }
                         });
                     }
-
+                
                     if (asiento.fila === 'A') {
                         frontRowA.appendChild(seatElement);
                     } else if (asiento.fila === 'B') {
@@ -305,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.warn(`Fila no reconocida: ${asiento.fila}`);
                     }
                 });
+                
                 asientosSection.querySelectorAll('small').forEach(letter => {
                     letter.style.display = 'inline';
                 });
@@ -318,4 +333,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+    
+function saveSelectionInfo() {
+    console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, precioTotal });
+
+    if (selectedDate && selectedProjectionId && selectedSeat && selectedSeat.numero && selectedSeat.fila && precioTotal) {
+
+        const asientoSeleccionado = availableSeats.find(seat =>
+            seat.numero === parseInt(selectedSeat.numero, 10) && seat.fila === selectedSeat.fila
+        );
+
+        if (asientoSeleccionado) {
+            const selectionInfo = {
+                fecha: selectedDate,
+                proyeccionId: selectedProjectionId,
+                asiento: {
+                    fila: asientoSeleccionado.fila,
+                    numero: asientoSeleccionado.numero
+                },
+                precio: precioTotal
+            };
+            localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
+            console.log('Información de selección guardada:', selectionInfo);
+        } else {
+            console.error('Asiento no encontrado:', selectedSeat);
+        }
+    } else {
+        console.error('Información de selección incompleta', {
+            selectedDate,
+            selectedProjectionId,
+            selectedSeat,
+            asiento: selectedSeat ? 'No encontrado' : 'No definido',
+            precioTotal
+        });
+    }
+}
+
+
+    const buyTicketBtn = document.getElementById('buyTicketBtn');
+    buyTicketBtn.addEventListener('click', function(event) {
+        if (!localStorage.getItem('selectionInfo')) {
+            event.preventDefault();
+            alert('Por favor, selecciona una fecha, hora y asiento antes de comprar el boleto.');
+        }
+    });
 });
