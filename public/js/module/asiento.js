@@ -67,11 +67,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
 
-    fetch('/pelicula/listaPeliculas', {
-        method: 'GET',
-        headers: { 'Cache-Control': 'max-age=3600' } 
-    })
-    .then(response => response.json())
+    function fetchMovieList() {
+        const cachedData = localStorage.getItem('movieListCache');
+        const cacheTimestamp = localStorage.getItem('movieListCacheTimestamp');
+        const currentTime = new Date().getTime();
+        const cacheLifetime = 3600000; 
+    
+        if (cachedData && cacheTimestamp && (currentTime - cacheTimestamp < cacheLifetime)) {
+            return Promise.resolve(JSON.parse(cachedData));
+        } else {
+
+            return fetch('/pelicula/listaPeliculas', {
+                method: 'GET',
+                headers: { 'Cache-Control': 'max-age=3600' }
+            })
+            .then(response => response.json())
+            .then(peliculasData => {
+                localStorage.setItem('movieListCache', JSON.stringify(peliculasData));
+                localStorage.setItem('movieListCacheTimestamp', currentTime.toString());
+                return peliculasData;
+            });
+        }
+    }
+
+    fetchMovieList()
     .then(peliculasData => {
         movieData = peliculasData.find(pelicula => String(pelicula.id) === String(movieId));
         if (!movieData) {
@@ -235,28 +254,43 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchSeats(projectionId) {
         try {
             const asientosSection = document.querySelector('.asientos');
-    
             if (!asientosSection) {
                 console.error('Contenedor de asientos no encontrado');
                 return;
             }
             asientosSection.classList.add('hidden');
     
-            const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const cachedSeats = localStorage.getItem(`seats_${projectionId}`);
+            const cacheTimestamp = localStorage.getItem(`seats_${projectionId}_timestamp`);
+            const currentTime = new Date().getTime();
+            const cacheLifetime = 300000; 
     
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+            let data;
+            if (cachedSeats && cacheTimestamp && (currentTime - cacheTimestamp < cacheLifetime)) {
+
+                data = JSON.parse(cachedSeats);
+                console.log('Usando datos de asientos en caché');
+            } else {
+                const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+    
+                data = await response.json();
+                console.log('Datos de asientos obtenidos del servidor');
+    
+                localStorage.setItem(`seats_${projectionId}`, JSON.stringify(data));
+                localStorage.setItem(`seats_${projectionId}_timestamp`, currentTime.toString());
             }
     
-            const data = await response.json();
             console.log(data);
-    
-            availableSeats = data.asientos; 
+            availableSeats = data.asientos;
     
             const seatsContainerFront = document.querySelector('.asientos__normal');
             const seatsContainer = document.querySelector('.asientos__preferenciales');
