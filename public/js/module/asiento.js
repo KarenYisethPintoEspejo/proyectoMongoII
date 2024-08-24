@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedDate = null;
     let selectedProjectionId = null;
     let selectedSeat = null;
+    let selectedHour= null
 
     const hourPriceContainer = document.getElementById('hour-price-container');
     const seatsContainerFront = document.getElementById('seatsContainerFront');
@@ -134,26 +135,31 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         element.classList.add('active', 'active-state');
-
+    
         selectedProjectionId = element.dataset.projectionId;
-
-        const precioTexto = element.querySelector('p').textContent.trim();
+        selectedHour = element.querySelector('h2') ? element.querySelector('h2').textContent.trim() : ''; 
+    
+        console.log('Selected Projection ID:', selectedProjectionId);
+        console.log('Selected Hour:', selectedHour); 
+    
+        const precioTexto = element.querySelector('p') ? element.querySelector('p').textContent.trim() : ''; 
         const precio = parseFloat(precioTexto.replace('$', '').replace(' ·3D', ''));
-
+    
         if (isNaN(precio)) {
             console.error('Error al extraer el precio:', precioTexto);
             return;
         }
         precioTotal = precio;
         precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
-
+    
         if (selectedProjectionId) {
             fetchSeats(selectedProjectionId);
             document.querySelector('.asientos').classList.remove('hidden');
             saveSelectionInfo();
         }
     }
-
+    
+    
     function displayMovieProjections(movie) {
         if (!selectedDate) {
             hourPriceContainer.innerHTML = '<p>Select a date to view projections.</p>';
@@ -334,42 +340,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-function saveSelectionInfo() {
-    console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, precioTotal });
-
-    if (selectedDate && selectedProjectionId && selectedSeat && selectedSeat.numero && selectedSeat.fila && precioTotal) {
-
-        const asientoSeleccionado = availableSeats.find(seat =>
-            seat.numero === parseInt(selectedSeat.numero, 10) && seat.fila === selectedSeat.fila
-        );
-
-        if (asientoSeleccionado) {
-            const selectionInfo = {
-                fecha: selectedDate,
-                proyeccionId: selectedProjectionId,
-                asiento: {
-                    fila: asientoSeleccionado.fila,
-                    numero: asientoSeleccionado.numero
-                },
-                precio: precioTotal
-            };
-            localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
-            console.log('Información de selección guardada:', selectionInfo);
+    function saveSelectionInfo() {
+        console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, selectedHour, precioTotal });
+    
+        if (selectedDate && selectedProjectionId && selectedSeat && selectedSeat.numero && selectedSeat.fila && precioTotal) {
+    
+            const asientoSeleccionado = availableSeats.find(seat =>
+                seat.numero === parseInt(selectedSeat.numero, 10) && seat.fila === selectedSeat.fila
+            );
+            if (asientoSeleccionado) {
+                const selectionInfo = {
+                    fecha: selectedDate,
+                    hora: selectedHour, 
+                    proyeccionId: selectedProjectionId,
+                    asiento: {
+                        fila: asientoSeleccionado.fila,
+                        numero: asientoSeleccionado.numero
+                    },
+                    precio: precioTotal
+                };
+                localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
+                console.log('Información de selección guardada:', selectionInfo);
+            } else {
+                console.error('Asiento no encontrado:', selectedSeat);
+            }
         } else {
-            console.error('Asiento no encontrado:', selectedSeat);
+            console.error('Información de selección incompleta', {
+                selectedDate,
+                selectedProjectionId,
+                selectedSeat,
+                asiento: selectedSeat ? 'No encontrado' : 'No definido',
+                precioTotal,
+                selectedHour
+            });
         }
-    } else {
-        console.error('Información de selección incompleta', {
-            selectedDate,
-            selectedProjectionId,
-            selectedSeat,
-            asiento: selectedSeat ? 'No encontrado' : 'No definido',
-            precioTotal
-        });
     }
-}
-
-
+    
     const buyTicketBtn = document.getElementById('buyTicketBtn');
     buyTicketBtn.addEventListener('click', function(event) {
         if (!localStorage.getItem('selectionInfo')) {

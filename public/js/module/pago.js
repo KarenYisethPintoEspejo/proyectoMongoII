@@ -1,41 +1,58 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const chooseseat = document.getElementById("back")
+    const chooseseat = document.getElementById("back");
     chooseseat.addEventListener("click", function(event) {
         event.preventDefault();
-        history.back()
-    })
-
-    const selectedSeat = JSON.parse(localStorage.getItem('selectedSeat'));
-    const selectedMovieId = localStorage.getItem('selectedMovieID');
+        history.back();
+    });
+    const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
     const ticketDetails = document.querySelector('.order-details');
 
-    const movieId = localStorage.getItem('selectedMovieID');
-    console.log('ID de la película desde localStorage en pago:', movieId);
+    if (selectionInfo) {
+        const movieId = localStorage.getItem('selectedMovieID');
+        console.log('ID de la película desde localStorage en pago:', movieId);
 
-    if (!movieId) {
-        console.error('No se encontró el movieId en localStorage');
-        return;
-    }
-
-    fetchMovieDetails(movieId);
-    
-    const countdownElement = document.getElementById('countdown');
-    let timeLeft =  14 * 60 + 59;
-    function updateCountdown() {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        
-        countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
-        if (timeLeft === 0) {
-            clearInterval(countdownInterval);
-            window.history.back();
-        } else {
-            timeLeft--;
+        if (!movieId) {
+            console.error('No se encontró el movieId en localStorage');
+            return;
         }
+
+        fetchMovieDetails(movieId);
+
+        const seatDetail = `${selectionInfo.asiento.fila}${selectionInfo.asiento.numero}`;
+        const ticketElement = ticketDetails.querySelector('.line .seat-number');
+        ticketElement.textContent = seatDetail;
+
+        const precioTotal = selectionInfo.precio;
+        const serviceFee = 1.99; 
+
+        setTimeout(() => {
+            const lines = ticketDetails.querySelectorAll('.line');
+            lines.forEach(line => {
+                if (line.textContent.includes('REGULAR SEAT')) {
+                    const regularSeatElement = line.querySelector('.price');
+                    console.log('Elemento de precio regular:', regularSeatElement);
+                    if (regularSeatElement) {
+                        regularSeatElement.textContent = `$${precioTotal}.00`;
+                    } else {
+                        console.error('No se encontró el elemento para el precio regular');
+                    }
+                } else if (line.textContent.includes('SERVICE FEE')) {
+                    const serviceFeeElement = line.querySelector('.price');
+                    console.log('Elemento de cargo por servicio:', serviceFeeElement);
+                    if (serviceFeeElement) {
+                        serviceFeeElement.textContent = `$${serviceFee.toFixed(2)} x 1`;
+                    } else {
+                        console.error('No se encontró el elemento para el cargo por servicio');
+                    }
+                }
+            });
+        }, 500); 
+
+    } else {
+        console.error('No se encontró la información de selección en localStorage');
+        const ticketElement = ticketDetails.querySelector('.line .seat-number');
+        ticketElement.textContent = 'No seat selected';
     }
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
 
     function fetchMovieDetails(movieId) {
         fetch(`/pelicula/peliculaId/${movieId}`)
@@ -51,43 +68,36 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error al cargar los detalles de la película:', error));
     }
-    
+
     function displayMovieDetails(movie) {
         const movieInfoSection = document.querySelector('.movie-info');
-        const orderDetailsSection = document.querySelector('.order-details');
-        
+
         movieInfoSection.innerHTML = `
             <img src="${movie.imagen2}" alt="${movie.nombre}">
             <div class="movie-details">
                 <h1>${movie.nombre}</h1>
                 <p>${movie.generos.join(', ')}</p>
                 <h5>CAMPUSLANDS</h5>
-                <h6>${movie.fecha} ${movie.hora}</h6>
+                <h6>${selectionInfo.fecha} a las ${selectionInfo.hora}</h6>
             </div>
         `;
     }
 
-    if (selectedSeat) {
-        const seatDetail = `${selectedSeat.fila}${selectedSeat.numero}`;
-        const ticketElement = ticketDetails.querySelector('.line .seat-number');
-        ticketElement.textContent = seatDetail;
-    } else {
-        const ticketElement = ticketDetails.querySelector('.line .seat-number');
-        ticketElement.textContent = 'No seat selected';
+    const countdownElement = document.getElementById('countdown');
+    let timeLeft = 14 * 60 + 59;
+    function updateCountdown() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        if (timeLeft === 0) {
+            clearInterval(countdownInterval);
+            window.history.back();
+        } else {
+            timeLeft--;
+        }
     }
-
-    const precioTotal = parseFloat(localStorage.getItem('precioTotal'));
-    const serviceFee = 1.99; 
-
-    if (precioTotal) {
-        const regularSeatElement = ticketDetails.querySelector('.line:nth-child(2) .price');
-        regularSeatElement.textContent = `$${precioTotal.toFixed(2)} x ${precioTotal}`;
-    }
-
-    const serviceFeeElement = ticketDetails.querySelector('.line:nth-child(3) .price');
-    serviceFeeElement.textContent = `$${serviceFee.toFixed(2)} x 1`;
-    
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
 });
-
-
-
