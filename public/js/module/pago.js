@@ -17,14 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        fetchMovieDetails(movieId);
+        let movieData = JSON.parse(localStorage.getItem(`movieDetails_${movieId}`));
+        if (!movieData) {
+
+            fetchMovieDetails(movieId);
+        } else {
+
+            displayMovieDetails(movieData);
+        }
 
         const seatDetail = `${selectionInfo.asiento.fila}${selectionInfo.asiento.numero}`;
         const ticketElement = ticketDetails.querySelector('.line .seat-number');
         ticketElement.textContent = seatDetail;
 
         const precioTotal = selectionInfo.precio;
-        const serviceFee = 1.99; 
+        const serviceFee = 1.99;
 
         setTimeout(() => {
             const lines = ticketDetails.querySelectorAll('.line');
@@ -47,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-        }, 500); 
+        }, 500);
 
     } else {
         console.error('No se encontró la información de selección en localStorage');
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(movieData => {
                 console.log("Detalles de la película:", movieData);
+                localStorage.setItem(`movieDetails_${movieId}`, JSON.stringify(movieData));
                 displayMovieDetails(movieData);
             })
             .catch(error => console.error('Error al cargar los detalles de la película:', error));
@@ -106,13 +114,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const buyButton = document.getElementById('buyButton');
     const buyLink = document.getElementById('buyLink');
 
+    const isCardChecked = JSON.parse(localStorage.getItem('isCardChecked')) || false;
+    cardCheckbox.checked = isCardChecked;
+    updateButtonState();
+
     cardCheckbox.addEventListener('change', function() {
+        localStorage.setItem('isCardChecked', cardCheckbox.checked);
+        updateButtonState();
+    });
+
+    function updateButtonState() {
         if (cardCheckbox.checked) {
             buyButton.disabled = false;
-            buyLink.classList.remove('disabled'); 
+            buyLink.classList.remove('disabled');
         } else {
             buyButton.disabled = true;
-            buyLink.classList.add('disabled'); 
+            buyLink.classList.add('disabled');
         }
-    });
+    }
 });
