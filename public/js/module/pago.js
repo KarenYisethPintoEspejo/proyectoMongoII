@@ -82,16 +82,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayMovieDetails(movie) {
         const movieInfoSection = document.querySelector('.movie-info');
 
+        const date = new Date(selectionInfo.fecha);
+        const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options);
+    
         movieInfoSection.innerHTML = `
             <img src="${movie.imagen2}" alt="${movie.nombre}">
             <div class="movie-details">
                 <h1>${movie.nombre}</h1>
                 <p>${movie.generos.join(', ')}</p>
                 <h5>CAMPUSLANDS</h5>
-                <h6>${selectionInfo.fecha} a las ${selectionInfo.hora}</h6>
+                <h6>${formattedDate}. ${selectionInfo.hora}</h6>
             </div>
         `;
     }
+    
 
     const countdownElement = document.getElementById('countdown');
     let timeLeft = 14 * 60 + 59;

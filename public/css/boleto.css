@@ -146,7 +146,7 @@ header .bi{
 .first-box{
     /* border: 1px solid red; */
     display: flex;
-    gap: 3rem;
+    gap: 3.7rem;
     margin-bottom: 1.5rem;
 }
 .first-box .label{
