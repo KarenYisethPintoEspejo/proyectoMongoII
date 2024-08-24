@@ -18,15 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedHour= null
 
     const hourPriceContainer = document.getElementById('hour-price-container');
-    const seatsContainerFront = document.getElementById('seatsContainerFront');
-    const seatsContainer = document.getElementById('seatsContainer');
     const precioElemento = document.querySelector('.precio h2');
     let precioTotal = 0;
 
     
     let movieData = null;
 
-
+    function updateBuyButton() {
+        const buyButton = document.querySelector('.book-now');
+        if (selectedSeat && selectedHour && selectedProjectionId) {
+            buyButton.disabled = false;
+        } else {
+            buyButton.disabled = true;
+        }
+    }
+    
     function encontrarPrimeraProyeccionDisponible(movie) {
         if (!movie.horas_proyecciones || !movie.id_proyecciones || !movie.precios_proyecciones || !movie.formatos_proyecciones || !movie.fechas_proyecciones) {
             console.error('Datos de proyección no encontrados en movieData');
@@ -92,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         element.classList.add('active', 'active-state');
         selectedDate = new Date(element.dataset.date).toISOString().split('T')[0];
         saveSelectionInfo();
+        updateBuyButton(); 
 
         if (movieData) {
             updateProjectionsForSelectedDate(programmatic);
@@ -156,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetchSeats(selectedProjectionId);
             document.querySelector('.asientos').classList.remove('hidden');
             saveSelectionInfo();
+            updateBuyButton(); 
         }
     }
     
@@ -303,6 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     fila: seatElement.dataset.fila 
                                 };
                                 saveSelectionInfo();
+                                updateBuyButton(); 
                             } else {
                                 selectedSeat = null;
                                 localStorage.removeItem('selectionInfo');

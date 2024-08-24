@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         history.back();
     });
+
     const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
     const ticketDetails = document.querySelector('.order-details');
 
@@ -100,4 +101,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const countdownInterval = setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    const cardCheckbox = document.getElementById('cardCheckbox');
+    const buyButton = document.getElementById('buyButton');
+    const buyLink = document.getElementById('buyLink');
+
+    cardCheckbox.addEventListener('change', function() {
+        if (cardCheckbox.checked) {
+            buyButton.disabled = false;
+            buyLink.classList.remove('disabled'); 
+        } else {
+            buyButton.disabled = true;
+            buyLink.classList.add('disabled'); 
+        }
+    });
 });

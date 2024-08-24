@@ -34,7 +34,7 @@
                 <span class="card-number">**** **** 0998 7865</span>
             </div>
             <label class="radio-button">
-            <input type="checkbox" />
+            <input type="checkbox" id="cardCheckbox"/>
             <span class="checkmark"></span>
         </label>
 
@@ -47,7 +47,9 @@
     </section>
     
     <footer>
-        <a href="../views/boleto.html"><button class="buy-ticket">Buy ticket</button></a> 
+        <a id="buyLink" href="../views/boleto.html">
+            <button class="buy-ticket" id="buyButton" disabled>Buy ticket</button>
+        </a> 
     </footer>
     <script src="../js/module/pago.js"></script>
 </body>

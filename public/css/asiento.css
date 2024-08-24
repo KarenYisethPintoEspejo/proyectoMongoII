@@ -94,11 +94,7 @@ html, body{
 }
 
 
-.book-now:hover{
-    background-color: #111;
-    color: red;
-    /* border: 1px solid red; */
-}
+
 
 body, html {
     margin: 0;
