@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Caché para los datos de usuario
     fetch('/usuario/get-username')
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
@@ -24,6 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('focus', () => searchIcon.classList.add('active-icon'));
     searchInput.addEventListener('blur', () => searchIcon.classList.remove('active-icon'));
 
+    // Caché para los datos de películas
+    const cacheKey = 'peliculas';
+    const cacheExpiration = 3600000; // 1 hora en milisegundos
+    const cachedData = localStorage.getItem(cacheKey);
+
+    if (cachedData) {
+        const { timestamp, data } = JSON.parse(cachedData);
+        const currentTime = Date.now();
+        if (currentTime - timestamp < cacheExpiration) {
+            console.log('Datos de películas obtenidos del caché.');
+            const movies = JSON.parse(data);
+            initializeMovies(movies);
+            return;
+        }
+    }
+
     fetch('/pelicula/listaPeliculas')
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
@@ -31,19 +48,30 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(movies => {
             console.log('Películas obtenidas:', movies);
-            displayMovies(movies);
-            displayComingSoon(movies);
 
-            searchInput.addEventListener('input', () => {
-                const query = searchInput.value.toLowerCase();
-                const filteredMovies = filterMovies(movies, query);
-                const nowPlayingMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) <= new Date());
-                const comingSoonMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) > new Date());
+            // Guardar en caché
+            localStorage.setItem(cacheKey, JSON.stringify({
+                timestamp: Date.now(),
+                data: JSON.stringify(movies)
+            }));
 
-                toggleSections(nowPlayingMovies, comingSoonMovies);
-            });
+            initializeMovies(movies);
         })
         .catch(error => console.error('No se pudieron cargar las películas:', error));
+
+    function initializeMovies(movies) {
+        displayMovies(movies);
+        displayComingSoon(movies);
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredMovies = filterMovies(movies, query);
+            const nowPlayingMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) <= new Date());
+            const comingSoonMovies = filteredMovies.filter(movie => new Date(movie.fecha_estreno) > new Date());
+
+            toggleSections(nowPlayingMovies, comingSoonMovies);
+        });
+    }
 });
 
 const filterMovies = (movies, query) => movies.filter(movie => 

@@ -1,19 +1,45 @@
+const CACHE_EXPIRATION_TIME = 60 * 60 * 1000; 
+
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('movieId');
+    console.log('movieId de la URL:', movieId); 
+
     if (!movieId) {
         console.error('No movieId provided in the URL');
         return; 
     }
 
-    fetch(`/pelicula/peliculaId/${movieId}`)
-        .then(response => response.json())
-        .then(movieData => {
-            console.log("Detalles de la película:", movieData);
-            displayMovieDetail(movieData);
-            setupBookNowButton(movieData.id); 
-        })
-        .catch(error => console.error('Error al cargar detalles de la película:', error));
+    const cachedMovie = localStorage.getItem(`movie_${movieId}`);
+    const cacheTimestamp = localStorage.getItem(`movie_${movieId}_timestamp`);
+
+    if (cachedMovie && cacheTimestamp && (Date.now() - cacheTimestamp < CACHE_EXPIRATION_TIME)) {
+        console.log("Detalles de la película (desde localStorage):", JSON.parse(cachedMovie));
+        displayMovieDetail(JSON.parse(cachedMovie));
+        setupBookNowButton(movieId); 
+    } else {
+        console.log('Cargando detalles desde el servidor...');
+
+        fetch(`/pelicula/peliculaId/${movieId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la red');
+                }
+                return response.json();
+            })
+            .then(movieData => {
+                console.log("Detalles de la película:", movieData);
+                
+                // Guardar en localStorage
+                localStorage.setItem(`movie_${movieId}`, JSON.stringify(movieData));
+                localStorage.setItem(`movie_${movieId}_timestamp`, Date.now().toString());
+                console.log('Datos guardados en localStorage');
+
+                displayMovieDetail(movieData);
+                setupBookNowButton(movieId); 
+            })
+            .catch(error => console.error('Error al cargar detalles de la película:', error));
+    }
 
     const cinemaInfo = document.querySelector('.cinema-info');
     const bookNowButton = document.querySelector('.book-now');
@@ -27,13 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
             cinemaInfo.classList.add('no-hover');
         }
     }
+
     cinemaInfo.addEventListener('click', () => {
         toggleBookNowButton();
 
         setTimeout(function(){
-            bookNowButton.style.display='none'
+            bookNowButton.style.display = 'none';
             cinemaInfo.classList.remove('no-hover');
-        }, 4000)
+        }, 4000);
     });
 });
 
