@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hourPriceContainer = document.getElementById('hour-price-container');
     const precioElemento = document.querySelector('.precio h2');
     let precioTotal = 0;
+    let precioOriginal = 0;
 
     
     let movieData = null;
@@ -175,6 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error al extraer el precio:', precioTexto);
             return;
         }
+
+        precioOriginal = precio
         precioTotal = precio;
         precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
     
@@ -267,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
             let data;
             if (cachedSeats && cacheTimestamp && (currentTime - cacheTimestamp < cacheLifetime)) {
-
                 data = JSON.parse(cachedSeats);
                 console.log('Usando datos de asientos en caché');
             } else {
@@ -324,10 +326,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 data.asientos.forEach(asiento => {
                     const seatElement = document.createElement('button');
-                    seatElement.className = 'seat';
-                    seatElement.dataset.fila = asiento.fila; 
-                    seatElement.dataset.numero = asiento.numero; 
-                
+                    seatElement.className = `seat ${asiento.tipo}`;
+                    seatElement.dataset.fila = asiento.fila;
+                    seatElement.dataset.numero = asiento.numero;
+                    seatElement.dataset.tipo = asiento.tipo; 
+                    
                     if (asiento.ocupado) {
                         seatElement.classList.add('ocupado');
                         seatElement.style.backgroundColor = '#808080';
@@ -335,26 +338,37 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         seatElement.style.backgroundColor = '#323232';
                         seatElement.addEventListener('click', () => {
-
                             if (selectedSeat) {
                                 selectedSeat.classList.remove('active');
                             }
-                
+    
                             if (selectedSeat === seatElement) {
-
                                 selectedSeat = null;
                                 seatElement.classList.remove('active');
                                 localStorage.removeItem('selectionInfo');
                             } else {
-
                                 selectedSeat = seatElement;
                                 seatElement.classList.add('active');
                                 saveSelectionInfo();
                             }
+    
+                            if (selectedSeat) {
+                                const isVIP = selectedSeat.classList.contains('VIP');
+                                if (isVIP) {
+                                    precioTotal = precioOriginal * 1.15;
+                                } else {
+                                    precioTotal = precioOriginal;
+                                }
+                                precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
+                            } else {
+                                precioTotal = precioOriginal;
+                                precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
+                            }
+                            saveSelectionInfo()
                             updateBuyButton();
                         });
                     }
-                
+    
                     if (asiento.fila === 'A') {
                         frontRowA.appendChild(seatElement);
                     } else if (asiento.fila === 'B') {
@@ -370,8 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.warn(`Fila no reconocida: ${asiento.fila}`);
                     }
                 });
-                
-                
+    
                 asientosSection.querySelectorAll('small').forEach(letter => {
                     letter.style.display = 'inline';
                 });
@@ -397,10 +410,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
             const selectionInfo = {
                 fecha: selectedDate,
-                hora: selectedHour, 
+                hora: selectedHour,
                 proyeccionId: selectedProjectionId,
                 asiento: asientoSeleccionado,
-                precio: precioTotal
+                precio: precioTotal 
             };
             localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
             console.log('Información de selección guardada:', selectionInfo);
@@ -415,7 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.removeItem('selectionInfo');
         }
     }
-    
     const buyTicketBtn = document.getElementById('buyTicketBtn');
     buyTicketBtn.addEventListener('click', function(event) {
         if (!localStorage.getItem('selectionInfo')) {

@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const regularSeatElement = line.querySelector('.price');
                     console.log('Elemento de precio regular:', regularSeatElement);
                     if (regularSeatElement) {
-                        regularSeatElement.textContent = `$${precioTotal}.00`;
+                        regularSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
+
                     } else {
                         console.error('No se encontró el elemento para el precio regular');
                     }
