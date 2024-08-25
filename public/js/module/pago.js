@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
         history.back();
     });
 
+    function generateRandomOrderNumber() {
+        return Math.floor(10000000 + Math.random() * 90000000);
+    }
+    const orderNumberElement = document.querySelector('.order-number-value');
+    const orderNumber = generateRandomOrderNumber();
+    localStorage.setItem('orderNumber', orderNumber);
+    orderNumberElement.textContent = orderNumber;
+
     const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
     const ticketDetails = document.querySelector('.order-details');
 
@@ -36,16 +44,34 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             const lines = ticketDetails.querySelectorAll('.line');
             lines.forEach(line => {
-                if (line.textContent.includes('REGULAR SEAT')) {
-                    const regularSeatElement = line.querySelector('.price');
-                    console.log('Elemento de precio regular:', regularSeatElement);
-                    if (regularSeatElement) {
-                        regularSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
-
-                    } else {
-                        console.error('No se encontró el elemento para el precio regular');
+                const seatType = selectionInfo.asiento.tipo;
+                console.log('Texto de línea:', line.textContent); 
+                if (seatType === 'VIP') {
+                    if (line.textContent.includes('REGULAR SEAT')) {
+                        line.innerHTML = line.innerHTML.replace('REGULAR SEAT', 'VIP SEAT');
                     }
-                } else if (line.textContent.includes('SERVICE FEE')) {
+                    if (line.textContent.includes('VIP SEAT')) {
+                        const vipSeatElement = line.querySelector('.price');
+                        console.log('Elemento de precio VIP:', vipSeatElement);
+                        if (vipSeatElement) {
+                            vipSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
+                        } else {
+                            console.error('No se encontró el elemento para el precio VIP');
+                        }
+                    }
+                } else if (seatType === 'Normal' || seatType === 'Regular') {
+                    if (line.textContent.includes('REGULAR SEAT')) {
+                        const regularSeatElement = line.querySelector('.price');
+                        console.log('Elemento de precio regular:', regularSeatElement);
+                        if (regularSeatElement) {
+                            regularSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
+                        } else {
+                            console.error('No se encontró el elemento para el precio regular');
+                        }
+                    }
+                }
+        
+                if (line.textContent.includes('SERVICE FEE')) {
                     const serviceFeeElement = line.querySelector('.price');
                     console.log('Elemento de cargo por servicio:', serviceFeeElement);
                     if (serviceFeeElement) {
@@ -56,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }, 500);
-
+        
     } else {
         console.error('No se encontró la información de selección en localStorage');
         const ticketElement = ticketDetails.querySelector('.line .seat-number');

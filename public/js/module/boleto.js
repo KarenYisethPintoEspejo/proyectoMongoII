@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
     const movieId = localStorage.getItem('selectedMovieID');
     const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
+    const orderNumber = localStorage.getItem('orderNumber'); 
+
 
     if (movieId && selectionInfo) {
-        const barcodeData = `Seat:${selectionInfo.asiento.fila}${selectionInfo.asiento.numero}`;
+        const barcodeData = `Seat:${orderNumber}`;
 
         JsBarcode("#barcode", barcodeData, {
             format: "CODE128", 
-            width: 2.3,          
+            width: 1.8,          
             height: 55,       
             displayValue: false 
         });
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             displayMovieDetails(movieData);
         }
 
-        displayTicketDetails(selectionInfo);
+        displayTicketDetails(selectionInfo, orderNumber);
     } else {
         console.error('No se encontraron los datos necesarios en localStorage');
     }
@@ -62,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
         const formattedDate = date.toLocaleDateString('en-US', options);
         const formattedTime = selectionInfo.hora;
+        
 
         ticketInfoSection.innerHTML = `
             <div class="first-box">
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 <div class="info">
                     <p class="label">Order ID</p>
-                    <p class="value">${selectionInfo.orderId || '123456789'}</p>
+                    <p class="value">${orderNumber || '123456789'}</p> 
                 </div>
             </div>
         `;

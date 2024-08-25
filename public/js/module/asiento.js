@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const cachedSeats = localStorage.getItem(`seats_${projectionId}`);
             const cacheTimestamp = localStorage.getItem(`seats_${projectionId}_timestamp`);
             const currentTime = new Date().getTime();
-            const cacheLifetime = 300000; 
+            const cacheLifetime = 30000; 
     
             let data;
             if (cachedSeats && cacheTimestamp && (currentTime - cacheTimestamp < cacheLifetime)) {
@@ -405,7 +405,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedDate && selectedProjectionId && selectedSeat && precioTotal) {
             const asientoSeleccionado = {
                 fila: selectedSeat.dataset.fila,
-                numero: parseInt(selectedSeat.dataset.numero, 10)
+                numero: parseInt(selectedSeat.dataset.numero, 10),
+                tipo: selectedSeat.dataset.tipo
             };
     
             const selectionInfo = {
