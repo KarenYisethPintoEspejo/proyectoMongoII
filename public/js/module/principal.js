@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('focus', () => searchIcon.classList.add('active-icon'));
     searchInput.addEventListener('blur', () => searchIcon.classList.remove('active-icon'));
 
-    // Caché para los datos de películas
+
     const cacheKey = 'peliculas';
     const cacheExpiration = 3600000; // 1 hora en milisegundos
     const cachedData = localStorage.getItem(cacheKey);

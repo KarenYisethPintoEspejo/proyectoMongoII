@@ -147,17 +147,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const buyButton = document.getElementById('buyButton');
     const buyLink = document.getElementById('buyLink');
 
-    const isCardChecked = JSON.parse(localStorage.getItem('isCardChecked')) || false;
+    // Inicializa el estado del checkbox
+    let isCardChecked = false; // Puedes inicializar con el estado deseado
     cardCheckbox.checked = isCardChecked;
     updateButtonState();
 
     cardCheckbox.addEventListener('change', function() {
-        localStorage.setItem('isCardChecked', cardCheckbox.checked);
+        isCardChecked = cardCheckbox.checked;
         updateButtonState();
     });
 
     function updateButtonState() {
-        if (cardCheckbox.checked) {
+        if (isCardChecked) {
             buyButton.disabled = false;
             buyLink.classList.remove('disabled');
         } else {
@@ -177,11 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const ticketData = {
-            id: parseInt(orderNumber, 10), // Asegúrate de que orderNumber sea un entero
-            id_usuario: parseInt(1, 10), // Esto ya es un entero, pero por consistencia
-            id_asiento: parseInt(selectionInfo.asiento.id, 10), // Convierte id_asiento a entero
-            id_proyeccion: parseInt(selectionInfo.proyeccionId), // Esto ya es un entero, pero por consistencia
-            precio: parseFloat(selectionInfo.precio) // Si es un número decimal, conviértelo a float
+            id: parseInt(orderNumber, 10), 
+            id_usuario: parseInt(1, 10),
+            id_asiento: parseInt(selectionInfo.asiento.id, 10),
+            id_proyeccion: parseInt(selectionInfo.proyeccionId), 
+            precio: parseFloat(selectionInfo.precio) 
         };
         
 
@@ -198,16 +199,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 console.log('Compra exitosa:', result);
-                // Muestra un mensaje de éxito o redirige al usuario a una página de confirmación
+
                 alert('Compra realizada con éxito!');
             } else {
                 console.error('Error al comprar el boleto:', result.error);
-                // Muestra un mensaje de error al usuario
+
                 alert(`Error: ${result.error}`);
             }
         } catch (error) {
             console.error('Error al realizar la solicitud de compra:', error);
-            // Muestra un mensaje de error al usuario
+
             alert('Ocurrió un error al procesar la compra.');
         }
     });
