@@ -1,3 +1,5 @@
+
+
 header {
     display: flex;
     align-items: center;
@@ -55,20 +57,25 @@ header .bx:hover {
     border: none;
     width: 85%;
     height: 50px;
-    margin: 9px;
     margin-left: 1.9rem;
     cursor: pointer;
     border-radius: 12px;
     font-weight: bold;
     font-size: 18px;
-    position: fixed;
+    text-decoration: none;
+    /* position: fixed; */
 
 
+}
+
+.button__trailer__buy a{
+    text-decoration: none;
 }
 
 
 
 .book-now:hover{
+    text-decoration: none;
     background-color: #111;
     color: red;
     border: 1px solid red;
@@ -78,8 +85,7 @@ header .bx:hover {
 }
 
 body, html {
-    margin: 0;
-    padding: 0;
+    height: 110vh;    
     font-family: "Inter", sans-serif;
     background-color: #111;
 }
@@ -345,8 +351,7 @@ body, html {
 
 
 html, body{
-    overflow: hidden;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
-    height: 100%;
 }

@@ -42,10 +42,11 @@ html, body{
 .container__footer{
     display: flex;
     width: 100%;
-    height: 8rem;
+    height: 10rem;
     /* align-items: center; */
     margin-top: 1.5rem;
     flex-direction: row;
+
     /* border: 1px solid green; */
 }
 .precio{
@@ -82,10 +83,10 @@ html, body{
     background-color: red;
     color: #fff;
     border: none;
-    width: 14rem;
-    height: 58px;
+    width: 12rem;
+    height: 60px;
     /* right: 1.7rem; */
-    margin-left: 1.5rem;
+    margin-left: 3rem;
     /* cursor: pointer; */
     border-radius: 12px;
     font-weight: bold;
@@ -102,6 +103,7 @@ body, html {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #111;
+    height: 110vh;
 }
 .cinema-selection {
     flex-grow: 1;
@@ -481,12 +483,11 @@ body, html {
     justify-content: center;
     align-items: center;
     font-size: 12px; 
-    width: 50px; 
-    height: 50px; 
+    width: 30px; 
+    height: 30px; 
     background-color: #2c2c2c;
     margin: 5px;
     border-radius: 5px;
-    color: white;
 }
 
 
@@ -495,8 +496,7 @@ body, html {
 }
 
 html, body{
-    overflow: hidden;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
-    height: 100%;
 }
