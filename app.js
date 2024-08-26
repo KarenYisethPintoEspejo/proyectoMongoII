@@ -57,11 +57,12 @@ app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     process.env.MONGO_USER = username;
     process.env.MONGO_PWD = password;
-
     const mongoUrl = `mongodb://${username}:${password}@${process.env.MONGO_CLUSTER}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
 
     try {
+
         await mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+        mongoose.disconnect();
 
         res.status(200).json({ message: 'Login exitoso' });
     } catch (error) {
