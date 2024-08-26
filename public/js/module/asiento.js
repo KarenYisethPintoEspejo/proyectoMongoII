@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const proyecciones = movie.horas_proyecciones.map((hora, index) => ({
             id: movie.id_proyecciones[index],
-            hora: hora,
+            hora: hora[index],
             fecha: new Date(movie.fechas_proyecciones[index]),
             precio: movie.precios_proyecciones[index],
             formato: movie.formatos_proyecciones[index]
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     seatElement.dataset.fila = asiento.fila;
                     seatElement.dataset.numero = asiento.numero;
                     seatElement.dataset.tipo = asiento.tipo; 
-                    
+                    seatElement.dataset.id= asiento.id;                    
                     if (asiento.ocupado) {
                         seatElement.classList.add('ocupado');
                         seatElement.style.backgroundColor = '#808080';
@@ -404,6 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         if (selectedDate && selectedProjectionId && selectedSeat && precioTotal) {
             const asientoSeleccionado = {
+                id: selectedSeat.dataset.id,
                 fila: selectedSeat.dataset.fila,
                 numero: parseInt(selectedSeat.dataset.numero, 10),
                 tipo: selectedSeat.dataset.tipo

@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
     const ticketDetails = document.querySelector('.order-details');
+    console.log(selectionInfo)
 
     if (selectionInfo) {
         const movieId = localStorage.getItem('selectedMovieID');
@@ -164,4 +165,50 @@ document.addEventListener('DOMContentLoaded', function() {
             buyLink.classList.add('disabled');
         }
     }
+
+    buyButton.addEventListener('click', async function() {
+        const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
+        const orderNumber = localStorage.getItem('orderNumber');
+        const movieId = localStorage.getItem('selectedMovieID');
+
+        if (!selectionInfo || !orderNumber || !movieId) {
+            console.error('Faltan datos para completar la compra.');
+            return;
+        }
+
+        const ticketData = {
+            id: parseInt(orderNumber, 10), // Asegúrate de que orderNumber sea un entero
+            id_usuario: parseInt(1, 10), // Esto ya es un entero, pero por consistencia
+            id_asiento: parseInt(selectionInfo.asiento.id, 10), // Convierte id_asiento a entero
+            id_proyeccion: parseInt(selectionInfo.proyeccionId), // Esto ya es un entero, pero por consistencia
+            precio: parseFloat(selectionInfo.precio) // Si es un número decimal, conviértelo a float
+        };
+        
+
+        try {
+            const response = await fetch('/boleto/compraBoleto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(ticketData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log('Compra exitosa:', result);
+                // Muestra un mensaje de éxito o redirige al usuario a una página de confirmación
+                alert('Compra realizada con éxito!');
+            } else {
+                console.error('Error al comprar el boleto:', result.error);
+                // Muestra un mensaje de error al usuario
+                alert(`Error: ${result.error}`);
+            }
+        } catch (error) {
+            console.error('Error al realizar la solicitud de compra:', error);
+            // Muestra un mensaje de error al usuario
+            alert('Ocurrió un error al procesar la compra.');
+        }
+    });
 });

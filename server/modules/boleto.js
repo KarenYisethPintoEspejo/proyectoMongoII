@@ -38,18 +38,18 @@ module.exports = class boleto extends connect {
     async comprarBoleto(ticketData) {
         try {
             await this.conexion.connect();
-
+    
             const boletoExistente = await this.collection.findOne({ id: ticketData.id });
             if (boletoExistente) {
                 throw new Error(`El boleto con ID ${ticketData.id} ya existe.`);
             }
-
+    
             const usuarioCollection = this.db.collection('usuario');
             const usuarioExistente = await usuarioCollection.findOne({ id: ticketData.id_usuario });
             if (!usuarioExistente) {
                 throw new Error(`El usuario con ID ${ticketData.id_usuario} no existe.`);
             }
-
+    
             const proyeccionCollection = this.db.collection('proyeccion');
             const proyeccionExistente = await proyeccionCollection.findOne({ id: ticketData.id_proyeccion });
             if (!proyeccionExistente) {
@@ -60,40 +60,44 @@ module.exports = class boleto extends connect {
             if (fechaProyeccion < fechaActual) {
                 throw new Error(`La proyección con ID ${ticketData.id_proyeccion} ya ha ocurrido.`);
             }
-
+    
             const asientoCollection = this.db.collection('asiento');
+            console.log('Buscando asiento con ID:', ticketData.id_asiento);
+    
             const asientoExistente = await asientoCollection.findOne({ id: ticketData.id_asiento });
+            console.log('Asiento encontrado:', asientoExistente);
+    
             if (!asientoExistente) {
                 throw new Error(`El asiento con ID ${ticketData.id_asiento} no existe.`);
             }
-
+    
             // Verificar que el asiento pertenezca a la sala de la proyección
             if (asientoExistente.id_sala !== proyeccionExistente.id_sala) {
                 throw new Error(`El asiento con ID ${ticketData.id_asiento} no pertenece a la sala de la proyección con ID ${ticketData.id_proyeccion}.`);
             }
-
+    
             const boletoAsientoExistente = await this.collection.findOne({ id_proyeccion: ticketData.id_proyeccion, id_asiento: ticketData.id_asiento });
             if (boletoAsientoExistente) {
                 throw new Error(`El asiento con ID ${ticketData.id_asiento} ya está ocupado para la proyección con ID ${ticketData.id_proyeccion}.`);
             }
-
+    
             const tarjetaCollection = this.db.collection('tarjeta');
             const tarjetaUsuario = await tarjetaCollection.findOne({ id_usuario: ticketData.id_usuario, estado: 'Activo' });
-
+    
             let montoFinal = ticketData.precio;
             if (tarjetaUsuario) {
                 const descuento = tarjetaUsuario['%descuento'] || 0;
                 montoFinal = ticketData.precio * (1 - descuento / 100);
             }
-
+    
             await this.collection.insertOne(ticketData);
-
+    
             const pagoCollection = this.db.collection('pago');
             const pagoExistente = await pagoCollection.findOne({ boleto: ticketData.id });
             if (pagoExistente) {
                 throw new Error(`El boleto con ID ${ticketData.id} ya ha sido pagado.`);
             }
-
+    
             const nuevoPago = {
                 id: await this.getNextId('pago'),
                 boleto: ticketData.id,
@@ -104,16 +108,16 @@ module.exports = class boleto extends connect {
                 estado: 'Completado',
                 tipo_transaccion: 'Compra'
             };
-
+    
             await pagoCollection.insertOne(nuevoPago);
-
-
+    
             return { mensaje: 'Boleto comprado exitosamente', boleto: ticketData, pago: nuevoPago };
         } catch (error) {
-
+            console.error('Error en la compra del boleto:', error);
             return { error: `Error al comprar el boleto: ${error.message}` };
         }
     }
+    
 
     /**
      * Obtiene el siguiente ID para una colección.
