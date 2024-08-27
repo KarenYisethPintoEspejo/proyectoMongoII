@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const storedUserId = localStorage.getItem('userId');
-    console.log(storedUserId)
     fetch(`/boleto/boletos/${storedUserId}`)
         .then(response => response.json())
         .then(tickets => {

@@ -1,9 +1,8 @@
 body {
     background-image: url('../storage/img/dorada.png');
     margin: 0;
-    background-size: 52rem; /* Ajusta la imagen al tamaño del contenedor */
-    background-position: center; /* Centra la imagen */
-    /* Evita la repetición de la imagen */
+    background-size: 52rem; 
+    background-position: center; 
     z-index: -1;
     padding: 0;
     font-family: "Inter", sans-serif;
@@ -13,9 +12,7 @@ body {
     align-items: center;
     height: 100vh;
     display: flex;
-    
 }
-
 
 .login-container {
     display: flex;
@@ -28,53 +25,48 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
     text-align: center;
 }
+
 .tittle{
     display: flex;
     width: 100%;
     height: 3rem;
-    /* border: 1px solid red; */
     justify-content: center;
     align-items: center;
 
 }
+
 .photo{
     display: flex;
     width: 100%;
     height: 15rem;
     margin-top: 2.5rem;
-    /* border: 1px solid red; */
     justify-content: center;
     align-items: center;
 
 }
+
 .photo img{
     object-fit: contain;
     height: 18rem;
 }
 .login-container h1 {
-    
     color: #e50914;
-    /* margin-top: 20rem; */
     font-family: "Press Start 2P", system-ui;
-    /* margin-bottom: 30px; */
     font-size: 1.5rem;
-    /* border: 1px solid red; */
-
 }
 
 .login-form{
     display: flex;
     width: 100%;
     margin-top: 2rem;
-    /* border: 1px solid rgb(115, 255, 0); */
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
 }
+
 .input-group {
     width: 80%;
-    /* border: 1px solid red; */
     margin-bottom: 20px;
     text-align: left;
 }
@@ -97,16 +89,12 @@ body {
     box-sizing: border-box;
 }
 
-
-
-
-
 .ov-btn-grow-skew-reverse {
-    background:#b80e0e; /* color de fondo */
-    color:white; /* color de fuente */
+    background:#b80e0e; 
+    color:white; 
     margin-top: 1rem;
     padding: 16px 20px;
-    border-radius: 10px; /* redondear bordes */
+    border-radius: 10px; 
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -119,15 +107,18 @@ body {
     align-items: center;
     display: flex;
   }
-  .ov-btn-grow-skew-reverse h3{
+
+.ov-btn-grow-skew-reverse h3{
     font-size: 1rem;
   }
-  .ov-btn-grow-skew-reverse:hover {
-    color: red;/* color de fuente hover */
+
+.ov-btn-grow-skew-reverse:hover {
+    color: red;
   }
-  .ov-btn-grow-skew-reverse::after {
+
+.ov-btn-grow-skew-reverse::after {
     content: "";
-    background:white; /* color de fondo hover */
+    background:white; 
     position: absolute;
     color: red;
     z-index: -1;
@@ -140,24 +131,23 @@ body {
     transform: skewX(45deg) scale(0, 1);
     transition: all 0.3s ease;
   }
-  .ov-btn-grow-skew-reverse:hover::after {
+
+.ov-btn-grow-skew-reverse:hover::after {
     transition: all 0.3s ease-out;
     transform: skewX(45deg) scale(1, 1);
   }
-
-
 
 .login-container {
     position: relative;
     padding: 20px;
     border-radius: 10px;
-    background-color: #111; /* Fondo oscuro para el contenedor */
-    color: #fff; /* Texto blanco */
+    background-color: #111; 
+    color: #fff; 
     text-align: center;
-    border: 3px solid transparent; /* Borde transparente inicialmente */
-    overflow: hidden; /* Evita que el efecto se desborde */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Sombra general para el contenedor */
-    animation: neonEffect 3s infinite; /* Animación del efecto neón */
+    border: 3px solid transparent; 
+    overflow: hidden; 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+    animation: neonEffect 3s infinite; 
 }
 
 @keyframes neonEffect {
@@ -165,7 +155,7 @@ body {
         border-color: transparent;
     }
     25% {
-        border-color: rgba(255, 255, 255, 1); /* Esquina superior izquierda */
+        border-color: rgba(255, 255, 255, 1); 
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
     }
     50% {
@@ -173,7 +163,7 @@ body {
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
     75% {
-        border-color: rgba(255, 255, 255, 1); /* Esquina inferior derecha */
+        border-color: rgba(255, 255, 255, 1); 
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
     }
     100% {

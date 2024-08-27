@@ -1,13 +1,11 @@
 document.getElementById('loginButton').addEventListener('click', async (e) => {
-    e.preventDefault(); // Evita el comportamiento por defecto del enlace
+    e.preventDefault(); 
 
     const loginButton = document.getElementById('loginButton');
     loginButton.disabled = true;
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
-    console.log(`Intentando login con usuario: ${username}`);
 
     try {
         const response = await fetch('/login', {

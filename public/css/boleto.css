@@ -64,7 +64,6 @@ header .bi{
 }
 
 .ticket {
-    /* border: 1px solid red; */
     display: flex;
     height: 95svh;
     padding: 20px;
@@ -110,7 +109,6 @@ header .bi{
 
 .info-cinema{
     height: 3.5rem;
-    /* border: 1px solid red; */
     display: flex;
     position: relative;
 }
@@ -145,7 +143,6 @@ header .bi{
 }
 
 .first-box{
-    /* border: 1px solid red; */
     display: flex;
     gap: 2.8rem;
     margin-bottom: 1.5rem;
@@ -163,13 +160,9 @@ header .bi{
 }
 
 .second-box{
-    /* border: 2px solid yellow; */
     display: flex;
     gap: 5.9rem;
     margin-bottom: 1.5rem;
-
-
-
 }
 
 .second-box .label{
@@ -185,7 +178,6 @@ header .bi{
 }
 
 .third-box{
-    /* border: 1px solid blue; */
     display: flex;
     gap: 8.7rem;
 }
@@ -204,7 +196,6 @@ header .bi{
 
 .info-ticket{
     margin-top: 2.5rem;
-    /* border: 3px solid rebeccapurple; */
 }
 
 
@@ -213,15 +204,11 @@ header .bi{
     margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid red; */
     height: 6.5rem;
     position: relative;
 }
 
-
-
 #barcode{
-    /* border: 1px solid red; */
     position: absolute;
     bottom: 0;
     margin-bottom: 1.7rem;

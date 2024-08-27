@@ -31,14 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const cacheKey = 'peliculas';
-    const cacheExpiration = 3600000; // 1 hora en milisegundos
+    const cacheExpiration = 3600000; 
     const cachedData = localStorage.getItem(cacheKey);
 
     if (cachedData) {
         const { timestamp, data } = JSON.parse(cachedData);
         const currentTime = Date.now();
         if (currentTime - timestamp < cacheExpiration) {
-            console.log('Datos de películas obtenidos del caché.');
             const movies = JSON.parse(data);
             initializeMovies(movies);
             return;
@@ -51,9 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(movies => {
-            console.log('Películas obtenidas:', movies);
-
-            // Guardar en caché
             localStorage.setItem(cacheKey, JSON.stringify({
                 timestamp: Date.now(),
                 data: JSON.stringify(movies)

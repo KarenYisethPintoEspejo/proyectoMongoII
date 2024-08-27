@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(movieData => {
-                console.log("Detalles de la película:", movieData);
                 localStorage.setItem(`movieDetails_${movieId}`, JSON.stringify(movieData));
                 displayMovieDetails(movieData);
             })

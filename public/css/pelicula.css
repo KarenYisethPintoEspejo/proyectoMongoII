@@ -1,5 +1,3 @@
-
-
 header {
     display: flex;
     align-items: center;
@@ -10,7 +8,6 @@ header {
 }
 
 header .bx {
-    /* border: 1px solid red; */
     margin-top: 28px;
     font-size: 30px;
     cursor: pointer;
@@ -30,14 +27,12 @@ header .bx:hover {
     color: #ff0000;
 }
 
-
 .cinema-selection {
     flex-grow: 1;
     text-align: center;
     padding: 10px;
     margin: 0 0px;
     margin-top: 28px;
-    /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px
 }
@@ -63,9 +58,6 @@ header .bx:hover {
     font-weight: bold;
     font-size: 18px;
     text-decoration: none;
-    /* position: fixed; */
-
-
 }
 
 .button__trailer__buy a{
@@ -91,9 +83,6 @@ body, html {
 }
 .detalle_video-cinema{
     height: 7.2rem;
-    
-    /* border: 1px solid yellow; */
-    /* border: 1px solid red; */
 }
 
 #movie-detail-container {
@@ -102,7 +91,6 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
-    /* border: 1px solid rgb(0, 217, 255); */
     width: 93%;
     height: 410px;
 }
@@ -110,11 +98,9 @@ body, html {
 .movies-container2{
     background: #111;
     height: 13rem;
-    /* padding: 130px 0px 0px; */
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     justify-content: center;
-    /* border: 1px solid rgb(0, 255, 136); */
     position: relative;
 }
 
@@ -122,7 +108,6 @@ body, html {
     width: 364px;
     height: 220px;
     border-radius: 12px;
-    /* border: 1px solid red; */
 }
 
 .actor-photo {
@@ -136,7 +121,6 @@ body, html {
     height: 4rem;
     flex-direction: row;
     gap: 1.1rem;
-    /* margin-top: 5px; */
     margin-left: 15px;
     position:absolute;
     bottom: 1px;
@@ -148,33 +132,24 @@ body, html {
     font-size: 20px;
     margin-left: 15px;
     position:absolute;
-
-    /* border: 1px solid red; */
     bottom: 3rem;
-
 }
+
 .movies-container2 h4 {
     margin-left: 15px;
-   
     color: #fff;
     font-size: 18px;
     font-weight: normal;
-   
     position:absolute;
-    /* bottom: 0; */
     bottom: 9.6rem;
-    /* border: 1px solid red; */
 }
 
 .movies-container2 p {
     margin-left: 15px;
     color: #dadada;
     font-size: 10px;
-   
     position:absolute;
-    /* border: 1px solid red; */
     bottom: 9.7rem;
-
 }
 
 .movies-container2 h5 {
@@ -183,20 +158,17 @@ body, html {
     font-size: 14px;
     margin-left: 15px;
     margin-right: 60px;
-   
-    /* border: 1px solid red; */
     position:absolute;
     bottom: 6.2rem;
 
 }
+
 .actor-info {
-    /* border: 3px solid rgb(0, 255, 26); */
     display: flex;
     width: 30%;
     align-items: center;
     flex-direction: row;
     position: relative;
-
 }
 
 .actor-name {
@@ -209,16 +181,15 @@ body, html {
     font-weight: bold;
     position: absolute;
 }
+
 .container__information p{
     display: flex;
     left: 1.89rem;
     bottom: 0.5rem;
-    /* border: 1px solid yellow; */
 }
 
 .actor-role {
     color: gray;
-    /* border: 1px solid white; */
     position: absolute;
     bottom: 4px;
     left: 1.7rem;
@@ -226,14 +197,7 @@ body, html {
 
 .movies-container2{
     position: relative;
-    /* border: 2px solid rgb(255, 0, 170); */
-
 }
-
-
-
-
-
 
 .trailer {
     background-color: red;
@@ -241,23 +205,16 @@ body, html {
     color: #fff;
     border: none;
     width: 6.6rem;
-
     height: 28px;
     cursor: pointer;
     border-radius: 7px;
     font-weight: normal;
     font-size: 11px;
     align-items: center;
-    /* justify-content: center;   */
-    /* position: relative;  */
-    /* bottom: 195px; */
     right: 1rem;
     top: 0;
     margin-top: 0.4rem;
-    /* border: 2px solid green; */
-
     position: absolute;
-
 }
 
 .trailer i {
@@ -271,15 +228,12 @@ body, html {
     width: 86%;
     align-items: center;
     justify-content: center;
-    /* gap: 2rem; */
     background: #272727;
     padding: 0rem;
     border-radius: 0.5rem;
     margin-left: 30px;
     height: 60px;
     margin-top: -18px;
-    /* border: 2px solid rgb(81, 255, 0); */
-
 }
 
 .cinema-info:hover{
@@ -293,20 +247,17 @@ body, html {
 }
 
 .cinema-info div{
-    /* border: 1px solid rgb(211, 167, 255); */
     display: flex;
     flex-direction: column;
     width: 80%;
     height: 10px;
     gap: 0.7rem;
-    /* background-color: #272727; */
 }
 
 
 
 .cinema-info div p {
     color: #fff;
-    /* background-color: #272727; */
 }
 
 .cinema-info img {
@@ -323,15 +274,10 @@ body, html {
     color: white;
     font-size: 20px;
     font-weight: normal;
-    margin-left: 30px;
-   
-    /* margin-top: 100px; */
-    /* border: 1px solid rgb(255, 208, 0); */
-    
+    margin-left: 30px;   
 }
 
 .place{
-    /* margin-top: -10px; */
     font-weight: bolder;
     font-size: 15px;
 }
@@ -347,8 +293,6 @@ body, html {
     justify-content: center;
     margin-left: 15px;
 }
-
-
 
 html, body{
     overflow-x: hidden;

@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const movieId = localStorage.getItem('selectedMovieID');
-    console.log('ID de la película desde localStorage:', movieId);
     if (!movieId) {
         console.error('No movieId found in localStorage');
         return;
@@ -98,8 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('No se encontró la película con el ID proporcionado');
             return;
         }
-        console.log("Detalles de la película:", movieData);
-        
         const primeraProyeccion = encontrarPrimeraProyeccionDisponible(movieData);
         if (primeraProyeccion) {
             seleccionarProyeccion(primeraProyeccion);
@@ -165,9 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         selectedProjectionId = element.dataset.projectionId;
         selectedHour = element.querySelector('h2') ? element.querySelector('h2').textContent.trim() : ''; 
-    
-        console.log('Selected Projection ID:', selectedProjectionId);
-        console.log('Selected Hour:', selectedHour); 
     
         const precioTexto = element.querySelector('p') ? element.querySelector('p').textContent.trim() : ''; 
         const precio = parseFloat(precioTexto.replace('$', '').replace(' ·3D', ''));
@@ -262,8 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             asientosSection.classList.add('hidden');
-    
-            // Se elimina la parte de caché, siempre se realiza la solicitud al servidor
+
             const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
                 method: 'GET',
                 headers: {
@@ -276,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
     
             const data = await response.json();
-            console.log('Datos de asientos obtenidos del servidor');
             availableSeats = data.asientos;
     
             const seatsContainerFront = document.querySelector('.asientos__normal');
@@ -387,7 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     function saveSelectionInfo() {
-        console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, selectedHour, precioTotal });
     
         if (selectedDate && selectedProjectionId && selectedSeat && precioTotal) {
             const asientoSeleccionado = {
@@ -405,7 +396,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 precio: precioTotal 
             };
             localStorage.setItem('selectionInfo', JSON.stringify(selectionInfo));
-            console.log('Información de selección guardada:', selectionInfo);
         } else {
             console.error('Información de selección incompleta', {
                 selectedDate,

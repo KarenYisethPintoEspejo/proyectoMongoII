@@ -2,15 +2,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
+}
+
 body {
     font-family: "Inter", sans-serif;
     background-color: #222;
     color: white;
     height: 110vh;
 }
-
-
 
 header {
     display: flex;
@@ -19,7 +18,6 @@ header {
     align-items: center;
     justify-content: space-around;
     padding: 15px 20px;
-    /* margin-bottom: 2.1rem; */
     background-color: #323232;
 }
 
@@ -38,7 +36,6 @@ header :nth-child(3){
     padding: 10px;
     margin: 0 10px;
     margin-top: 36px;
-    /* border: 1px solid red; */
     font-weight: normal;
     font-size: 21px
 }
@@ -50,16 +47,12 @@ header a {
     justify-content: center;
     align-items: center;
     font-style: none;
-
-    /* color: white; */
-    /* border: 1px solid red; */
     text-decoration: none;
 }
 header i{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
     width: 100%;
     height: 100%;
     margin-top: 38px;
@@ -73,28 +66,21 @@ header .bi{
     margin-bottom: 0.2rem;
 }
 
-
-
 .movie-info {
     width: 100%;
     height: 13.8rem;
     display: flex;
     margin-bottom: 20px;
     background-color: #323232;
-    /* border: 1px solid red; */
 }
 
 .movie-info img {
     display: flex;
-    /* width: 7rem; */
     height: 10rem;
     border-radius: 10px;
-    /* margin-right: 15px; */
     margin-left: 2rem;
     margin-top: 1.5rem;
-    /* border: 1px solid red; */
     object-fit: contain;
-
 }
 
 .movie-details h1 {
@@ -105,8 +91,6 @@ header .bi{
     font-weight: normal;
     margin-right: 3rem;
     margin-left: 1rem;
-    /* border: 1px solid red; */
-
 }
 
 .movie-details p {
@@ -117,7 +101,6 @@ header .bi{
     margin-right: 3rem;
     color: grey;
     margin-left: 1rem;
-
 }
 
 .movie-details h5{
@@ -125,14 +108,12 @@ header .bi{
     font-size: 1rem;
     font-weight: normal;
     margin-left: 1rem;
-
 }
 
 .movie-details h6{
     font-size: 0.9rem;
     color: grey;
     margin-left: 1rem;
-
 }
 
 .order-details {
@@ -143,7 +124,6 @@ header .bi{
 }
 
 .order-number{
-    /* border: 1px solid red; */
     color: gray;
     font-size: 0.85rem;
     font-weight: bold;
@@ -170,7 +150,6 @@ header .bi{
     padding-bottom: 10px; 
     margin-bottom: 10px; 
 }
-
 
 .price {
     font-weight: bold;
@@ -226,9 +205,6 @@ header .bi{
     color: #ccc;
 }
 
-
-
-
 .radio-button {
     position: absolute;
     right: 20px;
@@ -244,7 +220,6 @@ header .bi{
     cursor: pointer;
 }
 
-
 .radio-button .checkmark {
     position: relative;
     height: 23px;
@@ -254,7 +229,6 @@ header .bi{
     display: inline-block;
     box-sizing: border-box;
 }
-
 
 .radio-button input:checked + .checkmark::after {
     content: "";
@@ -267,8 +241,6 @@ header .bi{
     background-color: red; 
     border-radius: 50%;
 }
-
-
 
 .payment-timer {
     width: 20.5rem;
@@ -295,7 +267,6 @@ footer {
     display: flex;
     width: 100%;
     height: 7rem;
-    /* border: 1px solid red; */
     justify-content: center;
 }
 
@@ -308,12 +279,9 @@ footer {
     font-size: 18px;
     cursor: pointer;
     color: white;
-    /* margin-top: 4rem; */
 }
 
 html, body{
-    /* overflow: hidden; */
     margin: 0;
     padding: 0;
-
 }

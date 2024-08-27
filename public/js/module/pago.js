@@ -15,11 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
     const ticketDetails = document.querySelector('.order-details');
-    console.log(selectionInfo)
 
     if (selectionInfo) {
         const movieId = localStorage.getItem('selectedMovieID');
-        console.log('ID de la película desde localStorage en pago:', movieId);
 
         if (!movieId) {
             console.error('No se encontró el movieId en localStorage');
@@ -46,14 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const lines = ticketDetails.querySelectorAll('.line');
             lines.forEach(line => {
                 const seatType = selectionInfo.asiento.tipo;
-                console.log('Texto de línea:', line.textContent); 
                 if (seatType === 'VIP') {
                     if (line.textContent.includes('REGULAR SEAT')) {
                         line.innerHTML = line.innerHTML.replace('REGULAR SEAT', 'VIP SEAT');
                     }
                     if (line.textContent.includes('VIP SEAT')) {
                         const vipSeatElement = line.querySelector('.price');
-                        console.log('Elemento de precio VIP:', vipSeatElement);
                         if (vipSeatElement) {
                             vipSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
                         } else {
@@ -63,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (seatType === 'Normal' || seatType === 'Regular') {
                     if (line.textContent.includes('REGULAR SEAT')) {
                         const regularSeatElement = line.querySelector('.price');
-                        console.log('Elemento de precio regular:', regularSeatElement);
                         if (regularSeatElement) {
                             regularSeatElement.textContent = `$${precioTotal.toFixed(2)}`;
                         } else {
@@ -74,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
                 if (line.textContent.includes('SERVICE FEE')) {
                     const serviceFeeElement = line.querySelector('.price');
-                    console.log('Elemento de cargo por servicio:', serviceFeeElement);
                     if (serviceFeeElement) {
                         serviceFeeElement.textContent = `$${serviceFee.toFixed(2)} x 1`;
                     } else {
@@ -99,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(movieData => {
-                console.log("Detalles de la película:", movieData);
                 localStorage.setItem(`movieDetails_${movieId}`, JSON.stringify(movieData));
                 displayMovieDetails(movieData);
             })

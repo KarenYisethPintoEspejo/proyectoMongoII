@@ -3,7 +3,6 @@ const CACHE_EXPIRATION_TIME = 60 * 60 * 1000;
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('movieId');
-    console.log('movieId de la URL:', movieId); 
 
     if (!movieId) {
         console.error('No movieId provided in the URL');
@@ -28,12 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(movieData => {
-                console.log("Detalles de la película:", movieData);
                 
-                // Guardar en localStorage
                 localStorage.setItem(`movie_${movieId}`, JSON.stringify(movieData));
                 localStorage.setItem(`movie_${movieId}_timestamp`, Date.now().toString());
-                console.log('Datos guardados en localStorage');
 
                 displayMovieDetail(movieData);
                 setupBookNowButton(movieId); 
@@ -66,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setupBookNowButton(movieId) {
     document.querySelector('.book-now').addEventListener('click', function() {
-        console.log('Setting movieId in localStorage:', movieId); 
         localStorage.setItem('selectedMovieID', movieId);
         window.location.href = './asiento.html';
     });
