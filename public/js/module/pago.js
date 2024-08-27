@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             id_usuario: parseInt(storedUserId, 10),
             id_asiento: parseInt(selectionInfo.asiento.id, 10),
             id_proyeccion: parseInt(selectionInfo.proyeccionId, 10), 
-            precio: parseFloat(selectionInfo.precio) 
+            precio: parseInt(selectionInfo.precio) 
         };
     
         try {
