@@ -17,15 +17,15 @@ appBoleto.post('/compraBoleto', async(req, res, next)=>{
 appBoleto.get("/disponibilidadAsientos/:id", async (req, res) => {
     let obj = new boleto();
     const id = req.params.id;
-    const proyeccionObj = { id: parseInt(id, 10) }; // Crear el objeto con el ID de la proyección
+    const proyeccionObj = { id: parseInt(id, 10) };
 
     try {
         const disponibilidad = await obj.verificarDisponibilidadAsientos(proyeccionObj);
 
         if (disponibilidad.error) {
-            res.status(404).send(disponibilidad); // Error si la proyección no existe o ya sucedió
+            res.status(404).send(disponibilidad); 
         } else {
-            res.status(200).send(disponibilidad); // Enviar asientos disponibles
+            res.status(200).send(disponibilidad); 
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al verificar la disponibilidad de asientos' });
@@ -50,19 +50,33 @@ appBoleto.post('/reservaAsiento', async(req, res, next)=>{
 appBoleto.post("/cancelarReserva/:id", async (req, res) => {
     let obj = new boleto();
     const id = req.params.id;
-    const boletoObj = { id: parseInt(id, 10) }; // Crear el objeto con el ID del boleto
+    const boletoObj = { id: parseInt(id, 10) }; 
 
     try {
         const resultado = await obj.cancelarReserva(boletoObj);
 
         if (resultado.error) {
-            res.status(404).send(resultado); // Error si el boleto no existe o no se encontró la reserva
+            res.status(404).send(resultado); 
         } else {
-            res.status(200).send(resultado); // Mensaje de éxito de la cancelación
+            res.status(200).send(resultado); 
         }
     } catch (error) {
         res.status(500).send({ error: 'Error al cancelar la reserva del boleto' });
     } finally{
+        obj.destructor()
+    }
+});
+
+appBoleto.get('/boletos/:id_usuario', async (req, res) => {
+    let obj = new boleto()
+    try {
+        const id_usuario = parseInt(req.params.id_usuario); 
+        const boletos = await obj.obtenerBoletosConDetalles(id_usuario);
+        
+        res.json(boletos);
+    } catch (error) {
+        res.status(500).json({ error: `Error al obtener boletos: ${error.message}` });
+    } finally {
         obj.destructor()
     }
 });

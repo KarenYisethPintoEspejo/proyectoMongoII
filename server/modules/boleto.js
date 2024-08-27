@@ -331,5 +331,47 @@ module.exports = class boleto extends connect {
     }
 
 
+
+    async obtenerBoletosConDetalles(id_usuario) {
+        try {
+            await this.conexion.connect();
+    
+            // Buscar todos los boletos asociados al id_usuario
+            const boletos = await this.collection.find({ id_usuario: id_usuario }).toArray();
+    
+            // Verificar si se encontraron boletos
+            if (boletos.length === 0) {
+                return { mensaje: `No se encontraron boletos para el usuario con ID ${id_usuario}.` };
+            }
+    
+            // Obtener las colecciones de proyeccion y asiento
+            const proyeccionCollection = this.db.collection('proyeccion');
+            const asientoCollection = this.db.collection('asiento');
+    
+            // Iterar sobre los boletos para buscar detalles de proyeccion y asiento
+            const boletosConDetalles = await Promise.all(boletos.map(async (boleto) => {
+                // Buscar la proyección asociada al id_proyeccion del boleto
+                const proyeccion = await proyeccionCollection.findOne({ id: boleto.id_proyeccion });
+                
+                // Buscar el asiento asociado al id_asiento del boleto
+                const asiento = await asientoCollection.findOne({ id: boleto.id_asiento });
+                
+                return {
+                    ...boleto,
+                    fecha: proyeccion ? proyeccion.fecha : null,
+                    hora: proyeccion ? proyeccion.hora : null,
+                    id_pelicula: proyeccion ? proyeccion.id_pelicula : null, // Añadir id_pelicula
+                    fila: asiento ? asiento.fila : null,
+                    numero: asiento ? asiento.numero : null
+                };
+            }));
+    
+            return boletosConDetalles;
+        } catch (error) {
+            return { error: `Error al obtener los boletos, proyecciones y asientos para el usuario con ID ${id_usuario}: ${error.message}` };
+        }
+    }
+    
+
 }
 
