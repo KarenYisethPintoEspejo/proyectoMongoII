@@ -6,9 +6,11 @@
  * @throws {Error} Lanza un error si hay algún problema durante la conexión a la base de datos o durante la ejecución de la operación de agregación.
  */    
 
-import { connect } from "../../helpers/db/connect.js";
 
-export class pelicula extends connect {
+const connect  = require('../helpers/db/connect')
+
+
+module.exports = class pelicula extends connect {
     static instancePelicula;
     db;
     collection;
@@ -39,7 +41,7 @@ export class pelicula extends connect {
     async getALLMovies() {
         await this.conexion.connect();
         const currentDate = new Date();
-
+    
         const movies = await this.collection.aggregate([
             {
                 $lookup: {
@@ -62,27 +64,40 @@ export class pelicula extends connect {
             },
             {
                 $match: {
-                    fecha_estreno: { $lte: currentDate },
-                    fecha_retiro: { $gte: currentDate },
+                    $or: [
+                        { fecha_estreno: { $lte: currentDate } }, 
+                        { fecha_estreno: { $gt: currentDate } }   
+                    ],
+                    fecha_retiro: { $gte: currentDate } 
                 },
             },
             {
                 $project: {
                     _id: 0,
+                    id: 1,
                     nombre: 1,
                     generos: 1,
                     duracion: 1,
+                    actores: 1,
                     fecha_estreno: 1,
                     fecha_retiro: 1,
                     fechas_proyecciones: '$proyecciones.fecha',
                     horas_proyecciones: '$proyecciones.hora',
+                    precios_proyecciones: '$proyecciones.precio',
+                    formatos_proyecciones: '$proyecciones.formato',
+                    id_proyecciones: '$proyecciones.id',
+                    id_proyecciones_sala: '$proyecciones.id_sala',
+                    imagen: 1,
+                    imagen2: 1,
+                    trailer: 1
                 },
             },
         ]).toArray();
-
-        await this.conexion.close();
+    
         return movies;
     }
+    
+    
 
 
 /**
@@ -96,19 +111,19 @@ export class pelicula extends connect {
  * de la operación de consulta.
  */
 
-    async consultarPeliculas(id) {
+    async consultarPeliculas(peliculaObj) {
         try {
             await this.conexion.connect();
-            const consulta = { id: id };
+            const consulta = { id: peliculaObj.id };
             const pelicula = await this.collection.findOne(consulta);
-            await this.conexion.close();
+
             if (!pelicula) {
-                return { error: `No se encontró una pelicula con el ID ${id}` };
+                return { error: `No se encontró una película con el ID ${peliculaObj.id}` };
             }
             return pelicula;
         } catch (error) {
-            await this.conexion.close();
-            return { error: `Error al consultar la pelicula ${error.message}` };
+
+            throw new Error(`Error al consultar la película: ${error.message}`);
         }
     }
 }

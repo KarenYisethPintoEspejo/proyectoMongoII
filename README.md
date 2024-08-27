@@ -8,6 +8,56 @@ CineCampus es una empresa de entretenimiento que se especializa en ofrecer una e
 
 Desarrollar una serie de APIs para la aplicación web de CineCampus utilizando MongoDB como base de datos. Las APIs deberán gestionar la selección de películas, la compra de boletos, la asignación de asientos, y la implementación de descuentos para tarjetas VIP, con soporte para diferentes roles de usuario.
 
+
+
+#### Funcionamiento pagina web:
+
+- Copie y pegue el siguiente comando para realizar la instalación de las dependencias:
+
+```javascript
+npm i
+```
+
+- Para correr el servidor y que entre en funcionamiento, copie y pegue el siguiente comando:
+
+```javascript
+npm run dev
+```
+
+- Para ingresar en el Login utilice los siguientes usuarios y contraseñas:
+
+```javascript
+- usuario estandar:
+
+user: KarenPinto
+password: KarenPinto123
+```
+
+```javascript
+- usuario VIP:
+
+user: MiguelCastro
+password: MiguelCastro123
+```
+
+
+
+- Conexión a la base de datos:
+
+  ```javascript
+  mongodb://mongo:VSOTAPgQBZCItrGgGPexWdhxXTwwTpmE@autorack.proxy.rlwy.net:24665
+  ```
+
+- Conexión con Administrador: 
+
+  ```javascript
+  mongodb://adminCineCampus:admin123@autorack.proxy.rlwy.net:24665/cineCampus
+  ```
+
+  
+
+
+
 #### Requisitos Funcionales
 
 1. **Selección de Películas:**

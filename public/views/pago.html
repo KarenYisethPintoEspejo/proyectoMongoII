@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Order Summary</title>
+    <link rel="stylesheet" href="../css/pago.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <a id="back" href="#"><i class='bx bx-left-arrow-alt'></i></a>
+        <h2 class="title">Order Summary</h2>
+        <a><i class="bi bi-three-dots-vertical"></i></a>
+    </header>
+    
+    <main class="movie-info"></main>
+    
+    <section class="order-details">
+        <p class="order-number">ORDER NUMBER : <span class="order-number-value">123456786</span></p>
+        <p class="line">1 TICKET <span class="seat-number"></span></p>
+        <p class="line">REGULAR SEAT <span class="price"></span></p>
+        <p class="line">SERVICE FEE <span class="price">$1,99 x 1</span></p>
+    </section>
+    <section class="payment-method">
+        <h2>Payment method</h2>
+        <div class="card">
+            <img src="https://www.svgrepo.com/show/452059/mastercard.svg" alt="MasterCard">
+            <div class="card-details">
+                <span class="card-name">MasterCard</span>
+                <span class="card-number">**** **** 0998 7865</span>
+            </div>
+            <label class="radio-button">
+            <input type="checkbox" id="cardCheckbox"/>
+            <span class="checkmark"></span>
+        </label>
+
+        </div>
+        
+    </section>
+
+    <section class="payment-timer">
+        <p>Complete your payment in <span id="countdown">04:59</span></p>
+    </section>
+    
+    <footer>
+        <a id="buyLink" href="#">
+            <button class="buy-ticket" id="buyButton" disabled>Buy ticket</button>
+        </a> 
+    </footer>
+    <script src="../js/module/pago.js"></script>
+</body>
+</html>

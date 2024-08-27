@@ -1,0 +1,173 @@
+body {
+    background-image: url('../storage/img/dorada.png');
+    margin: 0;
+    background-size: 52rem; 
+    background-position: center; 
+    z-index: -1;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #121212; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    display: flex;
+}
+
+.login-container {
+    display: flex;
+    width: 65%;
+    height: 75%;
+    flex-direction: column;
+    background-color: #1e1e1e; 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
+    text-align: center;
+}
+
+.tittle{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.photo{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.photo img{
+    object-fit: contain;
+    height: 18rem;
+}
+.login-container h1 {
+    color: #e50914;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 1.5rem;
+}
+
+.login-form{
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.input-group {
+    width: 80%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e50914; 
+    font-weight: bold;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333; 
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.ov-btn-grow-skew-reverse {
+    background:#b80e0e; 
+    color:white; 
+    margin-top: 1rem;
+    padding: 16px 20px;
+    border-radius: 10px; 
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+    text-decoration: none;
+    width: 6rem;
+    height: 0.7rem;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+.ov-btn-grow-skew-reverse h3{
+    font-size: 1rem;
+  }
+
+.ov-btn-grow-skew-reverse:hover {
+    color: red;
+  }
+
+.ov-btn-grow-skew-reverse::after {
+    content: "";
+    background:white; 
+    position: absolute;
+    color: red;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(45deg) scale(0, 1);
+    transition: all 0.3s ease;
+  }
+
+.ov-btn-grow-skew-reverse:hover::after {
+    transition: all 0.3s ease-out;
+    transform: skewX(45deg) scale(1, 1);
+  }
+
+.login-container {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #111; 
+    color: #fff; 
+    text-align: center;
+    border: 3px solid transparent; 
+    overflow: hidden; 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+    animation: neonEffect 3s infinite; 
+}
+
+@keyframes neonEffect {
+    0% {
+        border-color: transparent;
+    }
+    25% {
+        border-color: rgba(255, 255, 255, 1); 
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        border-color: transparent;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    75% {
+        border-color: rgba(255, 255, 255, 1); 
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        border-color: transparent;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+}

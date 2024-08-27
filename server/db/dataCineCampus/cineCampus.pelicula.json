@@ -1,0 +1,244 @@
+[{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff818"
+  },
+  "id": 1,
+  "nombre": "Misión Imposible 7",
+  "sinopsis": "Ethan Hunt y su equipo enfrentan su misión más peligrosa hasta la fecha.",
+  "generos": [
+    "Acción",
+    "Aventura",
+    "Suspenso"
+  ],
+  "actores": [
+    {
+      "nombre": "Tom Cruise",
+      "rol": "Ethan Hunt",
+      "foto": "data:image/jpeg;base64,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"
+    },
+    {
+      "nombre": "Rebecca F.",
+      "rol": "Ilsa Faust",
+      "foto": "https://cdn.britannica.com/39/247539-050-B8127C0B/Rebecca-Ferguson-actress-BAFTA-Awards-2023.jpg"
+    },
+    {
+      "nombre": "Simon Pegg",
+      "rol": "Benji Dunn",
+      "foto": "https://variety.com/wp-content/uploads/2023/05/simon-pegg_-1.jpg?w=1000"
+    }
+  ],
+  "duracion": 147,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-20T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-08-30T00:00:00.000Z"
+  },
+  "imagen": "https://www.aceprensa.com/wp-content/uploads/2018/07/353081-0.jpg",
+  "imagen2": "https://www.uniminutoradio.com.co/wp-content/uploads/2023/07/mi-7-portada-Uniminuto.jpg"
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff819"
+  },
+  "id": 2,
+  "nombre": "Oppenheimer",
+  "sinopsis": "La vida del físico J. Robert Oppenheimer y su papel en el Proyecto Manhattan.",
+  "generos": [
+    "Drama",
+    "Histórico"
+  ],
+  "actores": [
+    {
+      "nombre": "Cillian Murphy",
+      "rol": "J. Robert",
+      "foto": "https://cdn.britannica.com/10/215010-050-A44F9280/Irish-actor-Cillian-Murphy-2017.jpg"
+    },
+    {
+      "nombre": "Emily Blunt",
+      "rol": "Kitty ",
+      "foto": "https://upload.wikimedia.org/wikipedia/commons/2/23/Emily_Blunt_SAG_Awards_2019.png"
+    },
+    {
+      "nombre": "Matt Damon",
+      "rol": "Leslie Groves",
+      "foto": "https://media.themoviedb.org/t/p/w500/At3JgvaNeEN4Z4ESKlhhes85Xo3.jpg"
+    }
+  ],
+  "duracion": 180,
+  "clasificacion": "Mayores de 17 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-22T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-09-15T00:00:00.000Z"
+  },
+  "imagen": "https://es.web.img3.acsta.net/pictures/23/05/25/13/41/1835431.jpg",
+  "imagen2": "https://revistazocalo.com/wp-content/uploads/2023/09/Portada-Notas-1-1-3.jpeg"
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81a"
+  },
+  "id": 3,
+  "nombre": "Barbie",
+  "sinopsis": "Barbie y Ken se embarcan en una aventura fuera de Barbieland.",
+  "generos": [
+    "Comedia",
+    "Fantasía"
+  ],
+  "actores": [
+    {
+      "nombre": "Margot Robbie",
+      "rol": "Barbie",
+      "foto": "https://mx.web.img3.acsta.net/c_310_420/pictures/19/11/12/22/54/0812791.jpg"
+    },
+    {
+      "nombre": "Ryan Gosling",
+      "rol": "Ken",
+      "foto": "https://m.media-amazon.com/images/M/MV5BMTQzMjkwNTQ2OF5BMl5BanBnXkFtZTgwNTQ4MTQ4MTE@._V1_.jpg"
+    },
+    {
+      "nombre": "Will Ferrell",
+      "rol": "Profesor",
+      "foto": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Will_Ferrell_2012.jpg"
+    }
+  ],
+  "duracion": 114,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-15T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-08-25T00:00:00.000Z"
+  },
+  "imagen": "https://es.web.img2.acsta.net/pictures/23/07/20/11/29/5479684.jpg",
+  "imagen2": "https://assets.aboutamazon.com/dims4/default/29a0cdb/2147483647/strip/false/crop/1920x1080+0+0/resize/1486x836!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2F7f%2Fe6%2Fb76966994e56a97dbeba44f56009%2Fbarbie-hero.jpg"
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81b"
+  },
+  "id": 4,
+  "nombre": "Guardianes de la Galaxia",
+  "sinopsis": "Los Guardianes luchan para proteger el universo y su amistad.",
+  "generos": [
+    "Acción",
+    "Aventura",
+    "Ciencia Ficción"
+  ],
+  "actores": [
+    {
+      "nombre": "Chris Pratt",
+      "rol": "Star-Lord",
+      "foto": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/249381_v9_bc.jpg"
+    },
+    {
+      "nombre": "Zoe Saldana",
+      "rol": "Gamora",
+      "foto": "https://vader.news/__export/1685095020160/sites/gadgets/img/2023/05/25/zoe-saldana.jpg_531839554.jpg"
+    },
+    {
+      "nombre": "Dave Bautista",
+      "rol": "Drax",
+      "foto": "https://upload.wikimedia.org/wikipedia/commons/4/40/Dave_Bautista_Photo_Op_GalaxyCon_Minneapolis_2019.jpg"
+    }
+  ],
+  "duracion": 150,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-07-15T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-09-15T00:00:00.000Z"
+  },
+  "imagen": "https://lumiere-a.akamaihd.net/v1/images/lat_2ae5e247.jpeg",
+  "imagen2": "https://assets.telegraphindia.com/telegraph/2023/May/1683173444_guardians.jpg"
+},
+{
+  "_id": {
+    "$oid": "66a78038c46b9e19746ff81c"
+  },
+  "id": 5,
+  "nombre": "Cruzando el Multiverso",
+  "sinopsis": "Miles Morales se adentra en el Multiverso para enfrentarse a una nueva amenaza.",
+  "generos": [
+    "Animación",
+    "Acción",
+    "Aventura"
+  ],
+  "actores": [
+    {
+      "nombre": "Shameik Moore",
+      "rol": "Miles Morales",
+      "foto": "https://m.media-amazon.com/images/M/MV5BMjAwNDU2OTc5M15BMl5BanBnXkFtZTgwOTk0ODMyNDE@._V1_.jpg"
+    },
+    {
+      "nombre": "Hailee Steinfeld",
+      "rol": "Gwen Stacy",
+      "foto": "https://media.vogue.mx/photos/5fefc9be9342f2b02c7a6252/2:3/w_2560%2Cc_limit/hailee-steinfield-actriz-estadounidense.jpg"
+    },
+    {
+      "nombre": "Oscar Isaac",
+      "rol": "Miguel O'Hara",
+      "foto": "https://upload.wikimedia.org/wikipedia/commons/6/6d/OscarIsaac.jpg"
+    }
+  ],
+  "duracion": 140,
+  "clasificacion": "Apta para todo público",
+  "estado": "No disponible",
+  "fecha_estreno": {
+    "$date": "2024-12-10T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2024-12-30T00:00:00.000Z"
+  },
+  "imagen": "https://pics.filmaffinity.com/Spider_Man_Cruzando_el_Multiverso-257260163-large.jpg",
+  "imagen2": "https://lafrikileria.com/blog/wp-content/uploads/2023/06/spider-man-cruzando-multiverso.jpg"
+},
+{
+  "_id": {
+    "$oid": "66b867a68b85160966b3c989"
+  },
+  "id": 6,
+  "nombre": "Avatar 2",
+  "sinopsis": "En esta secuela de Avatar, Jake Sully y Neytiri deben proteger su hogar de una nueva amenaza, mientras exploran las maravillas de Pandora.",
+  "generos": [
+    "Ciencia Ficción",
+    "Aventura",
+    "Acción"
+  ],
+  "actores": [
+    {
+      "nombre": "Sam Worthington",
+      "rol": "Jake Sully",
+      "foto": "https://static.wikia.nocookie.net/doblaje/images/4/4b/Sam_Worthington_1.jpg/revision/latest?cb=20200417141056&path-prefix=es"
+    },
+    {
+      "nombre": "Zoe Saldana",
+      "rol": "Neytiri",
+      "foto": "https://vader.news/__export/1685095020160/sites/gadgets/img/2023/05/25/zoe-saldana.jpg_531839554.jpg"
+    },
+    {
+      "nombre": "Sigourney Weaver",
+      "rol": "Kiri",
+      "foto": "https://static.wikia.nocookie.net/doblaje/images/b/b7/Sigourney_Weaver_2019_1.jpg/revision/latest?cb=20190325123633&path-prefix=es"
+    }
+  ],
+  "duracion": 192,
+  "clasificacion": "Mayores de 13 años",
+  "estado": "Disponible",
+  "fecha_estreno": {
+    "$date": "2024-12-15T00:00:00.000Z"
+  },
+  "fecha_retiro": {
+    "$date": "2025-01-31T00:00:00.000Z"
+  },
+  "imagen": "https://pics.filmaffinity.com/avatar_the_way_of_water-722646748-mmed.jpg",
+  "imagen2": "https://media.gq.com.mx/photos/639b5e4d8a20ef7d5f5a8c05/16:9/w_2656,h_1494,c_limit/Avatar%202-GQ3.jpg"
+}]

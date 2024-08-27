@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "66a78019c46b9e19746ff813"
+  },
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "email": "juan.perez@example.com",
+  "rol": "usuarioVIP"
+},
+{
+  "_id": {
+    "$oid": "66a78019c46b9e19746ff814"
+  },
+  "id": 2,
+  "nombre": "María López",
+  "email": "maria.lopez@example.com",
+  "rol": "usuarioVIP"
+},
+{
+  "_id": {
+    "$oid": "66a78019c46b9e19746ff815"
+  },
+  "id": 3,
+  "nombre": "Carlos García",
+  "email": "carlos.garcia@example.com",
+  "rol": "dbOwner"
+},
+{
+  "_id": {
+    "$oid": "66a78019c46b9e19746ff816"
+  },
+  "id": 4,
+  "nombre": "Ana Martínez",
+  "email": "ana.martinez@example.com",
+  "rol": "usuarioVIP"
+},
+{
+  "_id": {
+    "$oid": "66a78019c46b9e19746ff817"
+  },
+  "id": 5,
+  "nombre": "Luis Fernández",
+  "email": "luis.fernandez@example.com",
+  "rol": "usuarioEstandar"
+}]

@@ -1,0 +1,76 @@
+const express = require('express');
+const usuario = require('../modules/usuario');
+const appUsuario = express.Router();
+
+appUsuario.post('/crearUsuario', async(req, res, next)=>{
+    let obj = new usuario();
+    try {
+        const usuarios = await obj.crearUsuario(req.body);
+        res.status(200).send(usuarios)
+    } catch (error) {
+        next(error)
+    } finally{
+        obj.destructor()
+    }
+})
+
+appUsuario.get("/usuarioId/:id", async (req, res) => {
+    let obj = new usuario();
+    const id = req.params.id;  
+    const usuarioObj = { id: parseInt(id, 10) };
+
+    try {
+        const usuarios = await obj.obtenerDetallesUsuario(usuarioObj);
+
+        if (usuarios.error) {
+            res.status(404).send(usuarios);
+        } else {
+            res.status(200).send(usuarios);
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al consultar el usuario' });
+    } finally{
+        obj.destructor()
+    }
+});
+
+appUsuario.post('/actualizarUsuario', async(req, res)=>{
+    let obj = new usuario();
+    try {
+        const usuarios = await obj.actualizarRolUsuario(req.body);
+        res.status(200).send(usuarios)
+    } catch (error) {
+        next (error)
+    } finally{
+        obj.destructor()
+    }
+})
+
+appUsuario.get('/usuarioPorRol/:rol', async (req, res) => {
+    let obj = new usuario();
+    const rol = req.params.rol; // Obtener el parámetro de consulta 'rol'
+
+    try {
+        const usuarios = await obj.listarUsuarios(rol);
+
+        if (usuarios.error) {
+            res.status(404).send(usuarios);
+        } else {
+            res.status(200).send(usuarios);
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Error al listar los usuarios' });
+    } finally{
+        obj.destructor()
+    }
+});
+
+appUsuario.get('/get-username', (req, res) => {
+    const userName = process.env.MONGO_USER; // O cualquier variable de entorno que estés usando
+    res.json({ userName });
+});
+
+
+
+
+module.exports = appUsuario

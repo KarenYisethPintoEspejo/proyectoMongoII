@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cineCampus</title>
+    <link rel="stylesheet" href="../css/principal.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="user-info">
+            <div class="user-details">
+                <img src="https://i.pinimg.com/736x/52/98/f8/5298f8e4091e926a2b57d44b176bc608.jpg" alt="User Profile Picture" class="profile-pic">
+                <div class="user-text">
+                    <p>Hi, KarenPinto!</p> 
+                    <h2>Let's watch a movie together!</h2>
+                </div>
+            </div>
+            <div class="icon-box">
+                <i class='bx bxs-bell-ring'></i>
+            </div>
+        </div>
+        <div class="search-bar">
+            <i class='bx bx-search search-icon'></i>
+            <input type="text" placeholder="Search movie, actor, genre..." id="search-input">
+        </div>
+    </header>
+    <div id="no-results-message" class="no-results-message">
+        <p>No se encontraron coincidencias.</p>
+    </div>
+    <section class="now-playing">
+        <div class="section-header">
+            <h3>Now playing</h3>
+            <a href="#">See all</a>
+        </div>
+        <div id="movies-container" class="movie-carousel"></div>
+        <div id="carousel-indicators" class="carousel-indicators">
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+    </section>
+    
+    <section class="coming-soon">
+        <div class="section-header">
+            <h3>Coming soon</h3>
+            <a href="#">See all</a>
+        </div>
+        <div class="movie-carousel1"></div>
+    </section>
+    
+    <footer>
+        <nav class="bottom-nav">
+            <a href="principal.html" class="nav-item active">
+                <i class='bx bxs-home'></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class='bx bx-search'></i>
+                <span>Browse</span>
+            </a>
+            <a href="./viewTickets.html" class="nav-item">
+                <i class='bx bx-credit-card'></i>
+                <span>Tickets</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class='bx bx-user'></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </footer>
+
+    <script src="../js/module/principal.js"></script>
+</body>
+</html>

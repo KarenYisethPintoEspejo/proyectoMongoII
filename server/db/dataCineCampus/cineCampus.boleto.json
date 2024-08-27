@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff84e"
+  },
+  "id": 1,
+  "id_usuario": 1,
+  "id_asiento": 1,
+  "id_proyeccion": 1,
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff84f"
+  },
+  "id": 2,
+  "id_usuario": 2,
+  "id_asiento": 2,
+  "id_proyeccion": 1,
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff850"
+  },
+  "id": 3,
+  "id_usuario": 3,
+  "id_asiento": 9,
+  "id_proyeccion": 7,
+  "precio": 15
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff851"
+  },
+  "id": 4,
+  "id_usuario": 4,
+  "id_asiento": 10,
+  "id_proyeccion": 7,
+  "precio": 15
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff852"
+  },
+  "id": 5,
+  "id_usuario": 5,
+  "id_asiento": 13,
+  "id_proyeccion": 11,
+  "precio": 10
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff853"
+  },
+  "id": 6,
+  "id_usuario": 1,
+  "id_asiento": 14,
+  "id_proyeccion": 11,
+  "precio": 10
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff854"
+  },
+  "id": 7,
+  "id_usuario": 2,
+  "id_asiento": 17,
+  "id_proyeccion": 19,
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff855"
+  },
+  "id": 8,
+  "id_usuario": 3,
+  "id_asiento": 18,
+  "id_proyeccion": 19,
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff856"
+  },
+  "id": 9,
+  "id_usuario": 4,
+  "id_asiento": 19,
+  "id_proyeccion": 15,
+  "precio": 12
+},
+{
+  "_id": {
+    "$oid": "66a780b1c46b9e19746ff857"
+  },
+  "id": 10,
+  "id_usuario": 5,
+  "id_asiento": 20,
+  "id_proyeccion": 15,
+  "precio": 12
+}]
