@@ -263,35 +263,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             asientosSection.classList.add('hidden');
     
-            const cachedSeats = localStorage.getItem(`seats_${projectionId}`);
-            const cacheTimestamp = localStorage.getItem(`seats_${projectionId}_timestamp`);
-            const currentTime = new Date().getTime();
-            const cacheLifetime = 30000; 
-    
-            let data;
-            if (cachedSeats && cacheTimestamp && (currentTime - cacheTimestamp < cacheLifetime)) {
-                data = JSON.parse(cachedSeats);
-                console.log('Usando datos de asientos en caché');
-            } else {
-                const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+            // Se elimina la parte de caché, siempre se realiza la solicitud al servidor
+            const response = await fetch(`/asiento/listarAsientosProyeccion/${projectionId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            });
     
-                data = await response.json();
-                console.log('Datos de asientos obtenidos del servidor');
-    
-                localStorage.setItem(`seats_${projectionId}`, JSON.stringify(data));
-                localStorage.setItem(`seats_${projectionId}_timestamp`, currentTime.toString());
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
     
-            console.log(data);
+            const data = await response.json();
+            console.log('Datos de asientos obtenidos del servidor');
             availableSeats = data.asientos;
     
             const seatsContainerFront = document.querySelector('.asientos__normal');
@@ -329,8 +314,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     seatElement.className = `seat ${asiento.tipo}`;
                     seatElement.dataset.fila = asiento.fila;
                     seatElement.dataset.numero = asiento.numero;
-                    seatElement.dataset.tipo = asiento.tipo; 
-                    seatElement.dataset.id= asiento.id;                    
+                    seatElement.dataset.tipo = asiento.tipo;
+                    seatElement.dataset.id = asiento.id;
+    
                     if (asiento.ocupado) {
                         seatElement.classList.add('ocupado');
                         seatElement.style.backgroundColor = '#808080';
@@ -364,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 precioTotal = precioOriginal;
                                 precioElemento.textContent = `$${precioTotal.toFixed(2)}`;
                             }
-                            saveSelectionInfo()
+                            saveSelectionInfo();
                             updateBuyButton();
                         });
                     }
@@ -398,6 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+    
     
     function saveSelectionInfo() {
         console.log('Datos de selección:', { selectedDate, selectedProjectionId, selectedSeat, selectedHour, precioTotal });
