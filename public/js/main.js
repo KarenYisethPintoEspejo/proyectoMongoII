@@ -1,7 +1,8 @@
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+document.getElementById('loginButton').addEventListener('click', async (e) => {
+    e.preventDefault(); // Evita el comportamiento por defecto del enlace
+
     const loginButton = document.getElementById('loginButton');
-    loginButton.disabled = true; 
+    loginButton.disabled = true;
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -21,9 +22,9 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (response.ok) {
             console.log('Login exitoso');
-            const { userId } = data; 
+            const { userId } = data;
             localStorage.setItem('username', username);
-            localStorage.setItem('userId', userId)
+            localStorage.setItem('userId', userId);
             window.location.href = './views/principal.html';
         } else {
             console.error('Error en el login:', data.message);
@@ -33,6 +34,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         console.error('Error:', error);
         alert('Error al iniciar sesión');
     } finally {
-        loginButton.disabled = false; 
+        loginButton.disabled = false;
     }
 });

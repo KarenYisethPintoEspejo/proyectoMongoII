@@ -1,33 +1,80 @@
-/* Global styles */
 body {
+    background-image: url('../storage/img/dorada.png');
     margin: 0;
+    background-size: 52rem; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+    /* Evita la repetición de la imagen */
+    z-index: -1;
     padding: 0;
     font-family: "Inter", sans-serif;
-    background-color: #121212; /* Fondo oscuro */
+    background-color: #121212; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    display: flex;
+    
 }
 
-/* Container for the login form */
+
 .login-container {
-    background-color: #1e1e1e; /* Fondo ligeramente más claro para contraste */
+    display: flex;
+    width: 65%;
+    height: 75%;
+    flex-direction: column;
+    background-color: #1e1e1e; 
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Sombra suave */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
     text-align: center;
 }
+.tittle{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    /* border: 1px solid red; */
+    justify-content: center;
+    align-items: center;
 
-/* Title */
+}
+.photo{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    margin-top: 2.5rem;
+    /* border: 1px solid red; */
+    justify-content: center;
+    align-items: center;
+
+}
+.photo img{
+    object-fit: contain;
+    height: 18rem;
+}
 .login-container h1 {
-    color: #e50914; /* Rojo fuerte */
-    margin-bottom: 30px;
-    font-size: 36px;
+    
+    color: #e50914;
+    /* margin-top: 20rem; */
+    font-family: "Press Start 2P", system-ui;
+    /* margin-bottom: 30px; */
+    font-size: 1.5rem;
+    /* border: 1px solid red; */
+
 }
 
-/* Input fields */
+.login-form{
+    display: flex;
+    width: 100%;
+    margin-top: 2rem;
+    /* border: 1px solid rgb(115, 255, 0); */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
 .input-group {
+    width: 80%;
+    /* border: 1px solid red; */
     margin-bottom: 20px;
     text-align: left;
 }
@@ -35,7 +82,7 @@ body {
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    color: #e50914; /* Rojo para el texto de las etiquetas */
+    color: #e50914; 
     font-weight: bold;
 }
 
@@ -44,35 +91,93 @@ body {
     padding: 10px;
     font-size: 16px;
     color: #fff;
-    background-color: #333; /* Fondo gris oscuro para los inputs */
-    border: 1px solid #444; /* Borde gris */
+    background-color: #333; 
+    border: 1px solid #444;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-/* Button */
-.button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #e50914; /* Botón rojo */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
+
+
+
+
+.ov-btn-grow-skew-reverse {
+    background:#b80e0e; /* color de fondo */
+    color:white; /* color de fuente */
+    margin-top: 1rem;
+    padding: 16px 20px;
+    border-radius: 10px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
     text-decoration: none;
+    width: 6rem;
+    height: 0.7rem;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .ov-btn-grow-skew-reverse h3{
+    font-size: 1rem;
+  }
+  .ov-btn-grow-skew-reverse:hover {
+    color: red;/* color de fuente hover */
+  }
+  .ov-btn-grow-skew-reverse::after {
+    content: "";
+    background:white; /* color de fondo hover */
+    position: absolute;
+    color: red;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(45deg) scale(0, 1);
+    transition: all 0.3s ease;
+  }
+  .ov-btn-grow-skew-reverse:hover::after {
+    transition: all 0.3s ease-out;
+    transform: skewX(45deg) scale(1, 1);
+  }
+
+
+
+.login-container {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #111; /* Fondo oscuro para el contenedor */
+    color: #fff; /* Texto blanco */
+    text-align: center;
+    border: 3px solid transparent; /* Borde transparente inicialmente */
+    overflow: hidden; /* Evita que el efecto se desborde */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Sombra general para el contenedor */
+    animation: neonEffect 3s infinite; /* Animación del efecto neón */
 }
 
-/* Hover effect for button */
-.button:hover {
-    background-color: #b20710; /* Oscurecer el rojo al pasar el cursor */
-}
-
-/* Input focus effects */
-.input-group input:focus {
-    outline: none;
-    border-color: #e50914; /* Cambiar el borde a rojo al enfocar */
-    box-shadow: 0 0 8px rgba(229, 9, 20, 0.8); /* Sombra roja suave */
+@keyframes neonEffect {
+    0% {
+        border-color: transparent;
+    }
+    25% {
+        border-color: rgba(255, 255, 255, 1); /* Esquina superior izquierda */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        border-color: transparent;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    75% {
+        border-color: rgba(255, 255, 255, 1); /* Esquina inferior derecha */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        border-color: transparent;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
 }
