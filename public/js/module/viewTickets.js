@@ -111,7 +111,7 @@ function displayTickets(ticketsWithMovies) {
         JsBarcode(`#barcode-${ticket.id}`, ticket.id, {
             format: "CODE128", 
             width: 3,          
-            height: 55,       
+            height: 50,       
             displayValue: false 
         });
     });

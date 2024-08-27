@@ -97,7 +97,8 @@ body, html {
 }
 
 .asientos{
-    padding: 0 15px;
+    /* gap: 0.1rem; */
+    /* padding: 0 15px; */
     margin-top: 10px;
 }
 
@@ -115,16 +116,20 @@ body, html {
 }
 
 .asientos__normal div{
-    width: 100%;
+    width: 91.5%;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* border: 1px solid rgb(217, 255, 0); */
+
 }
 
 .asientos__preferenciales div{
     display: flex;
+    width: 98%;
     align-items: center;
     justify-content: center;
+    /* border: 1px solid red; */
 
 }
 
@@ -135,7 +140,8 @@ body, html {
     border: none;
     width: 30px;
     height: 30px;
-    margin: 0 3.2px;
+    /* border: 1px solid red; */
+    margin: 0 3px;
     background: #323232;
     border-radius: 5px;
     color: transparent;
@@ -146,7 +152,7 @@ body, html {
 .asientos__preferenciales button.active {
     background-color: #FE0000; 
     color: white; 
-    font-size: 1.5rem; 
+    font-size: 1rem; 
 }
 
 .asientos__lista button.active::before, 

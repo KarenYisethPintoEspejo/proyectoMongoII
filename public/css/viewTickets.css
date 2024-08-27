@@ -64,7 +64,7 @@ header .bi{
 
 .ticket {
     display: flex;
-    height: 40rem;
+    height: 41rem;
     padding: 20px;
     background-color: white;
     border-radius: 15px;
@@ -203,8 +203,9 @@ header .bi{
     margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
-    height: 6.5rem;
+    height: 4.5rem;
     position: relative;
+    /* border: 1px solid red; */
 }
 
 

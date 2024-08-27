@@ -5,7 +5,7 @@
 }
 
 body {
-    height: 110vh;
+    height: 113vh;
     font-family: "Inter", sans-serif;
     background-color: #222;
     color: white;
@@ -65,14 +65,15 @@ header .bi{
 
 .ticket {
     display: flex;
-    height: 95svh;
+    height: 97svh;
     padding: 20px;
     background-color: white;
     border-radius: 15px;
     padding: 20px;
     width: 19.5rem;
-    margin-left: 2.5rem;
-    margin-top: 2.9rem;
+    inset: 0;
+    margin: auto;
+    margin-top: 1.5rem;
     color: #222;
     flex-direction: column;
 }
@@ -85,7 +86,7 @@ header .bi{
 .movie-image {
     width: 17rem;
     border-radius: 15px;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     height: 7.5rem;
 }
 
@@ -200,18 +201,19 @@ header .bi{
 
 
 .barcode{
-    width: 18.1rem;
+    width: 18rem;
     margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
-    height: 6.5rem;
+    height: 4.6rem;
     position: relative;
+    /* border: 1px solid red; */
 }
 
 #barcode{
     position: absolute;
     bottom: 0;
-    margin-bottom: 1.7rem;
+    /* margin-bottom: 1.7rem; */
 }
 
 .custom-dashed-line {
