@@ -355,3 +355,7 @@ html, body{
     margin: 0;
     padding: 0;
 }
+
+#caratula-container{
+    height: 14rem;
+}

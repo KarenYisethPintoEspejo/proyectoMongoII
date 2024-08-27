@@ -75,7 +75,9 @@ function setupBookNowButton(movieId) {
 function displayMovieDetail(movie) {
     const container = document.getElementById('movie-detail-container');
     container.innerHTML = `
+    <div id="caratula-container">
         <img src="${movie.imagen2}" alt="${movie.nombre}" class="movie-image">
+    </div>
         <div class="movies-container2">
             <h4>${movie.nombre}</h4>
             <p>${movie.generos.join(', ')}</p>
@@ -98,9 +100,25 @@ function displayMovieDetail(movie) {
         </div>
     `;
     
-    const trailerButton = container.querySelector('.trailer');
-    trailerButton.addEventListener('click', function() {
-        const trailerUrl = this.getAttribute('data-trailer-url');
-        window.location.href = trailerUrl;
+    document.querySelector('.trailer').addEventListener('click', function() {
+        mostrarTrailer(movie.trailer);
     });
+
+}
+
+function mostrarTrailer(trailerUrl) {
+    const caratulaContainer = document.getElementById('caratula-container');
+    if (trailerUrl) {
+        if (trailerUrl.includes('youtube.com/watch?v=')) {
+            trailerUrl = trailerUrl.replace('youtube.com/watch?v=', 'youtube-nocookie.com/embed/');
+        }
+        caratulaContainer.innerHTML = `
+            <iframe width="100%" height="100%" src="${trailerUrl}" frameborder="0" allowfullscreen></iframe>
+        `;
+    } else {
+        console.error('URL del tráiler no disponible');
+        caratulaContainer.innerHTML = `
+            <p>Lo sentimos, el tráiler no está disponible en este momento.</p>
+        `;
+    }
 }
