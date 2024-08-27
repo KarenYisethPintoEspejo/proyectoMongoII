@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
@@ -12,6 +11,7 @@ const appPelicula = require('./server/routes/pelicula.routes');
 const appBoleto = require('./server/routes/boleto.routes');
 const appUsuario = require('./server/routes/usuario.routes');
 const appAsiento = require('./server/routes/asiento.routes');
+const appLogin = require('./server/routes/login.routes'); 
 
 const config = {
     port: process.env.EXPRESS_PORT || 3000,
@@ -45,45 +45,13 @@ app.get('/asiento', (req, res) => {
 });
 app.use('/asiento', appAsiento);
 
+app.use('/', appLogin); 
+
 app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
         status: err.status || 500,
         message: err.message || 'Error interno del servidor'
     });
-});
-
-
-const userSchema = new mongoose.Schema({
-    username: String,
-    id: Intl
-});
-
-const User = mongoose.model('User', userSchema, 'usuario');
-
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    process.env.MONGO_USER = username;
-    process.env.MONGO_PWD = password;
-    const mongoUrl = `mongodb://${username}:${password}@${process.env.MONGO_CLUSTER}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
-
-    try {
-        await mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-        const user = await User.findOne({ username: username }).select('id username');
-
-        if (user) {
-            res.status(200).json({ 
-                message: 'Login exitoso',
-                userId: user.id 
-            });
-        } else {
-            res.status(401).json({ message: 'Usuario no encontrado' });
-        }
-    } catch (error) {
-        console.error('Error en el login:', error);
-        res.status(401).json({ message: 'Credenciales inválidas o error de conexión a la base de datos' });
-    } finally {
-        mongoose.disconnect();
-    }
 });
 
 app.listen(config.port, config.host, () => {
