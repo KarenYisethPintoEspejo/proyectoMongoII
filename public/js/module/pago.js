@@ -147,8 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const buyButton = document.getElementById('buyButton');
     const buyLink = document.getElementById('buyLink');
 
-    // Inicializa el estado del checkbox
-    let isCardChecked = false; // Puedes inicializar con el estado deseado
+    let isCardChecked = false; 
     cardCheckbox.checked = isCardChecked;
     updateButtonState();
 
@@ -171,21 +170,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectionInfo = JSON.parse(localStorage.getItem('selectionInfo'));
         const orderNumber = localStorage.getItem('orderNumber');
         const movieId = localStorage.getItem('selectedMovieID');
-
-        if (!selectionInfo || !orderNumber || !movieId) {
+        const storedUserId = localStorage.getItem('userId');
+    
+        if (!selectionInfo || !orderNumber || !movieId || !storedUserId) {
             console.error('Faltan datos para completar la compra.');
+            alert('Faltan datos necesarios para la compra. Por favor, inténtelo de nuevo.');
+            window.location.href = '../views/asiento.html';
             return;
         }
-
+    
         const ticketData = {
             id: parseInt(orderNumber, 10), 
-            id_usuario: parseInt(1, 10),
+            id_usuario: parseInt(storedUserId, 10),
             id_asiento: parseInt(selectionInfo.asiento.id, 10),
-            id_proyeccion: parseInt(selectionInfo.proyeccionId), 
+            id_proyeccion: parseInt(selectionInfo.proyeccionId, 10), 
             precio: parseFloat(selectionInfo.precio) 
         };
-        
-
+    
         try {
             const response = await fetch('/boleto/compraBoleto', {
                 method: 'POST',
@@ -194,23 +195,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify(ticketData)
             });
-
+    
             const result = await response.json();
-
-            if (response.ok) {
+    
+            if (response.ok && !result.error) {
                 console.log('Compra exitosa:', result);
-
                 alert('Compra realizada con éxito!');
-                window.location.href = '../views/boleto.html'
+                window.location.href = '../views/boleto.html';
             } else {
-                console.error('Error al comprar el boleto:', result.error);
-
-                alert(`Error: ${result.error}`);
+                console.error('Error al comprar el boleto:', result.error || 'Error desconocido');
+                alert(`Error: ${result.error || 'Ocurrió un error al procesar la compra.'}`);
+                window.location.href = '../views/asiento.html';
             }
         } catch (error) {
             console.error('Error al realizar la solicitud de compra:', error);
-
             alert('Ocurrió un error al procesar la compra.');
+            window.location.href = '../views/asiento.html';
         }
     });
 });

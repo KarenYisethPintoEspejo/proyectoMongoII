@@ -4,11 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = './index.html';
     }
 
-
-    const storedUserId = localStorage.getItem('userId');
-    console.log(storedUserId);
-
-    
     fetch('/usuario/get-username')
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
