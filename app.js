@@ -53,6 +53,13 @@ app.use((err, req, res, next) => {
 });
 
 
+const userSchema = new mongoose.Schema({
+    username: String,
+    id: Intl
+});
+
+const User = mongoose.model('User', userSchema, 'usuario');
+
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     process.env.MONGO_USER = username;
@@ -60,13 +67,22 @@ app.post('/login', async (req, res) => {
     const mongoUrl = `mongodb://${username}:${password}@${process.env.MONGO_CLUSTER}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`;
 
     try {
-
         await mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-        mongoose.disconnect();
+        const user = await User.findOne({ username: username }).select('id username');
 
-        res.status(200).json({ message: 'Login exitoso' });
+        if (user) {
+            res.status(200).json({ 
+                message: 'Login exitoso',
+                userId: user.id 
+            });
+        } else {
+            res.status(401).json({ message: 'Usuario no encontrado' });
+        }
     } catch (error) {
+        console.error('Error en el login:', error);
         res.status(401).json({ message: 'Credenciales inválidas o error de conexión a la base de datos' });
+    } finally {
+        mongoose.disconnect();
     }
 });
 

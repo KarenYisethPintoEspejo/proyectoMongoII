@@ -21,7 +21,9 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
         if (response.ok) {
             console.log('Login exitoso');
+            const { userId } = data; 
             localStorage.setItem('username', username);
+            localStorage.setItem('userId', userId)
             window.location.href = './views/principal.html';
         } else {
             console.error('Error en el login:', data.message);

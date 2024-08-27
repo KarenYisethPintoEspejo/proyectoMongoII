@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('username');
     if (!username) {
-        // Redirigir al login si el usuario no está autenticado
         window.location.href = './index.html';
     }
-    // Caché para los datos de usuario
+
+
+    const storedUserId = localStorage.getItem('userId');
+    console.log(storedUserId);
+
+    
     fetch('/usuario/get-username')
         .then(response => {
             if (!response.ok) throw new Error('Network response was not ok');
