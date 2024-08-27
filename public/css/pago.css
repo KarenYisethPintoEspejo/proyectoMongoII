@@ -85,21 +85,27 @@ header .bi{
 }
 
 .movie-info img {
-    width: 7rem;
-    height: 10.1rem;
+    display: flex;
+    /* width: 7rem; */
+    height: 10rem;
     border-radius: 10px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
     margin-left: 2rem;
-    margin-top: 2.3rem;
+    margin-top: 1.5rem;
+    /* border: 1px solid red; */
+    object-fit: contain;
+
 }
 
 .movie-details h1 {
     font-size: 20px;
     margin: 0;
     color: red;
-    margin-top: 2.2rem;
+    margin-top: 1.5rem;
     font-weight: normal;
     margin-right: 3rem;
+    margin-left: 1rem;
+    /* border: 1px solid red; */
 
 }
 
@@ -110,17 +116,23 @@ header .bi{
     margin-bottom: 2rem;
     margin-right: 3rem;
     color: grey;
+    margin-left: 1rem;
+
 }
 
 .movie-details h5{
     margin-bottom: 0.5rem;
     font-size: 1rem;
     font-weight: normal;
+    margin-left: 1rem;
+
 }
 
 .movie-details h6{
     font-size: 0.9rem;
     color: grey;
+    margin-left: 1rem;
+
 }
 
 .order-details {

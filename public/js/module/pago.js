@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formattedDate = date.toLocaleDateString('en-US', options);
     
         movieInfoSection.innerHTML = `
-            <img src="${movie.imagen2}" alt="${movie.nombre}">
+            <img src="${movie.imagen}" alt="${movie.nombre}">
             <div class="movie-details">
                 <h1>${movie.nombre}</h1>
                 <p>${movie.generos.join(', ')}</p>
@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Compra exitosa:', result);
 
                 alert('Compra realizada con éxito!');
+                window.location.href = '../views/boleto.html'
             } else {
                 console.error('Error al comprar el boleto:', result.error);
 
