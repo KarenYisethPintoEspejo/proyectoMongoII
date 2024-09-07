@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "node --watch --env-file=.env app.js"
+    "dev": "node --watch app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "jsbarcode": "^3.11.6",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.5.4"
+    "mongoose": "^8.5.4",
+    "proyectomongoii": "file:"
   }
 }

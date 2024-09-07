@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_URI=mongodb://KarenPinto:KarenPinto123@autorack.proxy.rlwy.net:24665/cineCampus
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
